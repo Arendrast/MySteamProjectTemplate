@@ -1,12 +1,13 @@
 ﻿//Anything that works with Steamworks should only compile if Steamworks is available
 #if !DISABLESTEAMWORKS  && STEAMWORKSNET
 using System;
+using Heathen.SteamworksIntegration.Modules.HealthenSteamworksModule.Runtime;
 using UnityEngine;
 
 //You must "use" the Heathen namespace to access our tools
 //In our examples we will also work with the API so we add its namespace as well
 using Steamworks;
-using Heathen.SteamworksIntegration.API;
+
 //In some cases you also need the Steamworks namespace so you can work with its native enums and similar
 
 

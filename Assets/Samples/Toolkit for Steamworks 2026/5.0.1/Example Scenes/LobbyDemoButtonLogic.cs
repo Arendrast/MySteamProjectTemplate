@@ -1,8 +1,9 @@
 #if !DISABLESTEAMWORKS  && (STEAMWORKSNET || STEAM_LEGACY || STEAM_161 || STEAM_162)
 using Heathen.SteamworksIntegration;
-using Heathen.SteamworksIntegration.API;
 using Steamworks;
 using System;
+using Heathen.SteamworksIntegration.Modules.HealthenSteamworksModule.Runtime;
+using Heathen.SteamworksIntegration.Modules.HealthenSteamworksModule.Runtime.Data;
 using TMPro;
 using UnityEngine;
 

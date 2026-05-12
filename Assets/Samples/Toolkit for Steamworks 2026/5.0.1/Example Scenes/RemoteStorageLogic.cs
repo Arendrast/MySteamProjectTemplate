@@ -2,8 +2,9 @@
 using Heathen.SteamworksIntegration;
 using System;
 using System.Collections.Generic;
+using Heathen.SteamworksIntegration.Modules.HealthenSteamworksModule.Runtime;
 using UnityEngine;
-using CloudSave = Heathen.SteamworksIntegration.API.RemoteStorage.Client;
+using CloudSave = Heathen.SteamworksIntegration.Modules.HealthenSteamworksModule.Runtime.RemoteStorage.Client;
 
 namespace Heathen.DEMO
 {

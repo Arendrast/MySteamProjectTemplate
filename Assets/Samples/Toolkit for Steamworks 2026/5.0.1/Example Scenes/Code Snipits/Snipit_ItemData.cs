@@ -6,11 +6,12 @@ using UnityEngine;
 //You must "use" the Heathen namespace to access our tools
 using Heathen.SteamworksIntegration;
 //In our examples we will also work with the API so we add its namespace as well
-using Heathen.SteamworksIntegration.API;
 //In some cases you also need the Steamworks namespace so you can work with its native enums and similar
 using Steamworks;
 //This is here so we can work with common collections e.g. List<T>
 using System.Collections.Generic;
+using Heathen.SteamworksIntegration.Modules.HealthenSteamworksModule.Runtime;
+using Heathen.SteamworksIntegration.Modules.HealthenSteamworksModule.Runtime.Data;
 
 
 //You must ALWAYS define your code in a properly formed namespace

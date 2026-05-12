@@ -2,6 +2,8 @@
 using Heathen.SteamworksIntegration;
 using System.Collections;
 using System.Collections.Generic;
+using Heathen.SteamworksIntegration.Modules.HealthenSteamworksModule.Runtime;
+using Heathen.SteamworksIntegration.Modules.HealthenSteamworksModule.Runtime.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;

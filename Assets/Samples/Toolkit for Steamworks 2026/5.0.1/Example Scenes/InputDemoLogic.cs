@@ -1,6 +1,8 @@
 ﻿#if !DISABLESTEAMWORKS  && (STEAMWORKSNET || STEAM_LEGACY || STEAM_161 || STEAM_162)
 using Heathen.SteamworksIntegration;
 using System.Text;
+using Heathen.SteamworksIntegration.Modules.HealthenSteamworksModule.Runtime;
+using Heathen.SteamworksIntegration.Modules.HealthenSteamworksModule.Runtime.Data;
 using UnityEngine;
 
 namespace Heathen.DEMO
@@ -12,10 +14,10 @@ namespace Heathen.DEMO
 
         private void Start()
         {
-            if (SteamTools.Interface.IsReady)
+            if (Interface.IsReady)
                 ActivateShipControls();
             else
-                SteamTools.Interface.OnReady += ActivateShipControls;
+                Interface.OnReady += ActivateShipControls;
         }
 
         public void UpdateDisplay(InputControllerStateData state)
@@ -31,13 +33,13 @@ namespace Heathen.DEMO
         public void ActivateMenuControls()
         {
             if (SteamInputManager.Controllers != null && SteamInputManager.Controllers.Count > 0)
-                SteamTools.Interface.GetSet("menu_controls").Activate(SteamInputManager.Controllers[0]);
+                Interface.GetSet("menu_controls").Activate(SteamInputManager.Controllers[0]);
         }
 
         public void ActivateShipControls()
         {
             if (SteamInputManager.Controllers != null && SteamInputManager.Controllers.Count > 0)
-                SteamTools.Interface.GetSet("ship_controls").Activate(SteamInputManager.Controllers[0]);
+                Interface.GetSet("ship_controls").Activate(SteamInputManager.Controllers[0]);
         }
 
         public void OpenKnowledgeBaseUserData()

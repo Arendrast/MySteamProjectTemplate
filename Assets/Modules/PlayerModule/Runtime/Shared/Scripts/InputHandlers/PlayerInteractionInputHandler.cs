@@ -1,0 +1,35 @@
+using Modules.PlayerModule.Runtime.Shared.Scripts.Interaction;
+using Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer.OwnerStateMachine.States;
+using Modules.SharedModule.Runtime.Shared.Scripts.Input;
+
+namespace Modules.PlayerModule.Runtime.Shared.Scripts.InputHandlers
+{
+    public class PlayerInteractionInputHandler : IPlayerInputHandler
+    {
+        private readonly IInputProvider _inputProvider;
+        private readonly PlayerInteractionController _interactionController;
+
+        public PlayerInteractionInputHandler(
+            IInputProvider inputProvider,
+            PlayerInteractionController interactionController)
+        {
+            _inputProvider = inputProvider;
+            _interactionController = interactionController;
+        }
+
+        public void Update()
+        {
+            _interactionController.TryInteractAsync(GetInputCondition());
+        }
+
+        public PlayerInputHandlerType GetInputHandlerType()
+        {
+            return PlayerInputHandlerType.Interaction;
+        }
+
+        private bool GetInputCondition()
+        {
+            return _inputProvider.IsActionTriggered(InputActionType.Use);
+        }
+    }
+}

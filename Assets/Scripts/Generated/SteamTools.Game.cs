@@ -1,7 +1,8 @@
 using Heathen.SteamworksIntegration;
-using Heathen.SteamworksIntegration.API;
 using UnityEngine;
 using System.Collections.Generic;
+using Heathen.SteamworksIntegration.Modules.HealthenSteamworksModule.Runtime;
+using Heathen.SteamworksIntegration.Modules.HealthenSteamworksModule.Runtime.Data;
 
 namespace SteamTools
 {
@@ -50,7 +51,7 @@ namespace SteamTools
         public static void Initialize()
         {
               Debug.Log($"Initializing for app {AppId}");
-             Heathen.SteamworksIntegration.API.App.onSteamInitialized.AddListener(HandleInitialized);
+             App.onSteamInitialized.AddListener(HandleInitialized);
 #if UNITY_SERVER
              Heathen.SteamworksIntegration.API.App.Server.Initialize(AppId, ServerConfiguration);
 #else
@@ -73,7 +74,7 @@ namespace SteamTools
 #elif APP0
 #endif
 
-             Heathen.SteamworksIntegration.API.App.Client.Initialize(AppId, actions.ToArray());
+             App.Client.Initialize(AppId, actions.ToArray());
 #endif
         }
 

@@ -1,9 +1,10 @@
 ﻿#if !DISABLESTEAMWORKS  && (STEAMWORKSNET || STEAM_LEGACY || STEAM_161 || STEAM_162)
 using Heathen.SteamworksIntegration;
 using System;
+using Heathen.SteamworksIntegration.Modules.HealthenSteamworksModule.Runtime;
 using UnityEngine;
 using UnityEngine.Events;
-using CloudSave = Heathen.SteamworksIntegration.API.RemoteStorage.Client;
+using CloudSave = Heathen.SteamworksIntegration.Modules.HealthenSteamworksModule.Runtime.RemoteStorage.Client;
 
 namespace Heathen.DEMO
 {
