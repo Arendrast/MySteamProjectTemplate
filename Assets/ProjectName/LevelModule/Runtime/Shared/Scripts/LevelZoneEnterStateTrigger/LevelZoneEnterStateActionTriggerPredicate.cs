@@ -1,0 +1,128 @@
+using System;
+using System.Linq;
+using FishNet.Connection;
+using FishNet.Managing.Client;
+using FishNet.Managing.Server;
+using ProjectName.ActionTriggerModule.Runtime.Shared.Scripts.TriggerPredicate;
+using ProjectName.EntityModule.Runtime.Shared.Scripts.Entity;
+using ProjectName.EntityModule.Runtime.Shared.Scripts.Repositories;
+using ProjectName.SharedModule.Runtime.Shared.Scripts.Services;
+using ProjectName.SharedModule.Runtime.Shared.Scripts.Tools;
+using UnityEngine;
+
+namespace ProjectName.LevelModule.Runtime.Shared.Scripts.LevelZoneEnterStateTrigger
+{
+    public class LevelZoneEnterStateActionTriggerPredicate : IActionTriggerPredicate
+    {
+        public event Action ChangedResult;
+
+        private bool _pastResultValue;
+
+        private readonly LevelZoneEnterStateTriggerConfig _config;
+        private readonly LayerMask _playerLayerMask;
+        private readonly ClientsConnectionTrackingService _clientsConnectionTrackingService;
+        private readonly ClientManager _clientManager;
+        private readonly ServerManager _serverManager;
+        private readonly EntityComponentsRepository _entityComponentsRepository;
+
+        public LevelZoneEnterStateActionTriggerPredicate(
+            LevelZoneEnterStateTriggerConfig config, LayerMask playerLayerMask,
+            ClientsConnectionTrackingService clientsConnectionTrackingService, ClientManager clientManager,
+            ServerManager serverManager, EntityComponentsRepository entityComponentsRepository)
+        {
+            _config = config;
+            _playerLayerMask = playerLayerMask;
+            _clientsConnectionTrackingService = clientsConnectionTrackingService;
+            _clientManager = clientManager;
+            _serverManager = serverManager;
+            _entityComponentsRepository = entityComponentsRepository;
+
+            TryInvokeChangedResultAndSetPastValue();
+
+            _clientsConnectionTrackingService.Connected += TryInvokeChangedResultAndSetPastValue;
+            _clientsConnectionTrackingService.Disconnected += TryInvokeChangedResultAndSetPastValue;
+            _config.ZoneBoxOverlapObserver.Entered += TryInvokeChangedResultAndSetPastValueWithCollider;
+            _config.ZoneBoxOverlapObserver.Exited += TryInvokeChangedResultAndSetPastValueWithCollider;
+
+            _entityComponentsRepository.Added += SubscribeToPlayerDeath;
+            _entityComponentsRepository.Removed += UnsubscribeFromPlayerDeath;
+        }
+
+        private void TryInvokeChangedResultAndSetPastValue(NetworkConnection networkConnection)
+        {
+            TryInvokeChangedResultAndSetPastValue();
+        }
+
+        private void SubscribeToPlayerDeath(EntitySerializableComponents entitySerializableComponents,
+            EntityComponents entityComponents)
+        {
+            entityComponents.HealthModel.DiedWithoutArgs += TryInvokeChangedResultAndSetPastValue;
+        }
+
+        private void UnsubscribeFromPlayerDeath(EntitySerializableComponents entitySerializableComponents,
+            EntityComponents entityComponents)
+        {
+            entityComponents.HealthModel.DiedWithoutArgs -= TryInvokeChangedResultAndSetPastValue;
+        }
+
+        private void TryInvokeChangedResultAndSetPastValue()
+        {
+            TryInvokeChangedResultAndSetPastValueWithCollider(null);
+        }
+
+        private void TryInvokeChangedResultAndSetPastValueWithCollider(Collider collider = null)
+        {
+            var result = GetResult();
+
+            if (result == _pastResultValue) return;
+
+            _pastResultValue = result;
+            ChangedResult?.Invoke();
+        }
+
+        public bool GetResult()
+        {
+            var requiredPlayersInZoneNumber = _config.ShouldCheckAllPlayersInZone
+                ? _serverManager.Started
+                    ? _config.CheckForAliveState
+                        ? GetAllAlivePlayersCount()
+                        : _serverManager.Clients.Count
+                    : _config.CheckForAliveState
+                        ? GetAllAlivePlayersCount()
+                        : _clientManager.Clients.Count
+                : _config.RequiredPlayersInZoneNumber;
+
+            _config.ZoneBoxOverlapObserver.PerformOverlapCheck();
+
+            return _config.ZoneBoxOverlapObserver.CurrentOverlaps.Select(collider => collider.gameObject).Distinct()
+                .Count(gameObject =>
+                    _playerLayerMask.DoesHaveLayer(gameObject.gameObject.layer) &&
+                    (!_config.CheckForAliveState ||
+                     !_entityComponentsRepository
+                         .ValueByKey[gameObject.GetComponentInChildren<EntitySerializableComponents>()].HealthModel
+                         .IsDied)) >= requiredPlayersInZoneNumber;
+
+            int GetAllAlivePlayersCount()
+            {
+                return Mathf.Max(1, _entityComponentsRepository.KeyByValue.Keys.Count(components => !components.HealthModel.IsDied));
+            }
+        }
+
+        public void Dispose()
+        {
+            _clientsConnectionTrackingService.Connected -= TryInvokeChangedResultAndSetPastValue;
+            _clientsConnectionTrackingService.Disconnected -= TryInvokeChangedResultAndSetPastValue;
+
+            _entityComponentsRepository.Added -= SubscribeToPlayerDeath;
+            _entityComponentsRepository.Removed -= UnsubscribeFromPlayerDeath;
+
+            if (_config.ZoneBoxOverlapObserver != null)
+            {
+                _config.ZoneBoxOverlapObserver.Entered -= TryInvokeChangedResultAndSetPastValueWithCollider;
+                _config.ZoneBoxOverlapObserver.enabled = false;
+            }
+
+            ChangedResult = null;
+        }
+    }
+}

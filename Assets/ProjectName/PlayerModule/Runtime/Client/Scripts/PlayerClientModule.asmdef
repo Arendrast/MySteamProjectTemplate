@@ -1,0 +1,26 @@
+{
+    "name": "PlayerClientModule",
+    "rootNamespace": "",
+    "references": [
+        "UniTask",
+        "SharedSharedModule",
+        "SharedClientModule",
+        "PlayerSharedModule",
+        "InventorySharedModule",
+        "FishNet.Runtime",
+        "InteractableSharedModule",
+        "Unity.TextMeshPro",
+        "NetworkSharedModule",
+        "LevelSharedModule",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

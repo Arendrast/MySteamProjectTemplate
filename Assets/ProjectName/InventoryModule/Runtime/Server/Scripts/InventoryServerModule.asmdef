@@ -1,0 +1,21 @@
+{
+    "name": "InventoryServerModule",
+    "rootNamespace": "",
+    "references": [
+        "InventorySharedModule",
+        "SharedServerModule",
+        "SharedSharedModule",
+        "FishNet.Runtime",
+        "NetworkSharedModule",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

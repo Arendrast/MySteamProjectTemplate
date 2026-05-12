@@ -1,0 +1,23 @@
+{
+    "name": "ItemSharedModule",
+    "rootNamespace": "",
+    "references": [
+        "UniTask",
+        "SharedSharedModule",
+        "Unity.Addressables",
+        "FishNet.Runtime",
+        "Kybernetik.Animancer",
+        "EntitySharedModule",
+        "Popcron.Gizmos",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

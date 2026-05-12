@@ -1,0 +1,315 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8c99f16aee04122968f144d51257259, type: 3}
+  m_Name: InventoryItemsConfig
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 3a6a3f9e70349a549a61bd59b0c65b4b, type: 2}
+    - {fileID: 11400000, guid: 3937d05b264e4ea4f9a01aeb6a713da3, type: 2}
+    - {fileID: 11400000, guid: 09a1b5a8dc937814f822b453f5f021e6, type: 2}
+    - {fileID: 11400000, guid: 008291b07ed757448b52e0f8f914d774, type: 2}
+    - {fileID: 11400000, guid: d888c5991458b0b48918acc54d1832e6, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: <ItemSlotsConfigs>k__BackingField
+      Entry: 7
+      Data: 0|CrazySWAT.InventoryModule.Runtime.Shared.Scripts.InventoryItemsSlotConfig[],
+        InventorySharedModule
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: 
+      Entry: 7
+      Data: 1|CrazySWAT.InventoryModule.Runtime.Shared.Scripts.InventoryItemsSlotConfig,
+        InventorySharedModule
+    - Name: <DefaultItemConfig>k__BackingField
+      Entry: 6
+      Data: 
+    - Name: <CapacityByItemType>k__BackingField
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[CrazySWAT.ItemModule.Runtime.Shared.Scripts.Logic.ItemType,
+        ItemSharedModule],[System.Int32, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 3|System.Collections.Generic.EnumEqualityComparer`1[[CrazySWAT.ItemModule.Runtime.Shared.Scripts.Logic.ItemType,
+        ItemSharedModule]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|CrazySWAT.InventoryModule.Runtime.Shared.Scripts.InventoryItemsSlotConfig,
+        InventorySharedModule
+    - Name: <DefaultItemConfig>k__BackingField
+      Entry: 10
+      Data: 0
+    - Name: <CapacityByItemType>k__BackingField
+      Entry: 7
+      Data: 5|System.Collections.Generic.Dictionary`2[[CrazySWAT.ItemModule.Runtime.Shared.Scripts.Logic.ItemType,
+        ItemSharedModule],[System.Int32, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|CrazySWAT.InventoryModule.Runtime.Shared.Scripts.InventoryItemsSlotConfig,
+        InventorySharedModule
+    - Name: <DefaultItemConfig>k__BackingField
+      Entry: 10
+      Data: 1
+    - Name: <CapacityByItemType>k__BackingField
+      Entry: 7
+      Data: 7|System.Collections.Generic.Dictionary`2[[CrazySWAT.ItemModule.Runtime.Shared.Scripts.Logic.ItemType,
+        ItemSharedModule],[System.Int32, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 8|CrazySWAT.InventoryModule.Runtime.Shared.Scripts.InventoryItemsSlotConfig,
+        InventorySharedModule
+    - Name: <DefaultItemConfig>k__BackingField
+      Entry: 10
+      Data: 2
+    - Name: <CapacityByItemType>k__BackingField
+      Entry: 7
+      Data: 9|System.Collections.Generic.Dictionary`2[[CrazySWAT.ItemModule.Runtime.Shared.Scripts.Logic.ItemType,
+        ItemSharedModule],[System.Int32, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 10|System.Collections.Generic.EnumEqualityComparer`1[[CrazySWAT.ItemModule.Runtime.Shared.Scripts.Logic.ItemType,
+        ItemSharedModule]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 9
+    - Name: $v
+      Entry: 3
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 11|CrazySWAT.InventoryModule.Runtime.Shared.Scripts.InventoryItemsSlotConfig,
+        InventorySharedModule
+    - Name: <DefaultItemConfig>k__BackingField
+      Entry: 10
+      Data: 3
+    - Name: <CapacityByItemType>k__BackingField
+      Entry: 7
+      Data: 12|System.Collections.Generic.Dictionary`2[[CrazySWAT.ItemModule.Runtime.Shared.Scripts.Logic.ItemType,
+        ItemSharedModule],[System.Int32, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 6
+    - Name: $v
+      Entry: 3
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 13|CrazySWAT.InventoryModule.Runtime.Shared.Scripts.InventoryItemsSlotConfig,
+        InventorySharedModule
+    - Name: <DefaultItemConfig>k__BackingField
+      Entry: 10
+      Data: 4
+    - Name: <CapacityByItemType>k__BackingField
+      Entry: 7
+      Data: 14|System.Collections.Generic.Dictionary`2[[CrazySWAT.ItemModule.Runtime.Shared.Scripts.Logic.ItemType,
+        ItemSharedModule],[System.Int32, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 4
+    - Name: $v
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 5
+    - Name: $v
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 8
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  <TimeBeforeStartSetTargetSlotWhenSetTargetSlot>k__BackingField: 1
+  <StartTargetSlotIndex>k__BackingField: 1

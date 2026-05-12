@@ -1,0 +1,28 @@
+{
+    "name": "SharedSharedModule",
+    "rootNamespace": "",
+    "references": [
+        "UniTask",
+        "UniRx",
+        "Kybernetik.Animancer",
+        "UniTask.Addressables",
+        "Unity.ResourceManager",
+        "Unity.Addressables",
+        "Unity.InputSystem",
+        "FishNet.Runtime",
+        "Unity.TextMeshPro",
+        "Unity.AI.Navigation",
+        "Popcron.Gizmos",
+        "Unity.RenderPipelines.Core.Runtime",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

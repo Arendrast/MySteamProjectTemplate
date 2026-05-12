@@ -1,0 +1,27 @@
+{
+    "name": "PlayerServerModule",
+    "rootNamespace": "",
+    "references": [
+        "PlayerSharedModule",
+        "SharedServerModule",
+        "SharedSharedModule",
+        "InventorySharedModule",
+        "ItemSharedModule",
+        "UniTask",
+        "InteractableSharedModule",
+        "FishNet.Runtime",
+        "UniRx",
+        "NetworkSharedModule",
+        "LevelSharedModule",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

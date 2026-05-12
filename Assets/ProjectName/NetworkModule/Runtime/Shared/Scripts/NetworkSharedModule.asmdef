@@ -1,0 +1,26 @@
+{
+    "name": "NetworkSharedModule",
+    "rootNamespace": "",
+    "references": [
+        "FishNet.Runtime",
+        "SharedSharedModule",
+        "SharedClientModule",
+        "SharedServerModule",
+        "Unity.ResourceManager",
+        "Unity.Addressables",
+        "UniTask",
+        "Unity.RenderPipelines.Core.Runtime",
+        "Kybernetik.Animancer",
+        "VContainer",
+        "UniRx"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

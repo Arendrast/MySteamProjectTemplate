@@ -1,0 +1,22 @@
+{
+    "name": "ActionTriggerSharedModule",
+    "rootNamespace": "",
+    "references": [
+        "UniTask",
+        "SharedSharedModule",
+        "FishNet.Runtime",
+        "Kybernetik.Animancer",
+        "Unity.Addressables",
+        "NetworkSharedModule",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

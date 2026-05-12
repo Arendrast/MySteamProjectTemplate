@@ -1,0 +1,22 @@
+{
+    "name": "LevelServerModule",
+    "rootNamespace": "",
+    "references": [
+        "SharedServerModule",
+        "FishNet.Runtime",
+        "SharedSharedModule",
+        "UniTask",
+        "NetworkSharedModule",
+        "LevelSharedModule",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

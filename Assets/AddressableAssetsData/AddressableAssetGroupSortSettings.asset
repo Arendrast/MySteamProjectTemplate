@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea69d41f90c6ea4fa55c27c1d60c145, type: 3}
+  m_Name: AddressableAssetGroupSortSettings
+  m_EditorClassIdentifier: 
+  sortOrder:
+  - 5e5314baed6678045bd5c6b1bbfef4b2
+  - 5a6bdfe4ed39a89499e19e34c46598a4
+  - f80e282b882e4b245a26e358198f7bc9
+  - f04334ad4a3e6c44097a15781e55d319
+  - d019db5bd3b0073439d243946fda0ea3
+  - b07f3e2c337dfb14b9c22ca6db585f7f
+  - 1964cc94b0fa93a4ebfa9568d9bd3b22
+  - abeee3307e501bf4a8b88b39cc0cd182
+  - 7602303633a8d3e4f86cc04e313feea3
+  - 80db0b0c8297dc24f98f84d9a770d6cf

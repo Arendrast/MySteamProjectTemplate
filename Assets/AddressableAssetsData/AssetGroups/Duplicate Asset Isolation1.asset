@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Duplicate Asset Isolation1
+  m_EditorClassIdentifier: 
+  m_GroupName: Duplicate Asset Isolation1
+  m_GUID: f80e282b882e4b245a26e358198f7bc9
+  m_SerializeEntries:
+  - m_GUID: 0406db5a14f94604a8c57ccfbc9f3b46
+    m_Address: Packages/com.unity.render-pipelines.universal/Shaders/Particles/ParticlesUnlit.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31321ba15b8f8eb4c954353edc038b1d
+    m_Address: Packages/com.unity.render-pipelines.universal/Runtime/Materials/Lit.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ce94db7c85fccf4ab0cb4ab9336320d
+    m_Address: Assets/TextMesh Pro/Fonts/tilda-sans_bold SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 444dcea4234a2b64285410a4a3d10be5
+    m_Address: Assets/TextMesh Pro/Fonts/tilda-sans_black SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72b34833b49a45b4ebf42f4263b0da69
+    m_Address: Assets/TextMesh Pro/Fonts/tilda-sans_bold.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7365310c057016f43a6fd104c5bffb94
+    m_Address: Assets/CrazySWAT/LevelModule/Runtime/Shared/Prefabs/Levels/1/Zone1/Zone1VolumeProfile.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8516d7a69675844a7a0b7095af7c46af
+    m_Address: Packages/com.unity.render-pipelines.universal/Shaders/Particles/ParticlesSimpleLit.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b7839dad95683814aa64166edc107ae2
+    m_Address: Packages/com.unity.render-pipelines.universal/Shaders/Particles/ParticlesLit.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d03c267acf60ddf4ea18d8dc7c4230ea
+    m_Address: Assets/TextMesh Pro/Fonts/tilda-sans_black.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e823cd5b5d27c0f4b8256e7c12ee3e6d
+    m_Address: Packages/com.unity.render-pipelines.universal/Runtime/Materials/ParticlesUnlit.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 237a77756b9c52945863cb194eef1450, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 1e4f564bbfcf0fc43b80c6e718848f9c, type: 2}
+    - {fileID: 11400000, guid: 44729eda73bd3c34b99badd00deaeba9, type: 2}

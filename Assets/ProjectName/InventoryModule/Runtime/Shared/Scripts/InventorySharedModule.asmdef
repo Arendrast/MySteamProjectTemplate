@@ -1,0 +1,26 @@
+{
+    "name": "InventorySharedModule",
+    "rootNamespace": "",
+    "references": [
+        "ItemSharedModule",
+        "SharedSharedModule",
+        "UniTask",
+        "UniRx",
+        "LocalizationModule",
+        "Unity.TextMeshPro",
+        "FishNet.Runtime",
+        "NetworkSharedModule",
+        "SharedClientModule",
+        "DOTween.Modules",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

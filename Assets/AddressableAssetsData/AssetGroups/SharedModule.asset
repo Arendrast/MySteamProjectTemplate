@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: SharedModule
+  m_EditorClassIdentifier: 
+  m_GroupName: SharedModule
+  m_GUID: d019db5bd3b0073439d243946fda0ea3
+  m_SerializeEntries:
+  - m_GUID: 01ac45b34c2886f4ebffd947e024b5e5
+    m_Address: MovementConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 06af6708457cfe54da32866149ab87da
+    m_Address: MetricsZone1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0bf00605e69baf846810057be8f83029
+    m_Address: Lvl1Zone1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NetworkObjects
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f1489eefbd51b248a3cb58947a54b0d
+    m_Address: PlayerView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 34d4ac51cb500ba4fb29a5358109ac15
+    m_Address: InteractableItemsConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3895c8d827397254f9cc67275bbcf4ac
+    m_Address: Operator
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4482e0aa8d7941949a8715cf142038ca
+    m_Address: DynamicGlobalVolume
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 471cdeba4b5ef47449799f5889c42c80
+    m_Address: MetricsPersistentZone
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 60ab93675b0ea4a408fc0735fcdafb8e
+    m_Address: InventoryItemsConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 691842a96655cb8478bb6a3bdb12fc38
+    m_Address: SettingsPopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7043b5d4baf96504199fe475804cbba4
+    m_Address: LoadingPopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 775e5816f2f07e441aa405d15dfd82b8
+    m_Address: MainMenuPopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ae5a99e0f4c4644781f139dd8bf4655
+    m_Address: CharacterControllerExplodablesConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b1a72cc4abe3db419fe4bbd5210683a
+    m_Address: ItemsConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8827dd967b068d34095c9dc891086955
+    m_Address: Player
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - NetworkObjects
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d6d65ae0f1c049418c09ab1006fb4bd
+    m_Address: ItemsViewConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e322f77f8a8565498d21a600b105b22
+    m_Address: PersistentServicesScope
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: baf119c8ac8ce7e459cfe00b632c0a2e
+    m_Address: InteractableInfiniteAmmoPacketsConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bed2caada740d6748af59f320821cb52
+    m_Address: Lvl1PersistentZone
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3997683bf00557489b7935dceb2120a
+    m_Address: HudPopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c464133b21d959641b4855bf8c50fc0d
+    m_Address: PhysicsLayersConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6de835d69854eb4e9bcac9fed61e6fb
+    m_Address: PausePopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8bf433751498c7479216bfeea93d4de
+    m_Address: NetworkCountersSynchronizerBehaviour
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da1f3b51a3eae8149bae84abfb37accd
+    m_Address: RenderingLayersConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e0df9eff68e74ed48a67ceac1c33f2ae
+    m_Address: MainCamera
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e1c727bf01ca5c845a0a8c9c0beefb79
+    m_Address: LevelsConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 237a77756b9c52945863cb194eef1450, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: de67e57b089aad64aa6604fe9ed4315f, type: 2}
+    - {fileID: 11400000, guid: bebbc884f33f72e45ae9515bd5c95fc1, type: 2}

@@ -1,0 +1,199 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &717720120483964171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1903539970613681060}
+  - component: {fileID: 3686296861288841381}
+  m_Layer: 0
+  m_Name: LoadReactor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1903539970613681060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717720120483964171}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3686296861288841381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717720120483964171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27848149d135418aadff3d39998f2762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: <TriggerConfigs>k__BackingField
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[CrazySWAT.ActionTriggerModule.Runtime.Shared.Scripts.TriggerPredicate.IActionTriggerConfig,
+        ActionTriggerSharedModule]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 1|CrazySWAT.EnvironmentModule.Runtime.Shared.Scripts.LocationZoneEnterStateTrigger.LocationZoneEnterStateTrigger.LocationZoneEnterStateTriggerConfig,
+        EnvironmentSharedModule
+    - Name: <ShouldCheckAllPlayersInZone>k__BackingField
+      Entry: 5
+      Data: true
+    - Name: <RequiredPlayersInZoneNumber>k__BackingField
+      Entry: 3
+      Data: 0
+    - Name: <ZoneBoxOverlapObserver>k__BackingField
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: <TriggerReactionConfigs>k__BackingField
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[CrazySWAT.ActionTriggerModule.Runtime.Shared.Scripts.TriggerReaction.IActionTriggerReactionConfig,
+        ActionTriggerSharedModule]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 3|CrazySWAT.ActionTriggerModule.Runtime.Shared.Scripts.TriggerReaction.Reactions.SpawnGameObjects.SpawnGameObjectsTriggerReactionConfig,
+        ActionTriggerSharedModule
+    - Name: <DelayBeforeReaction>k__BackingField
+      Entry: 4
+      Data: 0
+    - Name: <AssetReferences>k__BackingField
+      Entry: 7
+      Data: 4|UnityEngine.AddressableAssets.AssetReference[], Unity.Addressables
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 5|UnityEngine.AddressableAssets.AssetReference, Unity.Addressables
+    - Name: m_AssetGUID
+      Entry: 1
+      Data: 3775840a7d8dff24c8ae5451cda8f57b
+    - Name: m_SubObjectName
+      Entry: 6
+      Data: 
+    - Name: m_SubObjectType
+      Entry: 6
+      Data: 
+    - Name: m_SubObjectGUID
+      Entry: 6
+      Data: 
+    - Name: m_EditorAssetChanged
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: <TransformConfig>k__BackingField
+      Entry: 7
+      Data: 6|CrazySWAT.SharedModule.Runtime.Shared.Scripts.TransformConfig, SharedSharedModule
+    - Name: <Position>k__BackingField
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 33
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: <Rotation>k__BackingField
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 90
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: <Scale>k__BackingField
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: <Parent>k__BackingField
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: <ShouldNetworkSpawn>k__BackingField
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  <ShouldDisposeAfterReaction>k__BackingField: 1
+  <ServerAuthoritative>k__BackingField: 1

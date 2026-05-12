@@ -1,0 +1,22 @@
+{
+    "name": "SharedClientModule",
+    "rootNamespace": "",
+    "references": [
+        "UniTask",
+        "Unity.Addressables",
+        "Unity.ResourceManager",
+        "UniTask.Addressables",
+        "SharedSharedModule",
+        "Unity.InputSystem",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,26 @@
+{
+    "name": "EntitySharedModule",
+    "rootNamespace": "",
+    "references": [
+        "SharedSharedModule",
+        "UniTask",
+        "FishNet.Runtime",
+        "NetworkSharedModule",
+        "SharedServerModule",
+        "UniRx",
+        "ActionTriggerSharedModule",
+        "Popcron.Gizmos",
+        "Unity.Addressables",
+        "Kybernetik.Animancer",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

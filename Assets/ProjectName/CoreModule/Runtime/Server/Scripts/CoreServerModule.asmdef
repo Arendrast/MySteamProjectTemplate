@@ -1,0 +1,33 @@
+{
+    "name": "CoreServerModule",
+    "rootNamespace": "",
+    "references": [
+        "Unity.Addressables",
+        "UniTask",
+        "UniTask.DOTween",
+        "SharedSharedModule",
+        "SharedServerModule",
+        "CoreSharedModule",
+        "SharedClientModule",
+        "PlayerSharedModule",
+        "InventorySharedModule",
+        "ItemSharedModule",
+        "InventoryServerModule",
+        "FishNet.Runtime",
+        "NetworkSharedModule",
+        "VContainer",
+        "Heathen.Steamworks",
+        "com.rlabrecque.steamworks.net",
+        "LevelSharedModule",
+        "ActionTriggerSharedModule"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

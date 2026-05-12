@@ -1,0 +1,17 @@
+{
+    "name": "FishySteamworksModule",
+    "rootNamespace": "",
+    "references": [
+        "com.rlabrecque.steamworks.net",
+        "FishNet.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

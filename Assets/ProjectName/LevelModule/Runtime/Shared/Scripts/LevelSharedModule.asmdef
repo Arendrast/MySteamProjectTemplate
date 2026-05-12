@@ -1,0 +1,26 @@
+{
+    "name": "LevelSharedModule",
+    "rootNamespace": "",
+    "references": [
+        "Unity.Addressables",
+        "UniTask",
+        "SharedSharedModule",
+        "InteractableSharedModule",
+        "FishNet.Runtime",
+        "SharedServerModule",
+        "EntitySharedModule",
+        "DebugSharedModule",
+        "ActionTriggerSharedModule",
+        "PlayerSharedModule",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

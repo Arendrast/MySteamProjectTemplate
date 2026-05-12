@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: GameHints_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 88a58fc50172a2c4384faf0029cb64a3, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 15158726656
+    m_Localized: Get inside the building
+    m_Metadata:
+      m_Items: []
+  - m_Id: 65771393024
+    m_Localized: Get to the 1st floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68065677312
+    m_Localized: Get to the corridor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2486102904832
+    m_Localized: Pick up a weapon and find a way out of the building
+    m_Metadata:
+      m_Items: []
+  - m_Id: 481051432783872
+    m_Localized: Get to the bridge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 481055631282176
+    m_Localized: Find a way to lower the bridge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 481059594899456
+    m_Localized: Hold off the mutants until the bridge goes down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 481084781694976
+    m_Localized: Reach the safe zone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 825076941656064
+    m_Localized: Go to the main menu and create a game with a new zone selection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 825434296356864
+    m_Localized: Find a way to get down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 825459130830848
+    m_Localized: Get to the checkpoint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 825482014953472
+    m_Localized: Reach the next checkpoint alive
+    m_Metadata:
+      m_Items: []
+  - m_Id: 825498649563136
+    m_Localized: Reach the next checkpoint alive
+    m_Metadata:
+      m_Items: []
+  - m_Id: 825511874203648
+    m_Localized: Go down to the parking
+    m_Metadata:
+      m_Items: []
+  - m_Id: 825525124009984
+    m_Localized: Wading through toxic water
+    m_Metadata:
+      m_Items: []
+  - m_Id: 825539753742336
+    m_Localized: Walk through the park
+    m_Metadata:
+      m_Items: []
+  - m_Id: 825706926116864
+    m_Localized: Break the lock on the stairs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 825716656902144
+    m_Localized: Get to the zipline
+    m_Metadata:
+      m_Items: []
+  - m_Id: 825717386711040
+    m_Localized: Go ziplining
+    m_Metadata:
+      m_Items: []
+  - m_Id: 825745945726976
+    m_Localized: Get to the safe zone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 869378493321216
+    m_Localized: Hold out as long as possible
+    m_Metadata:
+      m_Items: []
+  - m_Id: 912368691646464
+    m_Localized: The location is free of enemies and can be explored in a relaxed
+      mode
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

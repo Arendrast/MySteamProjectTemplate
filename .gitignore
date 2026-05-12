@@ -73,3 +73,10 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+/[Aa]ssets/CrazySWAT/HudModule/Runtime/HealEffect/HealMaterial.mat
+/[Aa]ssets/DefaultPrefabObjects.asset
+/[Aa]ssets/Editor/x64/Bakery/Folder.DotSettings.user.meta
+/[Aa]ssets/Wwise/Editor/ProjectData/AkWwiseProjectData.asset
+
+
+**/.idea/

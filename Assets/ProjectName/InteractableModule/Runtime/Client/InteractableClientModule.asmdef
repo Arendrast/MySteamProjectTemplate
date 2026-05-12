@@ -1,0 +1,21 @@
+{
+    "name": "InteractableClientModule",
+    "rootNamespace": "",
+    "references": [
+        "UniRx",
+        "UniTask",
+        "SharedSharedModule",
+        "SharedClientModule",
+        "InteractableSharedModule",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22544336a8854154907b9a9086ddead1, type: 3}
+  m_Name: InteractableItemsConfig
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 466454039076866871, guid: 1b28a038f1361d54cb58bf7078d7f079, type: 3}
+    - {fileID: -7619303579885019076, guid: 8f772712b84fb794d84a46b6b7c1eced, type: 3}
+    - {fileID: -9086651508182386732, guid: aad90b44ae9a8c14ab0cef74ede51910, type: 3}
+    - {fileID: -7619303579885019076, guid: 4ccd76f9755ce1b498fd948102ef3120, type: 3}
+    - {fileID: 4982786108638255042, guid: e687cc8ec0d4017419b17f8f24ab1065, type: 3}
+    - {fileID: -7585431746994749764, guid: 7985e44454409924683a47b51588d9b1, type: 3}
+    - {fileID: -7619303579885019076, guid: 0c6fd1127516c9c40a3212ccf221e543, type: 3}
+    - {fileID: 466454039076866871, guid: 012e76f94dc0ed44ba78810590e32c9a, type: 3}
+    - {fileID: 466454039076866871, guid: 59aa7f24590f9b14680a65d156652acc, type: 3}
+    - {fileID: -7585431746994749764, guid: fdec2d45e89e082439068529b0432093, type: 3}
+    - {fileID: -7585431746994749764, guid: 332e0c7d44b399d44be3a3e82c175825, type: 3}
+    - {fileID: -7585431746994749764, guid: f805cfbe9559cb748bc93261428bc949, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: <InteractaleItemsPrefabs>k__BackingField
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[CrazySWAT.InteractableModule.Runtime.Shared.Scripts.Item.InteractableItemSerializableComponents,
+        InteractableSharedModule]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 12
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 10
+      Data: 9
+    - Name: 
+      Entry: 10
+      Data: 10
+    - Name: 
+      Entry: 10
+      Data: 11
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

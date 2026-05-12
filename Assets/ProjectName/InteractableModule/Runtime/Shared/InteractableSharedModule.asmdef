@@ -1,0 +1,30 @@
+{
+    "name": "InteractableSharedModule",
+    "rootNamespace": "",
+    "references": [
+        "UniRx",
+        "UniTask",
+        "SharedSharedModule",
+        "ItemSharedModule",
+        "FishNet.Runtime",
+        "SharedServerModule",
+        "InventorySharedModule",
+        "Unity.Addressables",
+        "EntitySharedModule",
+        "SharedClientModule",
+        "NetworkSharedModule",
+        "SharedClientUIModule",
+        "ActionTriggerSharedModule",
+        "VContainer",
+        "Kybernetik.Animancer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

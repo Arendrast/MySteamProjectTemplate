@@ -1,0 +1,21 @@
+{
+    "name": "EntityServerModule",
+    "rootNamespace": "",
+    "references": [
+        "SharedSharedModule",
+        "SharedServerModule",
+        "EntitySharedModule",
+        "FishNet.Runtime",
+        "NetworkSharedModule",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

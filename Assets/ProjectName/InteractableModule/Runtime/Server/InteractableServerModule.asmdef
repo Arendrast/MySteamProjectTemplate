@@ -1,0 +1,23 @@
+{
+    "name": "InteractableServerModule",
+    "rootNamespace": "",
+    "references": [
+        "UniRx",
+        "UniTask",
+        "SharedSharedModule",
+        "SharedServerModule",
+        "InteractableSharedModule",
+        "FishNet.Runtime",
+        "NetworkSharedModule",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

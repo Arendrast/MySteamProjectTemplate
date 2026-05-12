@@ -1,0 +1,19 @@
+{
+    "name": "InventoryClientModule",
+    "rootNamespace": "",
+    "references": [
+        "InventorySharedModule",
+        "SharedClientModule",
+        "SharedSharedModule",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

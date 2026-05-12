@@ -1,0 +1,22 @@
+{
+    "name": "LocalizationModule",
+    "rootNamespace": "",
+    "references": [
+        "Unity.Localization",
+        "UniTask",
+        "Unity.ResourceManager",
+        "SharedSharedModule",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "LOCALIZATION"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
