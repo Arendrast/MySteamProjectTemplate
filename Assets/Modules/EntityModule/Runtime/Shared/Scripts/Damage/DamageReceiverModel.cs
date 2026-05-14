@@ -10,6 +10,8 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Damage
     {
         public int Id { get; }
         public bool IsDead => _healthModel.IsDied;
+        
+        public int HealthPoints => _healthModel.HealthPoints;
 
         public event Action<DoDamageData, int> BeforeReceiveDamage;
         public event Action<DoDamageData, int> ReceivedDamage;

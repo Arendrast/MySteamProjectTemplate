@@ -2,20 +2,9 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Damage
 {
     public enum DamageOrigin
     {
-        TrapFire,
-        MolotovFire,
+        None,
         ForbiddenZone,
         Explosion,
-        Knockout,
-        Fall,
-        ToxicWater,
-        Test,
-        GrabberTrap,
-        PendulumTrap,
-        Shoot,
-        MeleeWeapon,
-        Slap,
-        Kick,
-        MobAttack
+        Test
     }
 }

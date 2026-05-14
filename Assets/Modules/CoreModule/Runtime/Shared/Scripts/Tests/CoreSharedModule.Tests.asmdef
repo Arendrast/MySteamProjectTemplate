@@ -1,0 +1,24 @@
+{
+    "name": "CoreSharedModule.Tests",
+    "rootNamespace": "",
+    "references": [
+        "EntitySharedModule",
+        "CoreSharedModule",
+        "UniTask",
+        "UniTask.Addressables",
+        "VContainer",
+        "SharedClientUIModule",
+        "SharedSharedModule",
+        "PlayerSharedModule",
+        "LevelSharedModule"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

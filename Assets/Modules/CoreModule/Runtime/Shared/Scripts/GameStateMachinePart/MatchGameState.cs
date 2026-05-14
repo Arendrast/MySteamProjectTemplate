@@ -23,6 +23,8 @@ namespace Modules.CoreModule.Runtime.Shared.Scripts.GameStateMachinePart
 {
     public class MatchGameState : IGameState
     {
+        public bool EndedEnter { get; private set; }
+        
         private bool _addedSpawnableNetworkObjects;
         
         private readonly ConfigsProviderService _configsProvider;
@@ -105,10 +107,14 @@ namespace Modules.CoreModule.Runtime.Shared.Scripts.GameStateMachinePart
 
             (await _pausePopupFactory.GetPausePopupControllerAsync()).TryClosePopup();
             await _loadingPopupFactory.DisposeAsync();
+            
+            EndedEnter = true;
         }
 
         public async UniTask ExitAsync()
         {
+            EndedEnter = false;
+            
             CursorSwitchTools.TryEnableCursor();
 
             try

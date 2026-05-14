@@ -15,16 +15,23 @@ namespace Modules.CoreModule.Runtime.Shared.Scripts.Systems.UISystem.MainMenuPop
 {
     public class MainMenuPopupController
     {
+        public MainMenuPopupSerializableComponents PopupSerializableComponents { get; }
+        
         private int _targetLevelNumber;
 
-        private readonly MainMenuPopupSerializableComponents _popupSerializableComponents;
+        private readonly IsOperatorRepository _isOperatorRepository;
+        private readonly LevelsConfig _levelsConfig;
+        private readonly EventBus _eventBus;
 
         public MainMenuPopupController(MainMenuPopupSerializableComponents popupSerializableComponents,
             LevelsConfig levelsConfig, EventBus eventBus, string steamId,
             IsOperatorRepository isOperatorRepository,
             ServerManager serverManager)
         {
-            _popupSerializableComponents = popupSerializableComponents;
+            PopupSerializableComponents = popupSerializableComponents;
+            _isOperatorRepository = isOperatorRepository;
+            _levelsConfig = levelsConfig;
+            _eventBus = eventBus;
 
             popupSerializableComponents.StartAsHostButton.onClick.AddListener(() =>
                 TrySendEnterClientStateEvent(true));
@@ -37,96 +44,94 @@ namespace Modules.CoreModule.Runtime.Shared.Scripts.Systems.UISystem.MainMenuPop
             //     popupSerialiableComponents.TargetLevelNumberInputField,
             //     PlayersPrefsVariablesNamesHolder.TargetLevelNumber);
 
-            #if !UNITY_EDITOR
+#if !UNITY_EDITOR
             _popupSerializableComponents.StartMetricsLevelButton.gameObject.SetActive(false);
-            #endif
-            
-            _popupSerializableComponents.SelectLevelButtonsSerializableComponents.ForEach(
+#endif
+
+            PopupSerializableComponents.SelectLevelButtonsSerializableComponents.ForEach(
                 InitializeSelectLevelButton);
 
             popupSerializableComponents.Popup.TryOpen();
 
             InitializeSteamPart(steamId);
-            ActivateOnlyActiveButton(_popupSerializableComponents.SelectLevelButtonsSerializableComponents.FirstOrDefault());
+            ActivateOnlyActiveButton(PopupSerializableComponents.SelectLevelButtonsSerializableComponents
+                .FirstOrDefault());
+        }
+
+        public void TrySendEnterClientStateEvent(bool isHost)
+        {
+            if (!isHost)
+            {
+                DisableButtonsAndSendEnterClientStateEvent(0);
+                return;
+            }
+
+            // if (!int.TryParse(popupSerializableComponents.TargetLevelNumberInputField.text,
+            //         out var targetLevelNumber))
+            // {
+            //     return;
+            // }
+
+            var levelConfig = _levelsConfig.LevelsConfigs.SafeGet(_targetLevelNumber - 1);
+
+            if (levelConfig != null)
+                DisableButtonsAndSendEnterClientStateEvent(_targetLevelNumber - 1);
 
             return;
 
-            void InitializeSelectLevelButton(SelectLevelButtonSerializableComponents button)
+            void DisableButtonsAndSendEnterClientStateEvent(int targetLevelIndex)
             {
-                button.Button.onClick.AddListener(() => ActivateOnlyActiveButton(button));
-            }
+                DisableButtons();
 
-            void ActivateOnlyActiveButton(SelectLevelButtonSerializableComponents activeButton)
+                _isOperatorRepository.SetIsOperator(PopupSerializableComponents.IsOperatorToggle.isOn);
+
+                var didParseSafeZoneNumber = int.TryParse(
+                    PopupSerializableComponents.TargetSafeZoneNumberInputField.text,
+                    out var targetSafeZoneNumber);
+
+                _eventBus.Fire(new EnterGameStateEvent(GameStateType.MatchGame, new EnterMatchGameStateData(
+                    isHost, PopupSerializableComponents.HostSteamIdInputField.text,
+                    targetLevelIndex, didParseSafeZoneNumber ? targetSafeZoneNumber : 1)));
+            }
+        }
+
+        void InitializeSelectLevelButton(SelectLevelButtonSerializableComponents button)
+        {
+            button.Button.onClick.AddListener(() => ActivateOnlyActiveButton(button));
+        }
+
+        void ActivateOnlyActiveButton(SelectLevelButtonSerializableComponents activeButton)
+        {
+            PopupSerializableComponents.SelectLevelButtonsSerializableComponents.ForEach(button =>
             {
-                _popupSerializableComponents.SelectLevelButtonsSerializableComponents.ForEach(button =>
-                {
-                    button.SelectedImage.gameObject.SetActive(button == activeButton);
-                    button.UnselectedImage.gameObject.SetActive(button != activeButton);
-                });
-                
-                _targetLevelNumber = activeButton.LevelNumber;
-            }
+                button.SelectedImage.gameObject.SetActive(button == activeButton);
+                button.UnselectedImage.gameObject.SetActive(button != activeButton);
+            });
 
-            void AppointValueSubscribeToInputFieldForSaveInPlayerPrefs(TMP_InputField inputField, string key)
-            {
-                inputField.text = PlayerPrefs.GetString(key);
-                inputField.onValueChanged.AddListener(text => PlayerPrefs.SetString(key, text));
-                inputField.onValueChanged.AddListener(text =>
-                    _popupSerializableComponents.HostSteamIdBackgroundText.text = text);
-                _popupSerializableComponents.HostSteamIdBackgroundText.text = inputField.text;
+            _targetLevelNumber = activeButton.LevelNumber;
+        }
 
-            }
+        void AppointValueSubscribeToInputFieldForSaveInPlayerPrefs(TMP_InputField inputField, string key)
+        {
+            inputField.text = PlayerPrefs.GetString(key);
+            inputField.onValueChanged.AddListener(text => PlayerPrefs.SetString(key, text));
+            inputField.onValueChanged.AddListener(text =>
+                PopupSerializableComponents.HostSteamIdBackgroundText.text = text);
+            PopupSerializableComponents.HostSteamIdBackgroundText.text = inputField.text;
+        }
 
-            void TrySendEnterClientStateEvent(bool isHost)
-            {
-                if (!isHost)
-                {
-                    DisableButtonsAndSendEnterClientStateEvent(0);
-                    return;
-                }
-
-                // if (!int.TryParse(popupSerializableComponents.TargetLevelNumberInputField.text,
-                //         out var targetLevelNumber))
-                // {
-                //     return;
-                // }
-
-                var levelConfig = levelsConfig.LevelsConfigs.SafeGet(_targetLevelNumber - 1);
-
-                if (levelConfig != null)
-                    DisableButtonsAndSendEnterClientStateEvent(_targetLevelNumber - 1);
-
-                return;
-
-                void DisableButtonsAndSendEnterClientStateEvent(int targetLevelIndex)
-                {
-                    DisableButtons();
-
-                    isOperatorRepository.SetIsOperator(popupSerializableComponents.IsOperatorToggle.isOn);
-
-                    var didParseSafeZoneNumber = int.TryParse(
-                        popupSerializableComponents.TargetSafeZoneNumberInputField.text,
-                        out var targetSafeZoneNumber);
-
-                    eventBus.Fire(new EnterGameStateEvent(GameStateType.MatchGame, new EnterMatchGameStateData(
-                        isHost, popupSerializableComponents.HostSteamIdInputField.text,
-                        targetLevelIndex, didParseSafeZoneNumber ? targetSafeZoneNumber : 1)));
-                }
-            }
-
-            void DisableButtons()
-            {
-                popupSerializableComponents.StartAsClientButton.interactable = false;
-                popupSerializableComponents.StartAsHostButton.interactable = false;
-            }
+        private void DisableButtons()
+        {
+            PopupSerializableComponents.StartAsClientButton.interactable = false;
+            PopupSerializableComponents.StartAsHostButton.interactable = false;
         }
 
         private void InitializeSteamPart(string steamId)
         {
             if (steamId != null)
             {
-                _popupSerializableComponents.CopySteamIDButton.onClick.AddListener(UpdateSystemCopyBufferWithSteamId);
-                _popupSerializableComponents.SteamIDTexts.ForEach(text => text.text = steamId);
+                PopupSerializableComponents.CopySteamIDButton.onClick.AddListener(UpdateSystemCopyBufferWithSteamId);
+                PopupSerializableComponents.SteamIDTexts.ForEach(text => text.text = steamId);
             }
 
             return;
@@ -137,6 +142,6 @@ namespace Modules.CoreModule.Runtime.Shared.Scripts.Systems.UISystem.MainMenuPop
             }
         }
 
-        public void TryClosing() => _popupSerializableComponents.Popup.TryClose();
+        public void TryClosing() => PopupSerializableComponents.Popup.TryClose();
     }
 }

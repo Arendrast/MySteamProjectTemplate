@@ -25,14 +25,29 @@ namespace Modules.CoreModule.Runtime.Shared.Scripts.Infrastructure
         [SerializeField] private MatchServicesScopesContainerSerializableComponents _servicesScopesContainer;
         [SerializeField] private SteamEditorConfig _steamEditorConfig;
         [SerializeField] private CursorConfig _cursorConfig;
-
+     
         private IContainerBuilder _builder;
-
+        private bool _configured;
+        
+        
         protected override async void Awake()
         {
+            await UniTask.DelayFrame(1);
+            await TryConfigureAsync();
+        }
+
+        public async UniTask<bool> TryConfigureAsync()
+        {
+            if (_configured)
+            {
+                return false;
+            }
+            
             autoRun = false;
             base.Awake();
+            _configured = true;
             await this.CustomBuildAsync();
+            return true;
         }
 
         protected override async UniTask ConfigureAsync(IContainerBuilder builder)
@@ -50,16 +65,16 @@ namespace Modules.CoreModule.Runtime.Shared.Scripts.Infrastructure
             _networkManager.gameObject.SetActive(true);
 
             var assetLoader = AssetsLoaderTools.GetAssetLoader();
-            
+
             RegisterSharedComponents();
 
             RegisterCoroutineRunner();
             RegisterMonoBehaviourObserver();
-            
+
             await RegisterServicesAsync();
-            
+
             await RegisterFactoriesAsync();
-            
+
             await RegisterConfigsProviderServicesAsync();
             await RegisterGameStateMachineStatesAsync();
             _builder.RegisterEntryPoint<DependenciesCreator>();
@@ -81,10 +96,11 @@ namespace Modules.CoreModule.Runtime.Shared.Scripts.Infrastructure
                 DontDestroyOnLoad(coroutineRunnerInstance);
                 builder.RegisterComponent(coroutineRunnerInstance);
             }
-        
+
             void RegisterMonoBehaviourObserver()
             {
-                var monoBehaviourObserverInstance = new GameObject("GlobalMonoBehaviourObserver").AddComponent<MonoBehaviourObserver>();
+                var monoBehaviourObserverInstance =
+                    new GameObject("GlobalMonoBehaviourObserver").AddComponent<MonoBehaviourObserver>();
                 DontDestroyOnLoad(monoBehaviourObserverInstance);
                 builder.RegisterComponent(monoBehaviourObserverInstance);
             }
@@ -120,7 +136,8 @@ namespace Modules.CoreModule.Runtime.Shared.Scripts.Infrastructure
                 builder.RegisterComponent(_networkManager);
                 builder.RegisterComponent(_networkManager.ClientManager);
                 builder.RegisterComponent(_networkManager.ServerManager);
-                builder.RegisterComponent(_networkManager.SceneManager); ;
+                builder.RegisterComponent(_networkManager.SceneManager);
+                ;
                 builder.Register<HashedAssetProvider>(Lifetime.Transient);
             }
         }

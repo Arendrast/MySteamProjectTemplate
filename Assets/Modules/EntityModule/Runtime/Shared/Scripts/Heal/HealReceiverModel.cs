@@ -31,7 +31,7 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Heal
                 return;
 
             BeforeHeal?.Invoke(doHealData);
-
+            
             _healthModel.TrySetHealthPoints(_healthModel.HealthPoints + doHealData.Heal, doHealData.HealDealerId, out var healthPointsDifference,
                 doHealData.CheckDeath, doHealData.OverridedMaxHealPoints);
             

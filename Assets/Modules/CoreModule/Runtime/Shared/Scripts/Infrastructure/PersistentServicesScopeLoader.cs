@@ -1,13 +1,30 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Modules.CoreModule.Runtime.Shared.Scripts.Infrastructure
 {
     public class PersistentServicesScopeLoader : MonoBehaviour
     {
-        private void Awake()
+        private bool _createdScope;
+
+        private async void Awake()
         {
-            new PersistentServicesScopeFactory().CreatePersistentServicesScope();
+            await UniTask.DelayFrame(1, cancellationToken: destroyCancellationToken);
+            await TryCreatePersistentServicesScopeAsync();
+        }
+
+        public async UniTask<PersistentServicesScope> TryCreatePersistentServicesScopeAsync()
+        {
+            if (_createdScope)
+            {
+                return null;
+            }
+
+            _createdScope = true;
+            var value = await new PersistentServicesScopeFactory().CreatePersistentServicesScopeAsync();
             Destroy(gameObject);
+            
+            return value;
         }
     }
 }

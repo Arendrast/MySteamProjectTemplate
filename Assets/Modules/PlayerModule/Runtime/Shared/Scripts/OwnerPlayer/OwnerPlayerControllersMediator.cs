@@ -49,7 +49,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer
                 {
                     _ownerPlayerComponents.ClientComponents.EntityComponents.HealDealerModel.DoHeal(
                         _ownerPlayerComponents.ClientComponents.EntityComponents.HealReceiverModel, 
-                        new DoHealData(10, HealOrigin.MyselfKit, overridedMaxHealPoints: 250));
+                        new DoHealData(10, HealOrigin.None, overridedMaxHealPoints: 250));
                 }
             }
         }

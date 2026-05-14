@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Modules.CoreModule.Runtime.Shared.Scripts.Infrastructure;
 using Modules.SharedModule.Runtime.Shared.Scripts.Loading;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace Modules.CoreModule.Runtime.Shared.Scripts
     {
         private const string PersistentServicesScopeAssetId = "PersistentServicesScope";
 
-        public void CreatePersistentServicesScope() => AssetProvider
-            .InstantiateAsync<GameObject>(PersistentServicesScopeAssetId, AssetsLoaderTools.GetAssetLoader()).Forget();
+        public async UniTask<PersistentServicesScope> CreatePersistentServicesScopeAsync() => await AssetProvider
+            .InstantiateAsync<PersistentServicesScope>(PersistentServicesScopeAssetId, AssetsLoaderTools.GetAssetLoader());
     }
 }
