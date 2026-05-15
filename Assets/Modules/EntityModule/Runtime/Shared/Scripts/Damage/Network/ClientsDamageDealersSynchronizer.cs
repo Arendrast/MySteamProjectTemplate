@@ -9,22 +9,26 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Damage.Network
     public class ClientsDamageDealersSynchronizer : IMatchSharedService
     {
         public ClientsDamageDealersSynchronizer(
-            DamageReceiversRepository damageReceiversModelIndexRepository, 
+            DamageReceiversRepository damageReceiversModelIndexRepository,
             IClientsSynchronizersMediator otherClientsSynchronizersMediator)
         {
-            otherClientsSynchronizersMediator.SubscribeToBroadcast<DealDamageBroadcast>(TryHandleDamage);
-            
+            otherClientsSynchronizersMediator.SubscribeToBroadcast<DealDamageBroadcast>(TryHandleDamageAsync);
+
             return;
-            
-            void TryHandleDamage(DealDamageBroadcast broadcast, Channel channel)
+
+            async void TryHandleDamageAsync(DealDamageBroadcast broadcast, Channel channel)
             {
-                if (!damageReceiversModelIndexRepository.ValueByKey.TryGetValue(broadcast.ReceiverNetworkObjectId,
-                        out var receiver))
+                DamageReceiverModel receiver = null;
+
+                if ((receiver =
+                        await damageReceiversModelIndexRepository.GetValueByKeyOrWaitUntilAddAsync(broadcast
+                            .ReceiverNetworkObjectId)) is null)
                 {
                     return;
                 }
 
-                Debug.Log($"[DamageBroadcast] ReceiverObjectId={broadcast.ReceiverNetworkObjectId}, dmg={broadcast.DoDamageData.Damage}");
+                Debug.Log(
+                    $"[DamageBroadcast] ReceiverObjectId={broadcast.ReceiverNetworkObjectId}, dmg={broadcast.DoDamageData.Damage}");
                 receiver.TryTakeDamage(broadcast.DoDamageData, out var tookDamage);
             }
         }

@@ -12,7 +12,9 @@
         "PlayerSharedModule",
         "LevelSharedModule",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "FishNet.Runtime",
+        "ParrelSync"
     ],
     "includePlatforms": [
         "Editor"

@@ -1,6 +1,7 @@
 using FishNet.Managing.Server;
 using Modules.EntityModule.Runtime.Shared.Scripts.Effects.Effectable.Logic;
 using Modules.EntityModule.Runtime.Shared.Scripts.Effects.Network;
+using Modules.SharedModule.Runtime.Shared.Scripts.Observers.Overlap;
 using Modules.SharedModule.Runtime.Shared.Scripts.QoL;
 
 namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects
@@ -21,10 +22,10 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects
         public EffectApplierController GetCreatedEffectApplierController(
             EffectApplierSerializableComponents effectApplierInstance, EffectType effectType, int effectApplierId,
             float? lifeTime = null,
-            float? timeBeforeCancelEffect = null)
+            float? timeBeforeCancelEffect = null, OverlapObserver overlapObserver = null)
         {
             return new EffectApplierController(effectApplierInstance,
-                _effectablesRepository, effectType, _synchronizationService, _serverManager, lifeTime, timeBeforeCancelEffect, effectApplierId);
+                _effectablesRepository, effectType, _synchronizationService, _serverManager, lifeTime, timeBeforeCancelEffect, effectApplierId, overlapObserver);
         }
     }
 }

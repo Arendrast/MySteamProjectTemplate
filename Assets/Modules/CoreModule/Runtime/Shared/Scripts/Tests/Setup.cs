@@ -1,19 +1,27 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
+using FishNet;
 using FluentAssertions;
 using Modules.CoreModule.Runtime.Shared.Scripts.GameStateMachinePart;
 using Modules.CoreModule.Runtime.Shared.Scripts.Infrastructure;
 using Modules.CoreModule.Runtime.Shared.Scripts.Systems.UISystem.MainMenuPopup;
+using Modules.EntityModule.Runtime.Shared.Scripts.Effects;
+using Modules.PlayerModule.Runtime.Shared.Scripts.ClientPlayer;
+using Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer;
 using Modules.SharedModule.Runtime.Client.Scripts.UI;
+using Modules.SharedModule.Runtime.Shared.Scripts.Observers.Overlap;
 using Modules.SharedModule.Runtime.Shared.Scripts.QoL;
+using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using VContainer;
+using VContainer.Unity;
 using Object = UnityEngine.Object;
 
 namespace Modules.CoreModule.Runtime.Shared.Scripts.Tests
@@ -35,6 +43,20 @@ namespace Modules.CoreModule.Runtime.Shared.Scripts.Tests
             }
             
             yield return new EnterPlayMode();
+        }
+
+        public static IEnumerator WaitForConnectAnotherPlayerAndInvokeAction(Action<ClientPlayerComponents> action)
+        {
+            var playerFactory = LifetimeScope.Find<MatchSharedServicesScope>().Container
+                .Resolve<ClientsPlayersFactory>();
+
+            yield return new WaitWhile(() => playerFactory.ClientsComponentsByNetworkConnection.Count < 2);
+
+            var playerClientComponents =
+                playerFactory.ClientsComponentsByNetworkConnection.FirstOrDefault(player =>
+                    !player.Key.IsOwner(InstanceFinder.ClientManager)).Value;
+            
+            action?.Invoke(playerClientComponents);
         }
         
         public static async UniTask MatchGameStateAsync(bool asHost)
@@ -68,6 +90,20 @@ namespace Modules.CoreModule.Runtime.Shared.Scripts.Tests
             var matchGameState = scope.Container.Resolve<MatchGameState>();
 
             await UniTask.WaitWhile(() => !matchGameState.EndedEnter, cancellationToken: token.Token);
+        }
+
+        public static OwnerPlayerComponents OwnerPlayer()
+        {
+            return LifetimeScope.Find<MatchSharedServicesScope>().Container.Resolve<OwnerPlayerFactory>()
+                .OwnerPlayerComponents;
+        }
+
+        public static EffectApplierController EffectApplierController()
+        {
+            return LifetimeScope.Find<MatchSharedServicesScope>().Container
+                .Resolve<EffectApplierFactory>().GetCreatedEffectApplierController(
+                    new GameObject().AddComponent<EffectApplierSerializableComponents>(),
+                    EffectType.None, 0, 0, 0, new GameObject().AddComponent<BoxOverlapObserver>());
         }
     }
 }

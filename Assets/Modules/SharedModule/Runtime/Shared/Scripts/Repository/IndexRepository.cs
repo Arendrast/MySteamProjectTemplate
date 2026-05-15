@@ -7,7 +7,7 @@ using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 
 namespace Modules.SharedModule.Runtime.Shared.Scripts.Repository
 {
-    public abstract class IndexRepository<TKey, TValue> : IRepository
+    public abstract class IndexRepository<TKey, TValue> : IRepository, IDisposable
     {
         public IReadOnlyDictionary<TKey, TValue> ValueByKey => _valueByKey;
         public IReadOnlyDictionary<TValue, TKey> KeyByValue => _keyByValue;
@@ -18,7 +18,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Repository
         private readonly Dictionary<TKey, TValue> _valueByKey = new();
         private readonly Dictionary<TValue, TKey> _keyByValue = new();
 
-        public virtual void Dispose()
+        public void Dispose()
         {
             _valueByKey.Clear();
             _keyByValue.Clear();
@@ -28,13 +28,16 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Repository
             _disposeTokenSource = new CancellationTokenSource();
         }
 
-        public async UniTask<TValue> GuaranteedGetValueByKeyAsync(TKey key)
+        public async UniTask<TValue> GetValueByKeyOrWaitUntilAddAsync(TKey key, float maxWaitTimeInSeconds = 5)
         {
             TValue value = default;
 
+            var token = CancellationTokenSource.CreateLinkedTokenSource(_disposeTokenSource.Token,
+                new CancellationTokenSource(TimeSpan.FromSeconds(maxWaitTimeInSeconds)).Token).Token;
+            
             if (await AsyncTools.AwaitTaskAndGetDoesThrowOperationCancelledException(
                     UniTask.WaitWhile(() => !_valueByKey.TryGetValue(key, out value),
-                        cancellationToken: _disposeTokenSource.Token)))
+                        cancellationToken: token)))
             {
                 return default;
             }
@@ -42,13 +45,16 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Repository
             return value;
         }
 
-        public async UniTask<TKey> GuaranteedGetKeyByValueAsync(TValue value)
+        public async UniTask<TKey> GetValueByKeyOrWaitUntilAddAsync(TValue value, float maxWaitTimeInSeconds = 5)
         {
             TKey key = default;
+            
+            var token = CancellationTokenSource.CreateLinkedTokenSource(_disposeTokenSource.Token,
+                new CancellationTokenSource(TimeSpan.FromSeconds(maxWaitTimeInSeconds)).Token).Token;
 
             if (await AsyncTools.AwaitTaskAndGetDoesThrowOperationCancelledException(
                     UniTask.WaitWhile(() => !_keyByValue.TryGetValue(value, out key),
-                        cancellationToken: _disposeTokenSource.Token)))
+                        cancellationToken: token)))
             {
                 return default;
             }

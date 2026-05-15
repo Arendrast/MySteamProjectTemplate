@@ -12,14 +12,17 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Heal.Network
             HealReceiversRepository damageReceiversModelIndexRepository,
             IClientsSynchronizersMediator clientsSynchronizersMediator)
         {
-            clientsSynchronizersMediator.SubscribeToBroadcast<DealHealBroadcast>(HandleHeal);
+            clientsSynchronizersMediator.SubscribeToBroadcast<DealHealBroadcast>(HandleHealAsync);
 
             return;
 
-            void HandleHeal(DealHealBroadcast broadcast, Channel channel)
+            async void HandleHealAsync(DealHealBroadcast broadcast, Channel channel)
             {
-                if (!damageReceiversModelIndexRepository.ValueByKey.TryGetValue(broadcast.ReceiverNetworkObjectId,
-                        out var receiver))
+                HealReceiverModel receiver = null;
+                
+                if ((receiver =
+                        await damageReceiversModelIndexRepository.GetValueByKeyOrWaitUntilAddAsync(broadcast
+                            .ReceiverNetworkObjectId)) is null)
                 {
                     Debug.LogWarning($"Heal receiver is not found. Id: {broadcast.ReceiverNetworkObjectId}");
                     return;

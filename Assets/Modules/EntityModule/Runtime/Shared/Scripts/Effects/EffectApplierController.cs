@@ -4,6 +4,7 @@ using FishNet.Managing.Server;
 using FishNet.Object;
 using Modules.EntityModule.Runtime.Shared.Scripts.Effects.Effectable.Logic;
 using Modules.EntityModule.Runtime.Shared.Scripts.Effects.Network;
+using Modules.SharedModule.Runtime.Shared.Scripts.Observers.Overlap;
 using Modules.SharedModule.Runtime.Shared.Scripts.QoL;
 using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 using MoreLinq;
@@ -27,7 +28,7 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects
         public EffectApplierController(EffectApplierSerializableComponents serializableComponents,
             EffectablesRepository effectablesRepository, EffectType effectType,
             DoEffectActionForNetworkObjectSynchronizationService synchronizationService, ServerManager serverManager,
-            float? lifeTime, float? timeBeforeCancelEffect, int effectApplierId)
+            float? lifeTime, float? timeBeforeCancelEffect, int effectApplierId, OverlapObserver overlapObserver = null)
         {
             SerializableComponents = serializableComponents;
             _effectablesRepository = effectablesRepository;
@@ -36,29 +37,31 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects
             _effectApplierId = effectApplierId;
             _lifeTime = lifeTime ?? serializableComponents.LifeTime;
             _timeBeforeCancelEffect = timeBeforeCancelEffect ?? serializableComponents.TimeBeforeCancelEffect;
-            serializableComponents.OverlapObserver.Entered += TryApplyEffectOnEnter;
-            serializableComponents.OverlapObserver.Exited += TryCancelEffectOnExit;
+            overlapObserver ??= SerializableComponents.OverlapObserver;
+            overlapObserver.Entered += TryApplyEffectOnEnter;
+            overlapObserver.Exited += TryCancelEffectOnExit;
 
             if (_lifeTime <= 0)
             {
-                serializableComponents.OverlapObserver.CurrentOverlaps.ForEach(TryApplyEffectOnEnter);
+                overlapObserver.CurrentOverlaps.ForEach(TryApplyEffectOnEnter);
                 return;
             }
 
             _startDespawnTimeInTicks = DateTime.Now.Ticks;
 
-            serializableComponents.OverlapObserver.CurrentOverlaps.ForEach(TryApplyEffectOnEnter);
+            overlapObserver.CurrentOverlaps.ForEach(TryApplyEffectOnEnter);
 
             Timer.TryStartCountingTime(_lifeTime,
                 () => serverManager.TryDespawnOrDestroyAsync(serializableComponents.gameObject), true,
                 serializableComponents.GetCancellationTokenOnDestroy()).Forget();
         }
 
-        private void TryApplyEffectOnEnter(Collider collider)
+        public bool TryApplyEffect(EffectableSerializableComponents effectableSerializableComponents)
         {
-            if (!collider.TryGetComponentInParentsByPredicate<EffectableSerializableComponents>(
-                    out var effectableSerializableComponents) ||
-                !_effectablesRepository.TryGetValue(effectableSerializableComponents, out var effectable)) return;
+            if (!_effectablesRepository.TryGetValue(effectableSerializableComponents, out var effectable))
+            {
+                return false;
+            }
 
             effectable.TryApplyEffect(_effectType, _effectApplierId, EffectOrigin.EffectApplier);
 
@@ -67,12 +70,30 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects
             {
                 _synchronizationService.SendEffectActionData(new EffectActionData(_effectType, networkObject.ObjectId,
                     _effectApplierId, EffectActionType.Apply, EffectOrigin.EffectApplier, 0));
+                
+                Debug.Log(1);
             }
 
-            if (_startDespawnTimeInTicks == 0) return;
+            if (_startDespawnTimeInTicks == 0)
+            {
+                return true;
+            }
 
             TryCancelEffect(effectableSerializableComponents, effectable,
                 _lifeTime - _startDespawnTimeInTicks.GetPastTimeInSeconds());
+
+            return true;
+        }
+        
+        private void TryApplyEffectOnEnter(Collider collider)
+        {
+            if (!collider.TryGetComponentInParentsByPredicate<EffectableSerializableComponents>(
+                    out var effectableSerializableComponents))
+            {
+                return;
+            }
+            
+            TryApplyEffect(effectableSerializableComponents);
         }
 
         private void TryCancelEffectOnExit(Collider collider)

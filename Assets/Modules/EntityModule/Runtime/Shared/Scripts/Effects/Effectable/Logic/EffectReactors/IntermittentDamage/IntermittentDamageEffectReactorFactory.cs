@@ -21,8 +21,8 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects.Effectable.Logic.E
         {
             var networkObject = effectableSerializableComponents.GetComponent<NetworkObject>();
 
-            return new IntermittentDamageReactor(await _damageDealersRepository.GuaranteedGetValueByKeyAsync(networkObject.ObjectId),
-                await _damageReceiversRepository.GuaranteedGetValueByKeyAsync(networkObject.ObjectId), config, damageOrigin);
+            return new IntermittentDamageReactor(await _damageDealersRepository.GetValueByKeyOrWaitUntilAddAsync(networkObject.ObjectId),
+                await _damageReceiversRepository.GetValueByKeyOrWaitUntilAddAsync(networkObject.ObjectId), config, damageOrigin);
         }
     }
 }

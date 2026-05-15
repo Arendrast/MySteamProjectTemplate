@@ -5,6 +5,7 @@ using FishNet.Transporting;
 using Modules.NetworkModule.Runtime.Shared.Scripts.Synchronizers.ServerSynchronizerPart;
 using Modules.SharedModule.Runtime.Server.Scripts;
 using Modules.SharedModule.Runtime.Server.Scripts.Infrastructure;
+using UnityEngine;
 
 namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects.Network
 {
@@ -23,6 +24,7 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects.Network
                 ApplyOrCancelEffectBroadcast broadcast,
                 Channel channel)
             {
+                Debug.Log(2);
                 serverManager.BroadcastToAllWhoLoadedScene(clientManager, broadcast, loadedSceneConnections, false,
                     senderConnection);
             }

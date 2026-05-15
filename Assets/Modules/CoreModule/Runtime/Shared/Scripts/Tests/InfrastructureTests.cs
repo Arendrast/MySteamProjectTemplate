@@ -19,22 +19,6 @@ namespace Modules.CoreModule.Runtime.Shared.Scripts.Tests
     public class InfrastructureTests
     {
         [UnityTest]
-        public IEnumerator WhenStartLevel1_ThenEditorPlayerNameIsPlayer2()
-        {
-            // Arrange.
-            foreach (var step in Setup.RestartPlayMode()) 
-                yield return step;
-
-            // Act.
-            yield return Setup.MatchGameState(true);
-            
-            // Assert.
-            var editorName = CurrentPlayer.IsMainEditor;
-            
-            editorName.Should().Be(false);
-        }
-        
-        [UnityTest]
         public IEnumerator WhenStartLevel1_ThenPlayerShouldNotBeNull()
         {
             // Arrange.

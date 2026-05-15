@@ -54,15 +54,15 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Entity
 
             var healthModel = _serverManager.Started
                 ? new HealthModel(serializableComponents.MaxHealthPoints, name: serializableComponents.gameObject.name)
-                : await _healthModelsesIndexRepository.GuaranteedGetValueByKeyAsync(networkObjectId);
+                : await _healthModelsesIndexRepository.GetValueByKeyOrWaitUntilAddAsync(networkObjectId);
 
             var damageReceiverModel = _serverManager.Started
                 ? new DamageReceiverModel(networkObjectId, healthModel)
-                : await _damageReceiversModelIndexRepository.GuaranteedGetValueByKeyAsync(networkObjectId);
+                : await _damageReceiversModelIndexRepository.GetValueByKeyOrWaitUntilAddAsync(networkObjectId);
 
             var healReceiverModel = _serverManager.Started
                 ? new HealReceiverModel(healthModel)
-                : await _healReceiversesModelIndexRepository.GuaranteedGetValueByKeyAsync(networkObjectId);
+                : await _healReceiversesModelIndexRepository.GetValueByKeyOrWaitUntilAddAsync(networkObjectId);
 
             var damageDealerModel = new DamageDealerModel(networkObjectId);
 

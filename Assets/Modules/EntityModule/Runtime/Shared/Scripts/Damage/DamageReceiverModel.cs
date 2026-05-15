@@ -12,6 +12,7 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Damage
         public bool IsDead => _healthModel.IsDied;
         
         public int HealthPoints => _healthModel.HealthPoints;
+        public int MaxHealthPoints => _healthModel.MaxHealthPoints;
 
         public event Action<DoDamageData, int> BeforeReceiveDamage;
         public event Action<DoDamageData, int> ReceivedDamage;
@@ -57,7 +58,7 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Damage
 
             _healthModel.TrySetHealthPoints(_healthModel.HealthPoints - predictedDamage,
                 setterId: doDamageData.DamageDealerId, out tookDamage);
-
+            
             ReceivedDamage?.Invoke(doDamageData, tookDamage);
         }
 
