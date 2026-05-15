@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Modules.CoreModule.Runtime.Shared.Scripts.Infrastructure;
@@ -7,6 +8,7 @@ using Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.TestTools;
 using VContainer;
 using VContainer.Unity;
 
@@ -14,11 +16,14 @@ namespace Modules.CoreModule.Runtime.Shared.Scripts.Tests
 {
     public class NetworkDoDamageTest
     {
-        [Test]
-        public async Task WhenDo1HPDamageToOwnerPlayer_AndNoPingAndHPIs1_ThenHPShouldBe0()
+        [UnityTest]
+        public IEnumerator WhenDo1HPDamageToOwnerPlayer_AndNoPingAndHPIs1_ThenHPShouldBe0()
         {
             // Arrange.
-            await Setup.MatchGameState(true);
+            foreach (var step in Setup.RestartPlayMode()) 
+                yield return step;
+            
+            yield return Setup.MatchGameState(true);
 
             var playerFactory = LifetimeScope.Find<MatchSharedServicesScope>().Container.Resolve<OwnerPlayerFactory>();
             playerFactory.OwnerPlayerComponents.ClientComponents.EntityComponents.HealthModel.TrySetHealthPoints(1, 0);

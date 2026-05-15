@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
@@ -10,6 +12,7 @@ using Modules.SharedModule.Runtime.Client.Scripts.UI;
 using Modules.SharedModule.Runtime.Shared.Scripts.QoL;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.TestTools;
 using VContainer;
 using Object = UnityEngine.Object;
 
@@ -19,7 +22,22 @@ namespace Modules.CoreModule.Runtime.Shared.Scripts.Tests
     {
         private const float MaxEnterToMatchGameStateTime = 5f;
 
-        public static async Task MatchGameState(bool asHost)
+        public static IEnumerator MatchGameState(bool asHost)
+        {
+            return MatchGameStateAsync(asHost).ToCoroutine();
+        }
+
+        public static IEnumerable RestartPlayMode()
+        {
+            if (Application.isPlaying)
+            {
+                yield return new ExitPlayMode();    
+            }
+            
+            yield return new EnterPlayMode();
+        }
+        
+        public static async UniTask MatchGameStateAsync(bool asHost)
         {
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(0);
 
