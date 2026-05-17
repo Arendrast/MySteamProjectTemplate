@@ -6,13 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Modules/CoreModule/Runtime/Shared/Scenes/Initial.unity
+    path: Assets/Modules/AppModule/Runtime/Shared/Scenes/Initial.unity
     guid: aacaa934445259c46b42357925143e0e
   - enabled: 1
-    path: Assets/Modules/CoreModule/Runtime/Shared/Scenes/MainMenu.unity
+    path: Assets/Modules/AppModule/Runtime/Shared/Scenes/MainMenu.unity
     guid: 807ab9b90f6d1e84fbcc26498e556542
   - enabled: 1
-    path: Assets/Modules/CoreModule/Runtime/Shared/Scenes/Game.unity
+    path: Assets/Modules/AppModule/Runtime/Shared/Scenes/Game.unity
     guid: cf6978eba353f3241b1c15ad4d8b05ad
   - enabled: 0
     path: Assets/Modules/LevelModule/Runtime/Shared/Prefabs/Levels/Level1/Zone1/Lvl1_1.unity
