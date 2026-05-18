@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using Modules.SharedModule.Runtime.Shared.Scripts.Observers;
+using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
 {
@@ -67,40 +71,24 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
         {
         }
         
-        public List<T> GetContainedChildren<T>() where T : Component
+        public IReadOnlyList<T> GetContainedChildren<T>() where T : Component
         {
-            RebuildCacheIfNeeded();
-
             Type targetType = typeof(T);
             if (_polymorphicCache.TryGetValue(targetType, out var list))
             {
                 return list.Cast<T>().ToList();
             }
 
-            return new List<T>(); 
-        }
-
-        private void MarkCacheDirty()
-        {
-            _cacheNeedsRebuild = true;
-        }
-
-        private void RebuildCacheIfNeeded()
-        {
-            if (_cacheNeedsRebuild)
-            {
-                RebuildCache();
-                _cacheNeedsRebuild = false;
-            }
+            return Array.Empty<T>(); 
         }
 
         public void RebuildCache()
         {
             _polymorphicCache.Clear();
-            
+
             foreach (var comp in _containedComponents)
             {
-                AddToCache(comp);
+                AddToCache(comp); // my way is slower than GetComponentsInChildren. I will optimize it later
             }
         }
         
@@ -192,8 +180,6 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
                     _containedComponents.Add(comp);
                 }
             }
-
-            MarkCacheDirty();
 #if UNITY_EDITOR
             UnityEditor.EditorUtility.SetDirty(this); 
 #endif
