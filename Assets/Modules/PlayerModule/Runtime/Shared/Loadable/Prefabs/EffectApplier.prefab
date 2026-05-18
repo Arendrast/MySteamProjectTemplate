@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <LifeTime>k__BackingField: 0
   <TimeBeforeCancelEffect>k__BackingField: 0
-  <EffectType>k__BackingField: 3
+  <EffectType>k__BackingField: 0
   <OverlapObserver>k__BackingField: {fileID: 4183817597911752829}
 --- !u!114 &4143507834255953227
 MonoBehaviour:
@@ -155,16 +155,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1181aa1050c04150907c3c5f2b4fdd60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _overrideMaxOverlaps: 0
-  _maxOverlaps: 1000
-  _localCenter: {x: 0, y: 0, z: 0}
-  _localHalfExtents: {x: 0.15, y: 0.5, z: 4.8}
-  _localRotation: {x: 0, y: 0, z: 0, w: 1}
-  _selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  _defaultColor: {r: 0, g: 1, b: 0, a: 1}
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 123
-  _queryTriggerInteraction: 0
-  _boxCastFromLastPosition: 0
-  _updateInterval: 0.1
+  <OverlapConfig>k__BackingField:
+    <OverrideMaxOverlaps>k__BackingField: 0
+    <MaxOverlaps>k__BackingField: 1000
+    <LayerMask>k__BackingField:
+      serializedVersion: 2
+      m_Bits: 123
+    <QueryTriggerInteraction>k__BackingField: 0
+    <UpdateInterval>k__BackingField: 0.1
+  _debugConfig:
+    <SelectedColor>k__BackingField: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    <DefaultColor>k__BackingField: {r: 0, g: 1, b: 0, a: 1}
+  _config:
+    <LocalCenter>k__BackingField: {x: 0, y: 0, z: 0}
+    <LocalHalfExtents>k__BackingField: {x: 0.5, y: 0.5, z: 0.5}
+    <LocalRotation>k__BackingField: {x: 0, y: 0, z: 0, w: 1}

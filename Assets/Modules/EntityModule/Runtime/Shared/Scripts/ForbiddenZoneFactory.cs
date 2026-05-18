@@ -17,8 +17,8 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts
 
         public void InitializeForbiddenZone(ForbiddenZoneSerializableComponents forbiddenZoneSerializableComponents)
         {
-            forbiddenZoneSerializableComponents.OverlapObserver.Entered += OnEnterAndStay;
-            forbiddenZoneSerializableComponents.OverlapObserver.Stayed += OnEnterAndStay;
+            forbiddenZoneSerializableComponents.OverlapObserver.EventsProvider.Entered += OnEnterAndStay;
+            forbiddenZoneSerializableComponents.OverlapObserver.EventsProvider.Stayed += OnEnterAndStay;
         }
 
         private void OnEnterAndStay(Collider collider)

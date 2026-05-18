@@ -38,8 +38,8 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects
             _lifeTime = lifeTime ?? serializableComponents.LifeTime;
             _timeBeforeCancelEffect = timeBeforeCancelEffect ?? serializableComponents.TimeBeforeCancelEffect;
             overlapObserver ??= SerializableComponents.OverlapObserver;
-            overlapObserver.Entered += TryApplyEffectOnEnter;
-            overlapObserver.Exited += TryCancelEffectOnExit;
+            overlapObserver.EventsProvider.Entered += TryApplyEffectOnEnter;
+            overlapObserver.EventsProvider.Exited += TryCancelEffectOnExit;
 
             if (_lifeTime <= 0)
             {

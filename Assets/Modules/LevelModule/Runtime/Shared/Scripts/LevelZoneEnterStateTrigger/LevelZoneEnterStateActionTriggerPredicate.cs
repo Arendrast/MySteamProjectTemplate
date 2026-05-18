@@ -37,12 +37,12 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts.LevelZoneEnterStateTrigger
             _serverManager = serverManager;
             _entityComponentsRepository = entityComponentsRepository;
 
-            TryInvokeChangedResultAndSetPastValue();
+            TryInvokeChangedResultAndSetPastValueWithPerformOverlapCheck();
 
             _clientsConnectionTrackingService.Connected += TryInvokeChangedResultAndSetPastValue;
             _clientsConnectionTrackingService.Disconnected += TryInvokeChangedResultAndSetPastValue;
-            _config.ZoneBoxOverlapObserver.Entered += TryInvokeChangedResultAndSetPastValueWithCollider;
-            _config.ZoneBoxOverlapObserver.Exited += TryInvokeChangedResultAndSetPastValueWithCollider;
+            _config.ZoneBoxOverlapObserver.EventsProvider.Entered += TryInvokeChangedResultAndSetPastValueWithCollider;
+            _config.ZoneBoxOverlapObserver.EventsProvider.Exited += TryInvokeChangedResultAndSetPastValueWithCollider;
 
             _entityComponentsRepository.Added += SubscribeToPlayerDeath;
             _entityComponentsRepository.Removed += UnsubscribeFromPlayerDeath;
@@ -50,29 +50,29 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts.LevelZoneEnterStateTrigger
 
         private void TryInvokeChangedResultAndSetPastValue(NetworkConnection networkConnection)
         {
-            TryInvokeChangedResultAndSetPastValue();
+            TryInvokeChangedResultAndSetPastValueWithPerformOverlapCheck();
         }
 
         private void SubscribeToPlayerDeath(EntitySerializableComponents entitySerializableComponents,
             EntityComponents entityComponents)
         {
-            entityComponents.HealthModel.DiedWithoutArgs += TryInvokeChangedResultAndSetPastValue;
+            entityComponents.HealthModel.DiedWithoutArgs += TryInvokeChangedResultAndSetPastValueWithPerformOverlapCheck;
         }
 
         private void UnsubscribeFromPlayerDeath(EntitySerializableComponents entitySerializableComponents,
             EntityComponents entityComponents)
         {
-            entityComponents.HealthModel.DiedWithoutArgs -= TryInvokeChangedResultAndSetPastValue;
+            entityComponents.HealthModel.DiedWithoutArgs -= TryInvokeChangedResultAndSetPastValueWithPerformOverlapCheck;
         }
 
-        private void TryInvokeChangedResultAndSetPastValue()
+        private void TryInvokeChangedResultAndSetPastValueWithPerformOverlapCheck()
         {
-            TryInvokeChangedResultAndSetPastValueWithCollider(null);
+            TryInvokeChangedResultAndSetPastValue(true);
         }
-
-        private void TryInvokeChangedResultAndSetPastValueWithCollider(Collider collider = null)
+        
+        private void TryInvokeChangedResultAndSetPastValue(bool performOverlapCheck)
         {
-            var result = GetResult();
+            var result = GetResult(performOverlapCheck);
 
             if (result == _pastResultValue) return;
 
@@ -80,7 +80,17 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts.LevelZoneEnterStateTrigger
             ChangedResult?.Invoke();
         }
 
+        private void TryInvokeChangedResultAndSetPastValueWithCollider(Collider collider = null)
+        {
+            TryInvokeChangedResultAndSetPastValue(false);
+        }
+
         public bool GetResult()
+        {
+            return GetResult(true);
+        }  
+
+        private bool GetResult(bool performOverlapCheck)
         {
             var requiredPlayersInZoneNumber = _config.ShouldCheckAllPlayersInZone
                 ? _serverManager.Started
@@ -92,7 +102,10 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts.LevelZoneEnterStateTrigger
                         : _clientManager.Clients.Count
                 : _config.RequiredPlayersInZoneNumber;
 
-            _config.ZoneBoxOverlapObserver.PerformOverlapCheck();
+            if (performOverlapCheck)
+            {
+                _config.ZoneBoxOverlapObserver.PerformOverlapCheck();
+            }
 
             return _config.ZoneBoxOverlapObserver.CurrentOverlaps.Select(collider => collider.gameObject).Distinct()
                 .Count(gameObject =>
@@ -118,7 +131,8 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts.LevelZoneEnterStateTrigger
 
             if (_config.ZoneBoxOverlapObserver != null)
             {
-                _config.ZoneBoxOverlapObserver.Entered -= TryInvokeChangedResultAndSetPastValueWithCollider;
+                _config.ZoneBoxOverlapObserver.EventsProvider.Entered -= TryInvokeChangedResultAndSetPastValueWithCollider;
+                _config.ZoneBoxOverlapObserver.EventsProvider.Exited -= TryInvokeChangedResultAndSetPastValueWithCollider;
                 _config.ZoneBoxOverlapObserver.enabled = false;
             }
 

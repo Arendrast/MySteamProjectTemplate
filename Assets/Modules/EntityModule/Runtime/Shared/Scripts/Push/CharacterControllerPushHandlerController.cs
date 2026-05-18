@@ -101,13 +101,13 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Push
             if (_shouldDisableCapsuleOverlapObserverWhenIsInactive)
                 _capsuleOverlapObserver.enabled = false;
 
-            _capsuleOverlapObserver.Entered -= TryCancelOnCapsuleOverlapEnter;
+            _capsuleOverlapObserver.EventsProvider.Entered -= TryCancelOnCapsuleOverlapEnter;
             _handlerModel.IsPushed = false;
         }
 
         public async void OnStartMovementAsync()
         {
-            _capsuleOverlapObserver.Entered -= TryCancelOnCapsuleOverlapEnter;
+            _capsuleOverlapObserver.EventsProvider.Entered -= TryCancelOnCapsuleOverlapEnter;
 
             Direction = _requestedDirection;
 
@@ -125,7 +125,7 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Push
             _capsuleOverlapObserver.enabled = true;
 
             _startExplosionTime = DateTime.Now.Ticks;
-            _capsuleOverlapObserver.Entered += TryCancelOnCapsuleOverlapEnter;
+            _capsuleOverlapObserver.EventsProvider.Entered += TryCancelOnCapsuleOverlapEnter;
 
             await UniTask.WaitForSeconds(_minimumThrowTime);
 
