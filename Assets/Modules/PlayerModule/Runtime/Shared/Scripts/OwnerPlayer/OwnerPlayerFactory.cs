@@ -17,6 +17,7 @@ using Modules.SharedModule.Runtime.Shared.Scripts.Loading;
 using Modules.SharedModule.Runtime.Shared.Scripts.Observers;
 using Modules.SharedModule.Runtime.Shared.Scripts.PhysicsPart;
 using Modules.SharedModule.Runtime.Shared.Scripts.QoL;
+using Modules.SharedModule.Runtime.Shared.Scripts.Services;
 using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 using UnityEngine;
 using VContainer;
@@ -43,6 +44,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer
         private readonly DamageReceiversRepository _damageReceiversesRepository;
         private readonly IAssetLoader _assetLoader;
         private readonly IsOperatorRepository _isOperatorRepository;
+        private readonly UpdateObserversService _updateObserversService;
 
         public OwnerPlayerFactory(
             HashedAssetProvider hashedAssetProvider,
@@ -51,7 +53,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer
             CharacterControllerPushablesFactory characterControllerPushablesFactory,
             ClientsPlayersFactory clientsPlayersFactory, OwnerPlayerRepository ownerPlayerRepository,
             DamageReceiversRepository damageReceiversesRepository, IAssetLoader assetLoader,
-            IsOperatorRepository isOperatorRepository)
+            IsOperatorRepository isOperatorRepository, UpdateObserversService updateObserversService)
         {
             _hashedAssetProvider = hashedAssetProvider;
             _configsProvider = configsProvider;
@@ -62,6 +64,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer
             _damageReceiversesRepository = damageReceiversesRepository;
             _assetLoader = assetLoader;
             _isOperatorRepository = isOperatorRepository;
+            _updateObserversService = updateObserversService;
         }
 
         public async UniTask DisposeAsync()
@@ -140,13 +143,16 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer
 
             void ConfigureCamera(Transform playerTransform)
             {
+                _updateObserversService.TryAddOrGetUpdateObserver(playerTransform.gameObject, UpdateType.LateUpdate,
+                    out var updateObserver);
+                
                 cameraComponents.FollowPositionController.SetParameters(
-                    playerTransform.gameObject.GetOrAddComponent<MonoBehaviourObserver>(),
+                    updateObserver,
                     ownerSerializableComponents.CameraFollow,
                     () => Vector3.zero, isLocalOffset: true);
 
                 cameraComponents.FollowRotationController.SetParameters(
-                    playerTransform.gameObject.GetOrAddComponent<MonoBehaviourObserver>(),
+                    updateObserver,
                     ownerSerializableComponents.CameraFollow,
                     () => Vector3.zero, false,
                     true,
@@ -163,14 +169,17 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer
 
             void ConfigureItemParent(Transform itemParent, Vector3 offsetFromCamera)
             {
+                _updateObserversService.TryAddOrGetUpdateObserver(itemParent.gameObject, UpdateType.LateUpdate,
+                    out var updateObserver);
+                
                 new FollowPositionController(
-                    itemParent.gameObject.GetOrAddComponent<MonoBehaviourObserver>(),
+                    updateObserver,
                     itemParent,
                     cameraComponents.SerializableComponents[CameraParentType.Move],
                     () => offsetFromCamera, isLocalOffset: true);
 
                 new FollowRotationController(
-                    itemParent.gameObject.GetOrAddComponent<MonoBehaviourObserver>(),
+                    updateObserver,
                     itemParent,
                     cameraComponents.SerializableComponents[CameraParentType.Move], () => Vector3.zero);
             }

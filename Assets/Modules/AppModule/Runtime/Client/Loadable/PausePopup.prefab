@@ -665,7 +665,6 @@ GameObject:
   - component: {fileID: 554503952146783484}
   - component: {fileID: 6660704016527240480}
   - component: {fileID: 6004805275640678847}
-  - component: {fileID: 8620804245604793008}
   - component: {fileID: 2961964912482642298}
   m_Layer: 5
   m_Name: PausePopup
@@ -757,18 +756,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 119
---- !u!114 &8620804245604793008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4437045040365650098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2abfb2e05f644bc8944b036a4c5de266, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2961964912482642298
 MonoBehaviour:
   m_ObjectHideFlags: 0

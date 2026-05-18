@@ -17,7 +17,6 @@ namespace Modules.HudModule.Runtime.Scripts.HudPopup
         [field: SerializeField] public InventoryItemsWindowSerializableComponents InventoryItemsWindowSerializableComponents { get; private set;}
         [field: SerializeField] public TextMeshProUGUI SpeedTText { get; private set; }
         [field: SerializeField] public BarSerializableComponents ReviveBarSerializableComponents { get; private set; }
-        [field: SerializeField] public MonoBehaviourObserver MonoBehaviourObserver { get; private set; }
         [field: SerializeField] public CheatMenuPopupSerializableComponents CheatMenuPopupSerializableComponents { get; private set; }
         [field: SerializeField] public LowHealPointsPopupSerializableComponents LowHealPointsPopupSerializableComponents { get; private set; }
         [field: SerializeField] public GameHintWindowSerializableComponents GameHintsWindowSerializableComponents { get; private set; }

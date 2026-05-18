@@ -1,4 +1,6 @@
 using Modules.SharedModule.Runtime.Shared.Scripts.Observers;
+using Modules.SharedModule.Runtime.Shared.Scripts.Services;
+using UnityEngine;
 
 namespace Modules.SharedModule.Runtime.Shared.Scripts.FiniteStateMachine
 {
@@ -6,33 +8,39 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.FiniteStateMachine
     {
         public readonly FiniteStateMachineModel<TState> Model;
 
-        public FiniteStateMachineController(FiniteStateMachineModel<TState> model, MonoBehaviourObserver monoBehaviourObserver)
+        public FiniteStateMachineController(FiniteStateMachineModel<TState> model, GameObject gameObject,
+            UpdateObserversService updateObserversService)
         {
+            updateObserversService.TryAddOrGetUpdateObserver(gameObject, UpdateType.Update, out var updateObserver);
+            updateObserversService.TryAddOrGetUpdateObserver(gameObject, UpdateType.LateUpdate, out var lateUpdateObserver);
+            updateObserversService.TryAddOrGetUpdateObserver(gameObject, UpdateType.FixedUpdate, out var fixedUpdateObserver);
+
+
             Model = model;
-            monoBehaviourObserver.Updated += ChangeCurrentNodeState;
-            monoBehaviourObserver.Updated += UpdateCurrentNodeState;
-            monoBehaviourObserver.FixedUpdated += FixedUpdateCurrentNodeState;
-            monoBehaviourObserver.LateUpdated += LateUpdateCurrentNodeState;
+            updateObserver.Updated += ChangeCurrentNodeState;
+            updateObserver.Updated += UpdateCurrentNodeState;
+            lateUpdateObserver.Updated += LateUpdateCurrentNodeState;
+            fixedUpdateObserver.Updated += FixedUpdateCurrentNodeState;
         }
 
-        private void ChangeCurrentNodeState()
+        private void ChangeCurrentNodeState(float time)
         {
             Model.TryChangingStateByCurrentTransitionRecursively();
         }
 
-        private void UpdateCurrentNodeState()
+        private void UpdateCurrentNodeState(float time)
         {
-            Model.CurrentNode?.State?.Update();
-        }
-        
-        private void FixedUpdateCurrentNodeState()
-        {
-            Model.CurrentNode?.State?.FixedUpdate();
+            Model.CurrentNode?.State?.Update(time);
         }
 
-        private void LateUpdateCurrentNodeState()
+        private void FixedUpdateCurrentNodeState(float time)
         {
-            Model.CurrentNode?.State?.LateUpdate();
+            Model.CurrentNode?.State?.FixedUpdate(time);
+        }
+
+        private void LateUpdateCurrentNodeState(float time)
+        {
+            Model.CurrentNode?.State?.LateUpdate(time);
         }
     }
 }

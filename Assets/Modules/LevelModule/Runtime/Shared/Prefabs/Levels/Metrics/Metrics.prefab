@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 2317794867745078509}
   - component: {fileID: 3397638040990091443}
   - component: {fileID: -1445164758589291104}
+  - component: {fileID: 2120675569709685995}
   m_Layer: 0
   m_Name: Metrics
   m_TagString: Untagged
@@ -99,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsPersistent>k__BackingField: 0
+  <ChildrenSerializableComponentsContainer>k__BackingField: {fileID: 2120675569709685995}
   <SpawnersPositions>k__BackingField:
   - {fileID: 5068619713153528532}
   - {fileID: 8440115938229623848}
@@ -136,7 +138,7 @@ MonoBehaviour:
   _spectatorInterpolation: 2
   _enableTeleport: 0
   _teleportThreshold: 1
-  <PrefabId>k__BackingField: 56
+  <PrefabId>k__BackingField: 6
   <SpawnableCollectionId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 13316876297022030539
   SceneId: 0
@@ -165,7 +167,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
-  _initializedTimestamp: -8584259612602503280
+  _initializedTimestamp: -8584225429183703657
 --- !u!114 &-1445164758589291104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +183,27 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 3397638040990091443}
   _networkObjectCache: {fileID: 3397638040990091443}
+--- !u!114 &2120675569709685995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7707365844244090331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21093960d04f4c898125c5a881c0cbc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SharedSharedModule::Modules.SharedModule.Runtime.Shared.Scripts.QoL.ChildrenSerializableComponentsContainer
+  _containedComponents:
+  - {fileID: 2317794867745078509}
+  - {fileID: 3397638040990091443}
+  - {fileID: -1445164758589291104}
+  - {fileID: 988309496875471413}
+  - {fileID: 1613719313673961442}
+  - {fileID: 2920567714663372176}
+  - {fileID: 3812293166882960022}
+  - {fileID: 3720849307412112124}
 --- !u!1001 &1524506477140080019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -655,7 +678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1774150866150827942, guid: 978918549d735ba44a786e93e664e80b, type: 3}
       propertyPath: NetworkBehaviours.Array.size
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1774150866150827942, guid: 978918549d735ba44a786e93e664e80b, type: 3}
       propertyPath: <ComponentIndex>k__BackingField
@@ -2739,7 +2762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5605123606407679572, guid: 7873f230a0e0efe4083d3067ea4a556e, type: 3}
       propertyPath: <ComponentIndex>k__BackingField
-      value: 54
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5605123606407679572, guid: 7873f230a0e0efe4083d3067ea4a556e, type: 3}
       propertyPath: InitializedParentNetworkBehaviour

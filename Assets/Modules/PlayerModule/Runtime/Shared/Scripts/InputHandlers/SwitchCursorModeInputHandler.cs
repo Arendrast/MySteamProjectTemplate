@@ -1,23 +1,24 @@
 using Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer.OwnerStateMachine.States;
 using Modules.SharedModule.Runtime.Shared.Scripts.Input;
 using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using InputActionType = Modules.SharedModule.Runtime.Shared.Scripts.Input.InputActionType;
 
 namespace Modules.PlayerModule.Runtime.Shared.Scripts.InputHandlers
 {
     public class SwitchCursorModeInputHandler : IPlayerInputHandler
     {
-        private readonly IInputProvider _inputProvider;
-        private readonly PlayerInputHandler _playerInputHandler;
+        private readonly IInputService _inputService;
 
-        public SwitchCursorModeInputHandler(IInputProvider inputProvider)
+        public SwitchCursorModeInputHandler(IInputService inputService)
         {
-            _inputProvider = inputProvider;
-            _playerInputHandler = new PlayerInputHandler(GetInputCondition, TrySwitchCursor);
+            _inputService = inputService;
         }
 
-        public void Update()
+        public void SetSubscribeState(SubscribeState subscribeState)
         {
-            _playerInputHandler.InvokeActions();
+            _inputService.SetSubscribeStateToInputAction(InputActionType.SetCursorMode, InputActionPhase.Started, TrySwitchCursor, subscribeState);
         }
 
         public PlayerInputHandlerType GetInputHandlerType()
@@ -25,12 +26,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.InputHandlers
             return PlayerInputHandlerType.SwitchCursorMode;
         }
 
-        private bool GetInputCondition()
-        {
-            return _inputProvider.IsActionTriggered(InputActionType.SetCursorMode);
-        }
-
-        private void TrySwitchCursor()
+        private void TrySwitchCursor(InputAction.CallbackContext callbackContext)
         {
             CursorSwitchTools.TrySwitchCursor();
         }

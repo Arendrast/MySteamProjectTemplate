@@ -13,9 +13,9 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
         public bool FollowY { get; private set; }
         public bool FollowZ { get; private set; }
         public bool IsLocalOffset { get; private set; }
-        public MonoBehaviourObserver Observer { get; private set; }
+        public UpdateObserver Observer { get; private set; }
 
-        public FollowPositionController(MonoBehaviourObserver observer,
+        public FollowPositionController(UpdateObserver updateObserver,
             Transform followerTransform,
             Transform targetTransform,
             Func<Vector3> offsetFunc,
@@ -32,7 +32,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
             FollowY = followY;
             FollowZ = followZ;
             IsLocalOffset = isLocalOffset;
-            Observer = observer;
+            Observer = updateObserver;
 
             if (shouldStartFollow)
                 StartFollow();
@@ -48,7 +48,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
             OffsetFunc = offset;
         }
         
-        public void SetObserver(MonoBehaviourObserver observer)
+        public void SetObserver(UpdateObserver observer)
         {
             Observer = observer;
         }
@@ -58,7 +58,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
             TargetTransform = targetTransform;
         }
 
-        public void SetParameters(MonoBehaviourObserver observer,
+        public void SetParameters(UpdateObserver updateObserver,
             Transform targetTransform,
             Func<Vector3> offsetFunc,
             bool followX = true,
@@ -66,7 +66,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
             bool followZ = true,
             bool isLocalOffset = false)
         {
-            Observer = observer;
+            Observer = updateObserver;
             TargetTransform = targetTransform;
             OffsetFunc = offsetFunc;
             FollowX = followX;
@@ -78,13 +78,19 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
         public void StartFollow()
         {
             EndFollow();
-            Observer.LateUpdated += Follow;
+
+            if (Observer.UpdateType != UpdateType.LateUpdate)
+            {
+                Debug.LogWarning($"Update observer for {Observer.GameObject.name} does not use LateUpdate");
+            }
+            
+            Observer.Updated += Follow;
         }
 
         public void EndFollow()
         {
             if (Observer != null)
-                Observer.LateUpdated -= Follow;
+                Observer.Updated -= Follow;
         }
 
         public Vector3 GetTargetPosition()
@@ -101,7 +107,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
                 FollowZ ? offsettedPosition.z : followerPosition.z);
         }
 
-        public void Follow()
+        public void Follow(float time)
         {
             if (FollowerTransform == null || TargetTransform == null)
             {

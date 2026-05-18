@@ -99,7 +99,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Animations
             if (animationClip != null)
             {
                 state = _animancerComponent.Layers[layer].Play(animationClip, fadeDuration);
-                _targetUsedAnimationByLayer.SetOrAdd(layer, animationClip);
+                _targetUsedAnimationByLayer[layer] = animationClip;
             }
             else
             {
@@ -111,7 +111,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Animations
                 }
 
                 state = _animancerComponent.Layers[layer].Play(transition, fadeDuration);
-                _targetUsedTransitionByLayer.SetOrAdd(layer, transition);
+                _targetUsedTransitionByLayer[layer] = transition;
             }
 
             var isPlayingIt = IsPlaying(id);

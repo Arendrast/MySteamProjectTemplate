@@ -1,5 +1,5 @@
 {
-    "name": "CoreSharedModule",
+    "name": "AppSharedModule",
     "rootNamespace": "",
     "references": [
         "UniTask",
@@ -24,7 +24,8 @@
         "Popcron.Gizmos",
         "Unity.TextMeshPro",
         "Healthen.Steamworks.Generated",
-        "FishySteamworksModule"
+        "FishySteamworksModule",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

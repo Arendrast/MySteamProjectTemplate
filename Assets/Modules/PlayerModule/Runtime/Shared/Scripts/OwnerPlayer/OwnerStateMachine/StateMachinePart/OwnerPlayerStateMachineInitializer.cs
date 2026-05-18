@@ -74,7 +74,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer.OwnerStateMach
 
         private void RegisterTransitionsToBaseMovementStates()
         {
-            var inputProvider = _resolver.Resolve<IInputProvider>();
+            var inputProvider = _resolver.Resolve<IInputService>();
 
             _feetStateMachineBuilder
                 .From<GroundIdleState>()

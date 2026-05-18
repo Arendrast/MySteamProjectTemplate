@@ -1,6 +1,8 @@
 using System;
 using Modules.SharedModule.Runtime.Shared.Scripts.Input;
 using Modules.SharedModule.Runtime.Shared.Scripts.Observers;
+using UnityEngine.InputSystem;
+using InputActionType = Modules.SharedModule.Runtime.Shared.Scripts.Input.InputActionType;
 
 namespace Modules.SharedModule.Runtime.Shared.Scripts.Services
 {
@@ -9,29 +11,26 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Services
         public bool Enable { get; private set; }
         public event Action EnableChanged;
 
-        private readonly IInputProvider _inputProvider;
-        private readonly MonoBehaviourObserver _observer;
+        private readonly IInputService _inputService;
 
-        public DebugEnableProviderService(IInputProvider inputProvider, MonoBehaviourObserver observer)
+        public DebugEnableProviderService(IInputService inputService)
         {
-            _inputProvider = inputProvider;
-            _observer = observer;
-            
-            _observer.Updated += Update;
+            _inputService = inputService;
+            SetSubscribeState(SubscribeState.Subscribe);
         }
 
         public void Dispose()
         {
-            _observer.Updated -= Update;
+            SetSubscribeState(SubscribeState.Unsubscribe);
         }
 
-        private void Update()
+        private void SetSubscribeState(SubscribeState subscribeState)
         {
-            if (!_inputProvider.IsActionTriggered(InputActionType.Test))
-            {
-                return;
-            }
+            _inputService.SetSubscribeStateToInputAction(InputActionType.Test, InputActionPhase.Started, SetActiveDebug, subscribeState);
+        }
 
+        private void SetActiveDebug(InputAction.CallbackContext context)
+        {
             Enable = !Enable;
             EnableChanged?.Invoke();
         }

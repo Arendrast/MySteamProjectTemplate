@@ -65,7 +65,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.Interaction
             _targetInteractable = null; 
         }
 
-        public async void TryInteractAsync(bool canInteract)
+        public async void TryInteractAsync()
         {
             if (DoesWaitForInteractWithTargetInteractable)
                 return;
@@ -89,7 +89,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.Interaction
             
             DetectedInteractable?.Invoke(interactable, interactableSerializableComponents);
 
-            if (interactable == null || !canInteract || !interactable.CanInteract)
+            if (interactable == null || !interactable.CanInteract)
             {
                 return;
             }

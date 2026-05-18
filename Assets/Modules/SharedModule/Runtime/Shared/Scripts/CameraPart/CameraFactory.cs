@@ -2,6 +2,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using Modules.SharedModule.Runtime.Shared.Scripts.Configs;
 using Modules.SharedModule.Runtime.Shared.Scripts.Input;
+using Modules.SharedModule.Runtime.Shared.Scripts.Observers;
 using Modules.SharedModule.Runtime.Shared.Scripts.QoL;
 using Modules.SharedModule.Runtime.Shared.Scripts.Services;
 using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
@@ -12,8 +13,9 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.CameraPart
     {
         private readonly ConfigsProviderService _configsProvider;
         private readonly HashedAssetProvider _hashedAssetProvider;
-        private readonly IInputProvider _inputProvider;
+        private readonly IInputService _inputService;
         private readonly MouseSensitivityRepository _mouseSensitivityRepository;
+        private readonly UpdateObserversService _updateObserversService;
 
         private const string MainCameraAssetId =
 #if ADDRESSABLES
@@ -24,13 +26,14 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.CameraPart
 
         public CameraFactory(
             HashedAssetProvider hashedAssetProvider,
-            IInputProvider inputProvider,
-            ConfigsProviderService configsProvider, MouseSensitivityRepository mouseSensitivityRepository)
+            IInputService inputService,
+            ConfigsProviderService configsProvider, MouseSensitivityRepository mouseSensitivityRepository, UpdateObserversService updateObserversService)
         {
             _hashedAssetProvider = hashedAssetProvider;
-            _inputProvider = inputProvider;
+            _inputService = inputService;
             _configsProvider = configsProvider;
             _mouseSensitivityRepository = mouseSensitivityRepository;
+            _updateObserversService = updateObserversService;
         }
 
         public void Dispose()
@@ -51,14 +54,17 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.CameraPart
                 MainCameraAssetId,
                 instance =>
                 {
+                    _updateObserversService.TryAddOrGetUpdateObserver(
+                        instance.FPSCameraSerializableComponents.gameObject, UpdateType.LateUpdate, out var observer);
+                    
                     _hashedAssetProvider.RegisterAndGetSingleByType(
                         new CameraComponents(
                             new FPSCameraController(
                                 instance.FPSCameraSerializableComponents,
-                                _inputProvider,
+                                _inputService,
                                 new CameraControllerData(() =>
                                     moveConfig.RotationSpeed * _mouseSensitivityRepository.CurrentSensitivity),
-                                instance[CameraParentType.Move]),
+                                instance[CameraParentType.Move], observer),
                             instance, new FollowPositionController(instance.transform),
                             new FollowRotationController(instance.transform)));
                     return UniTask.CompletedTask;

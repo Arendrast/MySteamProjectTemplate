@@ -43,7 +43,7 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Push
 
             _explodableses.Add(explodableSerializableComponents, handler);
 
-            explodableSerializableComponents.GetOrAddComponent<DisableObserver>().Disabled += Dispose;
+            explodableSerializableComponents.GetOrAddComponent<EnableDisableObserver>().Disabled += Dispose;
 
             return handler;
 

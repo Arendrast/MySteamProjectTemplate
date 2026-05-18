@@ -1,5 +1,5 @@
 {
-    "name": "CoreClientModule",
+    "name": "AppClientModule",
     "rootNamespace": "",
     "references": [
         "Unity.TextMeshPro",
@@ -10,7 +10,6 @@
         "Unity.ResourceManager",
         "SharedClientModule",
         "SharedSharedModule",
-        "CoreSharedModule",
         "SharedClientUIModule",
         "SharedServerModule",
         "CoreServerModule",
@@ -38,7 +37,8 @@
         "LevelSharedModule",
         "Unity.RenderPipelines.Core.Runtime",
         "Unity.RenderPipelines.Universal.Runtime",
-        "VContainer"
+        "VContainer",
+        "AppSharedModule"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

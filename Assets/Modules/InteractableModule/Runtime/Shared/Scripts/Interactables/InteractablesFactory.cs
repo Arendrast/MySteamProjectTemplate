@@ -82,7 +82,7 @@ namespace Modules.InteractableModule.Runtime.Shared.Scripts.Interactables
 
             _interactablesesRepository.Add(interactableSerializableComponents, interactable);
 
-            interactableSerializableComponents.gameObject.GetOrAddComponent<DisableObserver>().DisabledGameObject +=
+            interactableSerializableComponents.gameObject.GetOrAddComponent<EnableDisableObserver>().DisabledGameObject +=
                 TryRemoveInteractable;
 
             _serverManager.TryCustomSpawn(interactableSerializableComponents.gameObject);
@@ -102,7 +102,7 @@ namespace Modules.InteractableModule.Runtime.Shared.Scripts.Interactables
             IInteractable interactable)
         {
             interactableSerializableComponents.gameObject
-                .GetOrAddComponent<DisableObserver>()
+                .GetOrAddComponent<EnableDisableObserver>()
                 .DisabledGameObject -= TryRemoveInteractable;
         }
 

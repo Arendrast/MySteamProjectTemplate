@@ -9,5 +9,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer.OwnerStateMach
         InventoryItemsTargetSlotChange,
         
         Interaction,
+        
+        Test
     }
 }

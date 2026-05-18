@@ -4,6 +4,7 @@ using Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer.OwnerStateMachine.
 using Modules.SharedModule.Runtime.Shared.Scripts.FiniteStateMachine;
 using Modules.SharedModule.Runtime.Shared.Scripts.Observers;
 using Modules.SharedModule.Runtime.Shared.Scripts.PhysicsPart;
+using Modules.SharedModule.Runtime.Shared.Scripts.Services;
 using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 using UnityEngine;
 
@@ -16,12 +17,15 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.Movement
 
         public PlayerIsGroundedProvider(IsGroundedProvider isGroundedProvider,
             OwnerPlayerSerializableComponents clientPlayerSerializableComponents,
-            FiniteStateMachineModel<IFeetOwnerPlayerState> feetStateMachine)
+            FiniteStateMachineModel<IFeetOwnerPlayerState> feetStateMachine, UpdateObserversService updateObserversService)
         {
             _isGroundedProvider = isGroundedProvider;
             _feetStateMachine = feetStateMachine;
 
-            clientPlayerSerializableComponents.GetOrAddComponent<MonoBehaviourObserver>().DrawedGizmos +=
+            updateObserversService.TryAddOrGetUpdateObserver(clientPlayerSerializableComponents.gameObject,
+                UpdateType.DrawGizmos, out var observer);
+            
+            observer.Updated +=
                 _isGroundedProvider.DrawGizmos;
         }
 

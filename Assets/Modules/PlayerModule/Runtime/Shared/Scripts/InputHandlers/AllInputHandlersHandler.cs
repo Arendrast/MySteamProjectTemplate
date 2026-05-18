@@ -1,33 +1,42 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer.OwnerStateMachine;
 using Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer.OwnerStateMachine.States;
+using Modules.SharedModule.Runtime.Shared.Scripts.Input;
 using Modules.SharedModule.Runtime.Shared.Scripts.Services;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace Modules.PlayerModule.Runtime.Shared.Scripts.InputHandlers
 {
-    public class AllInputHandlersHandler : IOwnerPlayerComponent
+    public class AllInputHandlersHandler : IOwnerPlayerComponent, IDisposable
     {
         private bool _doesHavePriorityUpdater;
-        private readonly TimeScaleRepository _timeScaleRepository;
 
-        private static readonly IEnumerable<PlayerInputHandlerType> _sharedInputHandlers = new PlayerInputHandlerType[]
-        {
-            PlayerInputHandlerType.SwitchCursorMode,
-        };
+        private readonly HashSet<PlayerInputHandlerType> _temporaryPlayerNewInputHandlersTypes =
+            new HashSet<PlayerInputHandlerType>();
 
         private readonly Dictionary<PlayerInputHandlerType, IPlayerInputHandler> _inputHandlersDictionary;
         private readonly ActiveInputHandlersTypesRepository _activeInputHandlersTypesRepository;
 
+        private static readonly PlayerInputHandlerType[] _sharedInputHandlers = new PlayerInputHandlerType[]
+        {
+            PlayerInputHandlerType.SwitchCursorMode,
+        };
+
         public AllInputHandlersHandler(IEnumerable<IPlayerInputHandler> inputHandlers,
-            TimeScaleRepository timeScaleRepository,
             ActiveInputHandlersTypesRepository activeInputHandlersTypesRepository)
         {
-            _timeScaleRepository = timeScaleRepository;
             _activeInputHandlersTypesRepository = activeInputHandlersTypesRepository;
             _inputHandlersDictionary = inputHandlers.ToDictionary(
                 inputHandler => inputHandler.GetInputHandlerType(), inputHandler => inputHandler);
+        }
+        
+        public void Dispose()
+        {
+            _activeInputHandlersTypesRepository.ActiveInputHandlerTypes.ForEach(TryUnsubscribeInputHandler);
+            _temporaryPlayerNewInputHandlersTypes.Clear();
         }
 
         public void SetDoesHavePriorityUpdater(bool doesHavePriorityUpdater)
@@ -35,45 +44,54 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.InputHandlers
             _doesHavePriorityUpdater = doesHavePriorityUpdater;
         }
 
-        public void TryUpdateSelectedHandlers(PlayerInputHandlerType[] inputHandlersTypes, bool isPriority = false)
+        public void SubscribeNewInputHandlers(PlayerInputHandlerType[] newInputHandlersTypes, bool isPriority = false)
         {
-            if (_timeScaleRepository.IsTimeScaleZero() || !isPriority && _doesHavePriorityUpdater)
+            if (!isPriority && _doesHavePriorityUpdater)
                 return;
 
-            if (!inputHandlersTypes.SequenceEqual(_activeInputHandlersTypesRepository.ActiveInputHandlerTypes))
+            if (!newInputHandlersTypes.SequenceEqual(_activeInputHandlersTypesRepository.ActiveInputHandlerTypes))
             {
-                var exitedHandlesTypes =
-                    _activeInputHandlersTypesRepository.ActiveInputHandlerTypes.Except(inputHandlersTypes);
-
-                foreach (var handlerType in exitedHandlesTypes)
-                {
-                    if (_inputHandlersDictionary.TryGetValue(handlerType, out var handler) &&
-                        handler is IExitablePlayerInputHandler exitablePlayerInputHandler)
-                    {
-                        exitablePlayerInputHandler.Exit(); // Should it use? Maybe
-                    }
-                }
-
-                _activeInputHandlersTypesRepository.SetActiveInputHandlerTypes(inputHandlersTypes
-                    .Concat(_sharedInputHandlers).Distinct()
-                    .ToList()); // Critical allocation context? Should test;
+                _temporaryPlayerNewInputHandlersTypes.Clear();
+                _temporaryPlayerNewInputHandlersTypes.AddRange(_sharedInputHandlers);
+                _temporaryPlayerNewInputHandlersTypes.AddRange(newInputHandlersTypes);
+                
+                UnsubscribeOldInputHandlers();
+                SubscribeNewInputHandlers();
+                
+                _activeInputHandlersTypesRepository.SetActiveInputHandlerTypes(_temporaryPlayerNewInputHandlersTypes);
             }
 
-            foreach (var handlerType in _activeInputHandlersTypesRepository.ActiveInputHandlerTypes)
+            return;
+
+            void SubscribeNewInputHandlers()
             {
-                TryUpdateInputHandler(handlerType);
+                foreach (var newInputHandlerType in _temporaryPlayerNewInputHandlersTypes)
+                {
+                    if (!_activeInputHandlersTypesRepository.ActiveInputHandlerTypes.Contains(newInputHandlerType) &&
+                        _inputHandlersDictionary.TryGetValue(newInputHandlerType, out var inputHandler))
+                    {
+                        inputHandler.SetSubscribeState(SubscribeState.Subscribe);
+                    }
+                }
+            }
+
+            void UnsubscribeOldInputHandlers()
+            {
+                foreach (var oldInputHandlerType in _activeInputHandlersTypesRepository.ActiveInputHandlerTypes)
+                {
+                    if (!_temporaryPlayerNewInputHandlersTypes.Contains(oldInputHandlerType))
+                    {
+                        TryUnsubscribeInputHandler(oldInputHandlerType);
+                    }
+                }
             }
         }
 
-        private void TryUpdateInputHandler(PlayerInputHandlerType handlerType)
+        private void TryUnsubscribeInputHandler(PlayerInputHandlerType inputHandlerType)
         {
-            if (_inputHandlersDictionary.TryGetValue(handlerType, out var inputHandler))
+            if (_inputHandlersDictionary.TryGetValue(inputHandlerType, out var inputHandler))
             {
-                inputHandler.Update();
-            }
-            else
-            {
-                Debug.LogError($"Input handler by {handlerType} is not found!");
+                inputHandler.SetSubscribeState(SubscribeState.Unsubscribe);
             }
         }
     }

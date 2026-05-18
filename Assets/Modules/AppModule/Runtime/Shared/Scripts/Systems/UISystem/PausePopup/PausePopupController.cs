@@ -1,3 +1,4 @@
+using System;
 using Modules.AppModule.Runtime.Shared.Scripts.Systems.UISystem.SettingsPopup;
 using Modules.SharedModule.Runtime.Client.Scripts.GameStateMachine;
 using Modules.SharedModule.Runtime.Shared.Scripts.EventBusSystem;
@@ -6,27 +7,30 @@ using Modules.SharedModule.Runtime.Shared.Scripts.Observers;
 using Modules.SharedModule.Runtime.Shared.Scripts.Services;
 using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using InputActionType = Modules.SharedModule.Runtime.Shared.Scripts.Input.InputActionType;
 
 namespace Modules.AppModule.Runtime.Shared.Scripts.Systems.UISystem.PausePopup
 {
-    public class PausePopupController
+    public class PausePopupController : IDisposable
     {
         private SettingsPopupController _settingsPopupController;
 
         private bool _isPaused, _wasCursorEnabled;
         private readonly PausePopupSerializableComponents _pausePopupSerializableComponents;
         private readonly TimeScaleRepository _timeScaleRepository;
-        private readonly IInputProvider _inputProvider;
 
-        public PausePopupController(IInputProvider inputProvider, TimeScaleRepository timeScaleRepository,
+        private readonly IInputService _inputService;
+
+        public PausePopupController(IInputService inputService, TimeScaleRepository timeScaleRepository,
             PausePopupSerializableComponents pausePopupSerializableComponents, EventBus eventBus,
             SettingsPopupFactory settingsPopupFactory)
         {
-            _inputProvider = inputProvider;
+            _inputService = inputService;
             _timeScaleRepository = timeScaleRepository;
             _pausePopupSerializableComponents = pausePopupSerializableComponents;
-
-            pausePopupSerializableComponents.GetOrAddComponent<MonoBehaviourObserver>().Updated += TrySetIsPaused;
+            
+            SetSubscribeState(SubscribeState.Subscribe);
 
             pausePopupSerializableComponents.ExitToMenuButton.onClick.AddListener(() =>
                 eventBus.Fire(new EnterGameStateEvent(GameStateType.MainMenu)));
@@ -51,6 +55,11 @@ namespace Modules.AppModule.Runtime.Shared.Scripts.Systems.UISystem.PausePopup
             {
                 _settingsPopupController?.TryOpen();
             }
+        }
+
+        public void Dispose()
+        {
+            SetSubscribeState(SubscribeState.Unsubscribe);
         }
 
         public void TryClosePopup()
@@ -79,12 +88,14 @@ namespace Modules.AppModule.Runtime.Shared.Scripts.Systems.UISystem.PausePopup
                 _settingsPopupController?.TryClose();
         }
 
-        private void TrySetIsPaused()
+        private void TrySetIsPaused(InputAction.CallbackContext callbackContext)
         {
-            if (!_inputProvider.IsActionTriggered(InputActionType.Pause))
-                return;
-
             SetIsPaused();
+        }
+
+        private void SetSubscribeState(SubscribeState subscribeState)
+        {
+            _inputService.SetSubscribeStateToInputAction(InputActionType.Pause, InputActionPhase.Started, TrySetIsPaused, subscribeState);
         }
     }
 }

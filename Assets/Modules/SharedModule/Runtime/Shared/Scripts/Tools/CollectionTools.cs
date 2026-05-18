@@ -54,12 +54,12 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Tools
         public static void RemoveAll<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, Func<KeyValuePair<TKey, TValue>, bool> func) => dictionary.Where(func.Invoke).ForEach(pair => dictionary.Remove(pair.Key));
 
         public static void SetOrAdd<TKey, TValue>(this Dictionary<TKey, TValue> dictionary,
-            TKey key, TValue value)
+            TKey key, TValue setValue, Func<TValue> addValueFunc)
         {
             if (dictionary.ContainsKey(key))
-                dictionary[key] = value;
+                dictionary[key] = setValue;
             else
-                dictionary.Add(key, value);
+                dictionary.Add(key, addValueFunc.Invoke());
         }
         
         public static void AddRangeMissing<T>(this List<T> list, IEnumerable<T> elements)

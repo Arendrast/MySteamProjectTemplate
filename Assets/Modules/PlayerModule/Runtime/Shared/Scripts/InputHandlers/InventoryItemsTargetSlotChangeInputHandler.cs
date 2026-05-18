@@ -1,6 +1,7 @@
 using Modules.InventoryModule.Runtime.Shared.Scripts;
 using Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer.OwnerStateMachine.States;
 using Modules.SharedModule.Runtime.Shared.Scripts.Input;
+using UnityEngine.InputSystem;
 
 namespace Modules.PlayerModule.Runtime.Shared.Scripts.InputHandlers
 {
@@ -8,23 +9,22 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.InputHandlers
     {
         private int? _triggeredSelectItemIndex;
         private readonly InventoryItemsModel _inventoryItemsModel;
-        private readonly IInputProvider _inputProvider;
+        private readonly IInputService _inputService;
         private readonly InventoryItemsConfig _inventoryItemsConfig;
-        private readonly PlayerInputHandler _playerInputHandler;
 
         private InventoryItemsTargetSlotChangeInputHandler(
-            InventoryItemsModel inventoryItemsModel, IInputProvider inputProvider,
+            InventoryItemsModel inventoryItemsModel, IInputService inputService,
             InventoryItemsConfig inventoryItemsConfig)
         {
             _inventoryItemsModel = inventoryItemsModel;
-            _inputProvider = inputProvider;
+            _inputService = inputService;
             _inventoryItemsConfig = inventoryItemsConfig;
-            _playerInputHandler = new PlayerInputHandler(GetInputCondition, TryStartToSetTargetSlot);
         }
 
-        public void Update()
+        public void SetSubscribeState(SubscribeState subscribeState)
         {
-            _playerInputHandler.InvokeActions();
+            _inputService.SetSubscribeStateToInputActionGroup(InputActionGroupType.SelectItem, InputActionPhase.Started,
+                TryStartToSetTargetSlot, _inventoryItemsConfig.ItemSlotsAmount, subscribeState);
         }
 
         public PlayerInputHandlerType GetInputHandlerType()
@@ -32,11 +32,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.InputHandlers
             return PlayerInputHandlerType.InventoryItemsTargetSlotChange;
         }
 
-        private bool GetInputCondition() =>
-            (_triggeredSelectItemIndex =
-                _inputProvider.GetTriggeredSelectItemIndex(_inventoryItemsConfig.ItemSlotsAmount)).HasValue;
-
-        private void TryStartToSetTargetSlot() =>
-            _inventoryItemsModel.TryStartToSetTargetSlot(_triggeredSelectItemIndex.Value);
+        private void TryStartToSetTargetSlot(InputAction.CallbackContext callbackContext, int itemIndex) =>
+            _inventoryItemsModel.TryStartToSetTargetSlot(itemIndex);
     }
 }

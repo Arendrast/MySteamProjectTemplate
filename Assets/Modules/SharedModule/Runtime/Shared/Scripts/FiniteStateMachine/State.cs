@@ -8,21 +8,21 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.FiniteStateMachine
         public bool IsActive { get; private set; }
         public event Action Entered, Exited, Updated, FixedUpdated, LateUpdated;
 
-        public void Update()
+        public void Update(float time)
         {
-            OnUpdate();
+            OnUpdate(time);
             Updated?.Invoke();
         }
 
-        public void LateUpdate()
+        public void LateUpdate(float time)
         {
-            OnLateUpdate();
+            OnLateUpdate(time);
             LateUpdated?.Invoke();
         }
 
-        public void FixedUpdate()
+        public void FixedUpdate(float time)
         {
-            OnFixedUpdate();
+            OnFixedUpdate(time);
             FixedUpdated?.Invoke();
         }
 
@@ -43,10 +43,10 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.FiniteStateMachine
             Exited?.Invoke();
         }
 
-        protected virtual void OnLateUpdate() {}
         protected virtual void OnEnter(IState pastState) { }
         protected virtual void OnExit(IState nextState) { }
-        protected virtual void OnFixedUpdate() { }
-        protected virtual void OnUpdate() { }
+        protected virtual void OnUpdate(float time) { }
+        protected virtual void OnLateUpdate(float time) {}
+        protected virtual void OnFixedUpdate(float time) { }
     }
 }

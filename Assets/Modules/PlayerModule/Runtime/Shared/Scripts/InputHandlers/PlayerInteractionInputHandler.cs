@@ -1,25 +1,23 @@
 using Modules.PlayerModule.Runtime.Shared.Scripts.Interaction;
+using Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer.OwnerStateMachine;
 using Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer.OwnerStateMachine.States;
 using Modules.SharedModule.Runtime.Shared.Scripts.Input;
+using UnityEngine.InputSystem;
+using InputActionType = Modules.SharedModule.Runtime.Shared.Scripts.Input.InputActionType;
 
 namespace Modules.PlayerModule.Runtime.Shared.Scripts.InputHandlers
 {
     public class PlayerInteractionInputHandler : IPlayerInputHandler
     {
-        private readonly IInputProvider _inputProvider;
+        private readonly IInputService _inputService;
         private readonly PlayerInteractionController _interactionController;
 
         public PlayerInteractionInputHandler(
-            IInputProvider inputProvider,
+            IInputService inputService,
             PlayerInteractionController interactionController)
         {
-            _inputProvider = inputProvider;
+            _inputService = inputService;
             _interactionController = interactionController;
-        }
-
-        public void Update()
-        {
-            _interactionController.TryInteractAsync(GetInputCondition());
         }
 
         public PlayerInputHandlerType GetInputHandlerType()
@@ -27,9 +25,15 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.InputHandlers
             return PlayerInputHandlerType.Interaction;
         }
 
-        private bool GetInputCondition()
+        public void SetSubscribeState(SubscribeState subscribeState)
         {
-            return _inputProvider.IsActionTriggered(InputActionType.Use);
+            _inputService.SetSubscribeStateToInputAction(InputActionType.Use, InputActionPhase.Started,
+                TryInteractAsync, subscribeState);
+        }
+
+        private void TryInteractAsync(InputAction.CallbackContext callbackContext)
+        {
+            _interactionController.TryInteractAsync();
         }
     }
 }

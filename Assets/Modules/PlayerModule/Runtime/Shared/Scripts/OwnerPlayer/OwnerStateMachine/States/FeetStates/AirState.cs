@@ -22,16 +22,16 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer.OwnerStateMach
 
         protected override void OnEnter(IState pastState)
         {
+            _allInputHandlersHandler.SubscribeNewInputHandlers(_handlersTypes);
         }
 
         protected override void OnExit(IState nextState)
         {
         }
 
-        protected override void OnUpdate()
+        protected override void OnUpdate(float time)
         {
-            _allInputHandlersHandler.TryUpdateSelectedHandlers(_handlersTypes);
-            _movementStateController.UpdateAndApplyMovement(true);
+            _movementStateController.UpdateAndApplyMovement(true, time);
         }
     }
 }

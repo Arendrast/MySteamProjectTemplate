@@ -91,7 +91,7 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Entity
 
             ConfigureCapsuleOverlapObserver();
 
-            serializableComponents.gameObject.GetOrAddComponent<DisableObserver>().Disabled +=
+            serializableComponents.gameObject.GetOrAddComponent<EnableDisableObserver>().Disabled +=
                 RemoveComponentsFromRepositories;
 
             CreatedEntity?.Invoke(components);

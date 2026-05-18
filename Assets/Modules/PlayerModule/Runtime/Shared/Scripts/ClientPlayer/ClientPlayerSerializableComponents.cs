@@ -17,6 +17,5 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.ClientPlayer
         [field: SerializeField] public EntitySerializableComponents EntityComponents { get; private set; }
         [field: SerializeField] public Transform ItemParentTransform { get; private set; }
         [field: SerializeField] public Animator Animator { get; private set; }
-        [field: SerializeField] public MonoBehaviourObserver Observer { get; private set; }
     }
 }

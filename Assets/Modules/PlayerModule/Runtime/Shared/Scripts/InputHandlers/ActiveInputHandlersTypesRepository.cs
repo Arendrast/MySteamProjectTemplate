@@ -7,15 +7,15 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.InputHandlers
 {
     public class ActiveInputHandlersTypesRepository : IOwnerPlayerComponent
     {
-        public IReadOnlyList<PlayerInputHandlerType> ActiveInputHandlerTypes =>
+        public IReadOnlyCollection<PlayerInputHandlerType> ActiveInputHandlerTypes =>
             _activeInputHandlerTypes;
 
-        public event Action<IReadOnlyList<PlayerInputHandlerType>> UpdatedActiveInputHandlerTypes;
+        public event Action<IReadOnlyCollection<PlayerInputHandlerType>> UpdatedActiveInputHandlerTypes;
 
         private bool _didUpdateAllInputHandlers;
-        private IReadOnlyList<PlayerInputHandlerType> _activeInputHandlerTypes = new List<PlayerInputHandlerType>();
+        private IReadOnlyCollection<PlayerInputHandlerType> _activeInputHandlerTypes = new List<PlayerInputHandlerType>();
 
-        public void SetActiveInputHandlerTypes(IReadOnlyList<PlayerInputHandlerType> types)
+        public void SetActiveInputHandlerTypes(IReadOnlyCollection<PlayerInputHandlerType> types)
         {
             _activeInputHandlerTypes = types;
             UpdatedActiveInputHandlerTypes?.Invoke(types);

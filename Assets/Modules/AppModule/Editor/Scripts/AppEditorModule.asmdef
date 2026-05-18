@@ -1,20 +1,13 @@
 {
-    "name": "CoreSharedModule.Tests",
+    "name": "AppEditorModule",
     "rootNamespace": "",
     "references": [
-        "EntitySharedModule",
-        "CoreSharedModule",
-        "UniTask",
-        "UniTask.Addressables",
-        "VContainer",
-        "SharedClientUIModule",
+        "Unity.Addressables.Editor",
+        "Unity.ResourceManager",
+        "Unity.Addressables",
         "SharedSharedModule",
-        "PlayerSharedModule",
-        "LevelSharedModule",
-        "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
         "FishNet.Runtime",
-        "ParrelSync"
+        "VContainer"
     ],
     "includePlatforms": [
         "Editor"

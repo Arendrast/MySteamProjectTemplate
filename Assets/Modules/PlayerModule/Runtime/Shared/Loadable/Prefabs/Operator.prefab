@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MovementConfig>k__BackingField:
-    <AccelerationPerSecond>k__BackingField: 4
+    <AccelerationPerSecond>k__BackingField: 15
     <MaxSpeed>k__BackingField: 15

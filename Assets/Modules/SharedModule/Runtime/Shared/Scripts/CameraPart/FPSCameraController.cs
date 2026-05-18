@@ -1,4 +1,5 @@
 using Modules.SharedModule.Runtime.Shared.Scripts.Input;
+using Modules.SharedModule.Runtime.Shared.Scripts.Observers;
 using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 using UnityEngine;
 
@@ -17,22 +18,24 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.CameraPart
         private bool _isEnabledRotateCameraByLookInput;
 
         private readonly FPSCameraSerializableComponents _serializableComponents;
-        private readonly IInputProvider _inputProvider;
+        private readonly IInputService _inputService;
         private readonly CameraControllerData _cameraControllerData;
 
         private readonly Transform _cameraTransform;
+        private readonly UpdateObserver _rotateCameraUpdateObserver;
 
         private const float DefaultMaxVerticalAngle = 90f;
         private const float DefaultMaxHorizontalAngle = 180f;
 
         public FPSCameraController(FPSCameraSerializableComponents serializableComponents,
-            IInputProvider inputProvider,
-            CameraControllerData cameraControllerData, Transform moveCameraTransform)
+            IInputService inputService,
+            CameraControllerData cameraControllerData, Transform moveCameraTransform, UpdateObserver rotateCameraUpdateObserver)
         {
             _serializableComponents = serializableComponents;
-            _inputProvider = inputProvider;
+            _inputService = inputService;
             _cameraControllerData = cameraControllerData;
             _cameraTransform = moveCameraTransform;
+            _rotateCameraUpdateObserver = rotateCameraUpdateObserver;
 
             ReturnDefaultConstraints();
         }
@@ -41,11 +44,11 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.CameraPart
         {
             _isEnabledRotateCameraByLookInput = isEnabled;
 
-            _serializableComponents.MonoBehaviourObserver.LateUpdated -= TryRotateCameraByLookInput;
+            _rotateCameraUpdateObserver.Updated -= TryRotateCameraByLookInput;
 
             if (isEnabled)
             {
-                _serializableComponents.MonoBehaviourObserver.LateUpdated += TryRotateCameraByLookInput;
+                _rotateCameraUpdateObserver.Updated += TryRotateCameraByLookInput;
             }
         }
 
@@ -101,15 +104,15 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.CameraPart
 
         public Vector3 GetSmoothedLookVector()
         {
-            return _inputProvider.LookAction *
+            return _inputService.LookAction *
                    (_cameraControllerData.GetXRotationSpeedFunc());
         }
 
-        private void TryRotateCameraByLookInput()
+        private void TryRotateCameraByLookInput(float time)
         {
             if (CursorSwitchTools.IsCursorEnabled || !_isEnabledRotateCameraByLookInput) return;
 
-            var lookVector = GetSmoothedLookVector() * Time.deltaTime;
+            var lookVector = GetSmoothedLookVector() * time;
 
             TryRotateCamera(lookVector.y, lookVector.x);
         }

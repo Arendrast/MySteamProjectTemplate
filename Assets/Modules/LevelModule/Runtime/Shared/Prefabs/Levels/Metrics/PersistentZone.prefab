@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1612105633462795483}
   - component: {fileID: 2672742181143294439}
   - component: {fileID: -6630231672520852397}
+  - component: {fileID: 4322337487111481392}
   m_Layer: 0
   m_Name: PersistentZone
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsPersistent>k__BackingField: 1
+  <ChildrenSerializableComponentsContainer>k__BackingField: {fileID: 4322337487111481392}
   <SpawnersPositions>k__BackingField: []
   <UseLightingConfig>k__BackingField: 1
   <LightingConfig>k__BackingField: {fileID: 0}
@@ -80,7 +82,7 @@ MonoBehaviour:
   _spectatorInterpolation: 2
   _enableTeleport: 0
   _teleportThreshold: 1
-  <PrefabId>k__BackingField: 91
+  <PrefabId>k__BackingField: 4
   <SpawnableCollectionId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 9195545382521729905
   SceneId: 0
@@ -107,7 +109,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
-  _initializedTimestamp: 0
+  _initializedTimestamp: -8584225428729847575
 --- !u!114 &-6630231672520852397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,3 +125,19 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 2672742181143294439}
   _networkObjectCache: {fileID: 2672742181143294439}
+--- !u!114 &4322337487111481392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965659141367360618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21093960d04f4c898125c5a881c0cbc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SharedSharedModule::Modules.SharedModule.Runtime.Shared.Scripts.QoL.ChildrenSerializableComponentsContainer
+  _containedComponents:
+  - {fileID: 1612105633462795483}
+  - {fileID: 2672742181143294439}
+  - {fileID: -6630231672520852397}

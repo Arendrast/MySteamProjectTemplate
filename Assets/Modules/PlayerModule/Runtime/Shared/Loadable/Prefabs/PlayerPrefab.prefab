@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8228450440182274451}
   - component: {fileID: 3790523886014419261}
   - component: {fileID: 9194624355464622810}
-  - component: {fileID: 978839810566436651}
   - component: {fileID: 2637946605412552243}
   - component: {fileID: 8524116921525299094}
   - component: {fileID: 6553439952848333151}
@@ -84,7 +83,6 @@ MonoBehaviour:
   <EntityComponents>k__BackingField: {fileID: 6956027033340291321}
   <ItemParentTransform>k__BackingField: {fileID: 6622565966464387580}
   <Animator>k__BackingField: {fileID: 6553439952848333151}
-  <Observer>k__BackingField: {fileID: 978839810566436651}
 --- !u!114 &9194624355464622810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,18 +99,6 @@ MonoBehaviour:
     TypeName: Modules.AppModule.Runtime.Shared.Scripts.Infrastructure.MatchSharedServicesScope
   autoRun: 0
   autoInjectGameObjects: []
---- !u!114 &978839810566436651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3315449658959172011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2abfb2e05f644bc8944b036a4c5de266, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2637946605412552243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +158,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
-  _initializedTimestamp: -8584225646746244815
+  _initializedTimestamp: -8584225481376117947
 --- !u!114 &8524116921525299094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,7 +459,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
-  _initializedTimestamp: -8584225646746244815
+  _initializedTimestamp: -8584225481376117947
 --- !u!114 &4832848438857951366
 MonoBehaviour:
   m_ObjectHideFlags: 0

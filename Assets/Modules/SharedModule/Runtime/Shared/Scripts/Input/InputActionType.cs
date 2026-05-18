@@ -11,8 +11,6 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
         Sprint,
         Crouch,
         Test,
-        Test2,
-        CameraShake,
         Pause,
         KitUsing,
         Slap,

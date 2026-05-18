@@ -188,12 +188,12 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
 
         public T RegisterAndGetSingleByHash<T>(object hash, T implementation)
         {
-            _implementationsByHash.SetOrAdd(hash, implementation);
+            _implementationsByHash[hash] = implementation;
             return implementation;
         }
 
         private void TryRegisteringSingleByAssetId<T>(T implementation, string assetId) =>
-            _implementationsByHash.SetOrAdd(assetId, implementation);
+            _implementationsByHash[assetId] = implementation;
 
         public async UniTask<bool> IsExistsByAssetIdAsync<T>(string assetId) where T : class
         {

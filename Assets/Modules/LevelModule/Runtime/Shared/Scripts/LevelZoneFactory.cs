@@ -23,7 +23,7 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts
     public class LevelZoneFactory : IMatchSharedFactory, IDisposable, ITargetZoneNumberProvider
     {
         public int TargetZoneNumber { get; private set; }
-        
+
         private LevelConfig _levelConfig;
 
         private readonly IAssetLoader _assetLoader;
@@ -43,7 +43,7 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts
             RigidbodyPushablesFactory rigidbodyPushablesFactory,
             ExplodersFactory explodersFactory,
             DestroyablesFactory destroyablesFactory,
-            EffectApplierFactory effectApplierFactory, 
+            EffectApplierFactory effectApplierFactory,
             LevelZoneRepository levelZoneRepository,
             ActionTriggerReactorsFactory actionTriggerReactorsFactory,
             LevelZoneFactoryRepository levelZoneFactoryRepository,
@@ -72,7 +72,7 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts
             LevelZoneSerializableComponents levelZoneSerializableComponents)
         {
             TrySetTargetZone(levelZoneSerializableComponents);
-            
+
             CreateAllExploders(levelZoneSerializableComponents);
             InitializeAllDestroyables(levelZoneSerializableComponents);
             InitializeAllActionTriggerReactors(levelZoneSerializableComponents);
@@ -85,8 +85,9 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts
 
             async UniTask CreateOnlyNotSyncableInteractablesAsync()
             {
-                foreach (var interactableSerializableComponents in levelZoneSerializableComponents
-                             .GetComponentsInChildren<InteractableSerializableComponents>(true))
+                foreach (var interactableSerializableComponents in levelZoneSerializableComponents.
+                             ChildrenSerializableComponentsContainer
+                             .GetContainedChildren<InteractableSerializableComponents>())
                 {
                     await _interactablesFactory.GetCreatedInteractableAsync(interactableSerializableComponents,
                         flag: CreateInteractableFlag.OnlyNotSyncable);
@@ -137,7 +138,7 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts
             bool isPersistentZone = false)
         {
             TargetZoneNumber = zoneNumber;
-            
+
             return await GetInitializedServerLevelZoneAsync(_levelConfig, await AssetProvider
                 .InstantiateAsync<LevelZoneSerializableComponents>(
                     _levelConfig.LevelName + (isPersistentZone ? "PersistentZone" : "Zone" + zoneNumber),
@@ -169,17 +170,20 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts
             void CreateAllEffectAppliers()
             {
                 foreach (var effectApplierSerializableComponents in levelZoneSerializableComponents
-                             .GetComponentsInChildren<EffectApplierSerializableComponents>(true))
+                             .ChildrenSerializableComponentsContainer
+                             .GetContainedChildren<EffectApplierSerializableComponents>())
                 {
                     _effectApplierFactory.GetCreatedEffectApplierController(effectApplierSerializableComponents,
-                        effectApplierSerializableComponents.EffectType, effectApplierSerializableComponents.GetComponent<NetworkObject>().ObjectId);
+                        effectApplierSerializableComponents.EffectType,
+                        effectApplierSerializableComponents.GetComponent<NetworkObject>().ObjectId);
                 }
             }
 
             void CreateAllExplosionHandlers(LevelZoneSerializableComponents levelZoneSerializableComponents)
             {
                 foreach (var explodable in levelZoneSerializableComponents
-                             .GetComponentsInChildren<ExplodableSerializableComponents>())
+                             .ChildrenSerializableComponentsContainer
+                             .GetContainedChildren<ExplodableSerializableComponents>())
                 {
                     _rigidbodyPushablesFactory.TryCreateRigidbodyPushHandler(explodable);
                 }
@@ -188,7 +192,8 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts
             async UniTask CreateAllInteractablesAsync()
             {
                 foreach (var interactableSerializableComponents in levelZoneSerializableComponents
-                             .GetComponentsInChildren<InteractableSerializableComponents>(true))
+                             .ChildrenSerializableComponentsContainer
+                             .GetContainedChildren<InteractableSerializableComponents>())
                 {
                     await _interactablesFactory.GetCreatedInteractableAsync(interactableSerializableComponents);
                 }
@@ -264,7 +269,8 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts
         private void CreateAllExploders(LevelZoneSerializableComponents levelZoneSerializableComponents)
         {
             foreach (var exploder in levelZoneSerializableComponents
-                         .GetComponentsInChildren<ExploderSerializableComponents>())
+                         .ChildrenSerializableComponentsContainer
+                         .GetContainedChildren<ExploderSerializableComponents>())
             {
                 _explodersFactory.TryCreateExploder(exploder);
             }
@@ -281,7 +287,8 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts
             LevelZoneSerializableComponents levelZoneSerializableComponents)
         {
             foreach (var reactor in levelZoneSerializableComponents
-                         .GetComponentsInChildren<ActionTriggerReactorSerializableComponents>())
+                         .ChildrenSerializableComponentsContainer
+                         .GetContainedChildren<ActionTriggerReactorSerializableComponents>())
             {
                 _actionTriggerReactorsFactory.TryInitializeReactorAsync(reactor).Forget();
             }
@@ -292,7 +299,8 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts
             LevelZoneSerializableComponents levelZoneSerializableComponents)
         {
             foreach (var destroyable in levelZoneSerializableComponents
-                         .GetComponentsInChildren<DestroyableSerializableComponents>())
+                         .ChildrenSerializableComponentsContainer
+                         .GetContainedChildren<DestroyableSerializableComponents>())
             {
                 _destroyablesFactory.InitializeDestroyable(destroyable, out _);
             }
@@ -301,7 +309,8 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts
         private void InitializeForbiddenZones(LevelZoneSerializableComponents levelZoneSerializableComponents)
         {
             foreach (var forbiddenZone in levelZoneSerializableComponents
-                         .GetComponentsInChildren<ForbiddenZoneSerializableComponents>(true))
+                         .ChildrenSerializableComponentsContainer
+                         .GetContainedChildren<ForbiddenZoneSerializableComponents>())
             {
                 _forbiddenZoneFactory.InitializeForbiddenZone(forbiddenZone);
             }

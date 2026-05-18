@@ -12,6 +12,7 @@ using Modules.SharedModule.Runtime.Shared.Scripts.Input;
 using Modules.SharedModule.Runtime.Shared.Scripts.Services;
 using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 using Modules.SharedModule.Runtime.Shared.Scripts.Volume;
+using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 namespace Modules.AppModule.Runtime.Shared.Scripts.Infrastructure
@@ -99,7 +100,7 @@ namespace Modules.AppModule.Runtime.Shared.Scripts.Infrastructure
 
         private async UniTask ConfigureOperatorAsync(CameraComponents camera)
         {
-            await _operatorFactory.GetCreatedOperatorMovementController();
+            await _operatorFactory.GetCreatedOperatorMovementControllerAsync();
             camera.FPSCameraController.SetHorizontalAngleConstraints(0, 0);
             camera.FPSCameraController.SetShouldRotateByLookInputX(true);
         }

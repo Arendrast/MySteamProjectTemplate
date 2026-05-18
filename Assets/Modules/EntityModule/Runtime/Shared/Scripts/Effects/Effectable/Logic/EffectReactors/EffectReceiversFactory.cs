@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using FishNet.Object;
 using Modules.SharedModule.Runtime.Shared.Scripts.Observers;
 using Modules.SharedModule.Runtime.Shared.Scripts.QoL;
+using Modules.SharedModule.Runtime.Shared.Scripts.Services;
 using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 
 namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects.Effectable.Logic.EffectReactors
@@ -11,12 +12,14 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects.Effectable.Logic.E
     {
         private readonly EffectReactorsFactory _effectReactorsFactory;
         private readonly EffectablesRepository _effectablesRepository;
+        private readonly UpdateObserversService _updateObserversService;
 
         public EffectReceiversFactory(EffectReactorsFactory effectReactorsFactory,
-            EffectablesRepository effectablesRepository)
+            EffectablesRepository effectablesRepository, UpdateObserversService updateObserversService)
         {
             _effectReactorsFactory = effectReactorsFactory;
             _effectablesRepository = effectablesRepository;
+            _updateObserversService = updateObserversService;
         }
 
         public async UniTask<EffectsReceiverModel> GetEffectReceiverModel(
@@ -31,11 +34,12 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects.Effectable.Logic.E
                         effectableSerializableComponents, isOwner));
             }
 
-            var model = new EffectsReceiverModel(effectReactors, effectableSerializableComponents.GetComponent<NetworkObject>().ObjectId);
+            var model = new EffectsReceiverModel(effectReactors,
+                effectableSerializableComponents.GetComponent<NetworkObject>().ObjectId);
 
             var controller =
-                new EffectsReceiverController(
-                    model, effectableSerializableComponents.GetOrAddComponent<MonoBehaviourObserver>());
+                new EffectsReceiverController(model, effectableSerializableComponents.gameObject,
+                    _updateObserversService);
 
             _effectablesRepository.TryAdd(effectableSerializableComponents, model);
 

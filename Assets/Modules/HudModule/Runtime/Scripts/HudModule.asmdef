@@ -21,7 +21,8 @@
         "SharedClientModule",
         "ActionTriggerSharedModule",
         "LocalizationModule",
-        "VContainer"
+        "VContainer",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

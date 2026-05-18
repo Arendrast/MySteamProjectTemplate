@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6289299030792960666}
   - component: {fileID: 397489716499661719}
   - component: {fileID: 3972620104437896252}
-  - component: {fileID: 5226550224237530373}
   m_Layer: 5
   m_Name: HudPopup
   m_TagString: Untagged
@@ -127,7 +126,6 @@ MonoBehaviour:
   <InventoryItemsWindowSerializableComponents>k__BackingField: {fileID: 7592451825364380073}
   <SpeedTText>k__BackingField: {fileID: 3986444895055965061}
   <ReviveBarSerializableComponents>k__BackingField: {fileID: 0}
-  <MonoBehaviourObserver>k__BackingField: {fileID: 5226550224237530373}
   <CheatMenuPopupSerializableComponents>k__BackingField: {fileID: 4971178084397564784}
   <LowHealPointsPopupSerializableComponents>k__BackingField: {fileID: 6918821628498426551}
   <GameHintsWindowSerializableComponents>k__BackingField: {fileID: 9122418656116777241}
@@ -146,18 +144,6 @@ MonoBehaviour:
   _isOpenOnStart: 1
   _openButton: {fileID: 0}
   _closeButton: {fileID: 0}
---- !u!114 &5226550224237530373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1405382206294351882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2abfb2e05f644bc8944b036a4c5de266, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1545755244732098875
 GameObject:
   m_ObjectHideFlags: 0

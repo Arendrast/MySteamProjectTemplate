@@ -54,7 +54,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.PhysicsPart
             return GetGroundHitUnderFeet(out var changedCollider);
         }
 
-        public void DrawGizmos()
+        public void DrawGizmos(float time)
         {
             GizmoTools.DrawSphereCast(_lastHit, GetCenter(), _overridedMaxDistanceFunc?.Invoke() ?? 0.1f, Vector3.down,
                 GetRadius(), Color.red);

@@ -5,8 +5,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Observers
 {
     public class MonoBehaviourObserver : MonoBehaviour
     {
-        public event Action Updated, LateUpdated, FixedUpdated, DrawedGizmos;
-        public event Action<int> AnimatorIKed;
+        public event Action Updated, LateUpdated, FixedUpdated, DrawGizmos;
         
         public void Update()
         {
@@ -18,11 +17,6 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Observers
             LateUpdated?.Invoke();
         }
 
-        private void OnAnimatorIK(int layerIndex)
-        {
-            AnimatorIKed?.Invoke(layerIndex);
-        }
-
         private void FixedUpdate()
         {
             FixedUpdated?.Invoke();
@@ -30,7 +24,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Observers
 
         private void OnDrawGizmos()
         {
-            DrawedGizmos?.Invoke();
+            DrawGizmos?.Invoke();
         }
     }
 }

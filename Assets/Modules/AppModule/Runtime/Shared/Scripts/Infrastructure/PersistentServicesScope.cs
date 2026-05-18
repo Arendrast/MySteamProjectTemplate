@@ -84,7 +84,7 @@ namespace Modules.AppModule.Runtime.Shared.Scripts.Infrastructure
             _builder.RegisterInstance(_servicesScopesContainer.MatchClientServicesScope);
 
             _builder.RegisterInstance(new InputActions());
-            _builder.Register<IInputProvider, NewInputSystemProvider>(Lifetime.Singleton);
+            _builder.Register<IInputService, NewInputSystemService>(Lifetime.Singleton);
             _builder.Register<GameStateMachine>(Lifetime.Singleton);
             _builder.RegisterEntryPoint<SubscribingMediator>();
 

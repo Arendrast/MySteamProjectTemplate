@@ -9,14 +9,14 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.Movement
     {
         private readonly PlayerMovementController _movementController;
         private readonly PlayerRotationController _rotationController;
-        private readonly IInputProvider _inputProvider;
+        private readonly IInputService _inputService;
 
         public PlayerMovementStateController(
             PlayerMovementController movementController,
-            IInputProvider inputProvider, PlayerRotationController rotationController)
+            IInputService inputService, PlayerRotationController rotationController)
         {
             _movementController = movementController;
-            _inputProvider = inputProvider;
+            _inputService = inputService;
             _rotationController = rotationController;
         }
 
@@ -25,7 +25,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.Movement
             return !_movementController.IsGrounded;
         }
 
-        public void UpdateAndApplyMovement(bool shouldApplyRotation, Vector2? moveAction = null)
+        public void UpdateAndApplyMovement(bool shouldApplyRotation, float time, Vector2? moveAction = null)
         {
             //_movementController.UpdateGravity();
             
@@ -41,7 +41,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.Movement
         {
             if (!CursorSwitchTools.IsCursorEnabled)
             {
-                _rotationController.ApplyRotation(_inputProvider.LookAction);
+                _rotationController.ApplyRotation(_inputService.LookAction);
             }
         }
     }

@@ -9,7 +9,7 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects.Effectable.Logic.E
         event Action Updated;
         
         void OnApply(IReadOnlyCollection<EffectType> otherActiveEffectTypes, int effectApplierId);
-        void OnUpdate();
+        void OnUpdate(float time);
         void OnCancel(IReadOnlyCollection<EffectType> otherActiveEffectTypes);
     }
 }

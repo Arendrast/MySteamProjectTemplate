@@ -19,7 +19,7 @@ namespace Modules.HudModule.Runtime.Scripts.HudPopup
         private readonly HashedAssetProvider _hashedAssetProvider;
         private readonly ConfigsProviderService _configsProviderService;
         private readonly EventBus _eventBus;
-        private readonly IInputProvider _inputProvider;
+        private readonly IInputService _inputService;
         private readonly TimeScaleRepository _timeScaleProvider;
         private readonly DynamicGlobalVolumeFactory _dynamicVolumeFactory;
 
@@ -27,13 +27,13 @@ namespace Modules.HudModule.Runtime.Scripts.HudPopup
 
         public HudPopupFactory(HashedAssetProvider hashedAssetProvider,
             ConfigsProviderService configsProviderService,
-            EventBus eventBus, IInputProvider inputProvider, TimeScaleRepository timeScaleProvider,
+            EventBus eventBus, IInputService inputService, TimeScaleRepository timeScaleProvider,
             DynamicGlobalVolumeFactory dynamicVolumeFactory)
         {
             _hashedAssetProvider = hashedAssetProvider;
             _configsProviderService = configsProviderService;
             _eventBus = eventBus;
-            _inputProvider = inputProvider;
+            _inputService = inputService;
             _timeScaleProvider = timeScaleProvider;
             _dynamicVolumeFactory = dynamicVolumeFactory;
         }
@@ -61,7 +61,7 @@ namespace Modules.HudModule.Runtime.Scripts.HudPopup
                     _hashedAssetProvider.RegisterAndGetSingleByType(new HudPopupController(instance,
                         await _configsProviderService.GetConfigAsync<ItemsViewConfig>(),
                         _eventBus,
-                        _inputProvider,
+                        _inputService,
                         _timeScaleProvider, mainVignette,
                         ownerPlayerComponents, countersSynchronizerBehaviour));
                 });

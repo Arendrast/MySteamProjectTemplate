@@ -27,11 +27,12 @@ namespace Modules.HudModule.Runtime.Scripts.HudPopup
         private readonly HudPopupSerializableComponents _serializableComponents;
         private readonly EventBus _eventBus;
         private readonly LowHealPointsPopupController _lowHealPointsPopupController;
+        private readonly CheatMenuPopupController _cheatMenuController;
 
         public HudPopupController(HudPopupSerializableComponents serializableComponents,
             ItemsViewConfig itemsViewConfig,
             EventBus eventBus,
-            IInputProvider inputProvider,
+            IInputService inputService,
             TimeScaleRepository timeScaleRepository, Vignette mainVignette,
             OwnerPlayerComponents ownerPlayerComponents,
             NetworkCountersSynchronizerBehaviour countersSynchronizerBehaviour)
@@ -46,10 +47,10 @@ namespace Modules.HudModule.Runtime.Scripts.HudPopup
                 ownerPlayerComponents.ClientComponents.InventoryItemsModel,
                 itemsViewConfig);
 
-            new CheatMenuPopupController(serializableComponents.CheatMenuPopupSerializableComponents,
+            _cheatMenuController = new CheatMenuPopupController(serializableComponents.CheatMenuPopupSerializableComponents,
                 ownerPlayerComponents.ClientComponents.EntityComponents.DamageReceiverModel,
                 ownerPlayerComponents.PushHandlerModel,
-                inputProvider, timeScaleRepository);
+                inputService, timeScaleRepository);
 
             new InteractTextController(serializableComponents.InteractText,
                 ownerPlayerComponents.InteractionController);
@@ -77,6 +78,7 @@ namespace Modules.HudModule.Runtime.Scripts.HudPopup
             _eventBus.Unsubscribe<SetOpenStateHudPopupEvent>(SetOpenState);
             _healthBarController?.Dispose();
             _lowHealPointsPopupController?.Dispose();
+            _cheatMenuController?.Dispose();
         }
     }
 }

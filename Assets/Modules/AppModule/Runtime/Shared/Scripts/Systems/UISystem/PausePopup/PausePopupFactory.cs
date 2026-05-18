@@ -14,7 +14,7 @@ namespace Modules.AppModule.Runtime.Shared.Scripts.Systems.UISystem.PausePopup
         private readonly EventBus _eventBus;
         private readonly HashedAssetProvider _hashedAssetProvider;
         private readonly SettingsPopupFactory _settingsPopupFactory;
-        private readonly IInputProvider _inputProvider;
+        private readonly IInputService _inputService;
         private readonly TimeScaleRepository _timeScaleRepository;
 
         private const string PausePopupAssetId =
@@ -26,12 +26,12 @@ namespace Modules.AppModule.Runtime.Shared.Scripts.Systems.UISystem.PausePopup
 
         public PausePopupFactory(EventBus eventBus, HashedAssetProvider hashedAssetProvider,
              SettingsPopupFactory settingsPopupFactory,
-            IInputProvider inputProvider, TimeScaleRepository timeScaleRepository)
+            IInputService inputService, TimeScaleRepository timeScaleRepository)
         {
             _eventBus = eventBus;
             _hashedAssetProvider = hashedAssetProvider;
             _settingsPopupFactory = settingsPopupFactory;
-            _inputProvider = inputProvider;
+            _inputService = inputService;
             _timeScaleRepository = timeScaleRepository;
         }
 
@@ -52,7 +52,7 @@ namespace Modules.AppModule.Runtime.Shared.Scripts.Systems.UISystem.PausePopup
                     PausePopupAssetId,
                     popup =>
                     {
-                        _hashedAssetProvider.RegisterAndGetSingleByType(new PausePopupController(_inputProvider,
+                        _hashedAssetProvider.RegisterAndGetSingleByType(new PausePopupController(_inputService,
                             _timeScaleRepository, popup, _eventBus, _settingsPopupFactory));
                         return UniTask.CompletedTask;
                     }, 

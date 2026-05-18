@@ -6,7 +6,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
 {
     public class FollowRotationController
     {
-        public MonoBehaviourObserver Observer { get; private set; }
+        public UpdateObserver Observer { get; private set; }
         public Transform FollowerTransform { get; private set; }
         public Transform TargetTransform { get; private set; }
         public bool FollowX { get; private set; }
@@ -18,7 +18,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
         public bool IsLocalSpace { get; private set; }
         public Func<Vector3> OffsetFunc { get; private set; }
 
-        public FollowRotationController(MonoBehaviourObserver observer,
+        public FollowRotationController(UpdateObserver observer,
             Transform followerTransform,
             Transform targetTransform,
             Func<Vector3> offsetFunc,
@@ -43,7 +43,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
             FollowerTransform = followerTransform;
         }
 
-        public void SetParameters(MonoBehaviourObserver observer,
+        public void SetParameters(UpdateObserver observer,
             Transform targetTransform,
             Func<Vector3> offsetFunc,
             bool followX = true,
@@ -68,13 +68,13 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
         public void StartFollow()
         {
             EndFollow();
-            Observer.LateUpdated += Follow;
+            Observer.Updated += Follow;
         }
 
         public void EndFollow()
         {
             if (Observer != null)
-                Observer.LateUpdated -= Follow;
+                Observer.Updated -= Follow;
         }
 
         public Quaternion GetTargetRotation()
@@ -93,7 +93,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
                 FollowZ ? (InvertFollowZ ? -targetRotation.z : targetRotation.z) : followerRotation.z));
         }
 
-        public void Follow()
+        public void Follow(float time)
         {
             if (FollowerTransform == null || TargetTransform == null)
             {
