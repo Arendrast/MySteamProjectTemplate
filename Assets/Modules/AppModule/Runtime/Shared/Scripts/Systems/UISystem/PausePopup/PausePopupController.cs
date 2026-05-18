@@ -83,6 +83,7 @@ namespace Modules.AppModule.Runtime.Shared.Scripts.Systems.UISystem.PausePopup
             CursorSwitchTools.TrySwitchCursor(_isPaused || _wasCursorEnabled);
             _timeScaleRepository.SetTimeScale(_isPaused ? 0 : 1);
             _pausePopupSerializableComponents.Popup.TrySetOpenState(_isPaused);
+            _inputService.SetActiveInputActionsPart(InputActionsPart.Player, !_isPaused);
 
             if (!_isPaused)
                 _settingsPopupController?.TryClose();

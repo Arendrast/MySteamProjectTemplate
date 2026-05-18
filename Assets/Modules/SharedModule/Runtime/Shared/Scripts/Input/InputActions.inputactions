@@ -3,54 +3,9 @@
     "name": "InputActions",
     "maps": [
         {
-            "name": "General",
+            "name": "Player",
             "id": "c58ceeda-87cc-47ad-8004-0fbe203c9d01",
             "actions": [
-                {
-                    "name": "Move",
-                    "type": "Value",
-                    "id": "38fa7eac-2eb5-4d09-8aa6-b563fad37ad3",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "MoveForCheckIsButtonTriggered",
-                    "type": "Button",
-                    "id": "f9c63af9-61df-454f-87e3-e400706cde6d",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Look",
-                    "type": "Value",
-                    "id": "444a0593-8925-4685-899c-6dca01aebcdc",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Fire",
-                    "type": "Button",
-                    "id": "5b822fbb-0ff7-4007-96f6-12909a80b52d",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Use",
-                    "type": "Button",
-                    "id": "fe4df151-015a-47d1-a1a2-7ca65b7bfab9",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
                 {
                     "name": "SelectItem0",
                     "type": "Button",
@@ -106,122 +61,52 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "CheatMenu",
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "cae937ba-e4ea-4a2d-8848-6e1a925f2391",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "MoveForCheckIsButtonTriggered",
                     "type": "Button",
-                    "id": "24ebd634-6466-4cb3-a4b5-a38f4ea6016c",
+                    "id": "b4453bd4-d146-4736-80e2-4e2dec961652",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SetCursorMode",
+                    "name": "Use",
                     "type": "Button",
-                    "id": "04c7135e-317e-4b4d-b683-6656272e47d8",
+                    "id": "b4655003-1b9c-448d-b4df-7b87c2da25eb",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pause",
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "6abeab89-6bae-41be-b058-7cfb57c76e73",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Fire",
                     "type": "Button",
-                    "id": "daa062d1-1f83-455c-aab4-827cf7f72e12",
+                    "id": "8a93204a-91c2-4e50-adf7-140c96cc6cda",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
-                {
-                    "name": "WASD",
-                    "id": "00ca640b-d935-4593-8157-c05846ea39b3",
-                    "path": "Dpad",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "e2062cb9-1b15-46a2-838c-2f8d72a0bdd9",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "320bffee-a40b-4347-ac70-c210eb8bc73a",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "d2581a9b-1d11-4566-b27d-b92aff5fabbc",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "fcfe95b8-67b9-4526-84b5-5d0bc98d6400",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "8c8e490b-c610-4785-884f-f04217b23ca4",
-                    "path": "<Pointer>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse;Touch",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "472134fa-66a8-4941-87a1-d9b51c098d61",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9d81f992-903b-4e59-93d9-55737ebcecc2",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Use",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "e9053707-1158-45d6-b9e5-cf7d4e492d75",
@@ -289,41 +174,63 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "25e782fc-0df0-4f8b-9049-509212d48b39",
-                    "path": "<Keyboard>/j",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "CheatMenu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7dbade4f-3681-4ad5-bb4a-1c1bc93c2ea5",
-                    "path": "<Keyboard>/capsLock",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "SetCursorMode",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e67b4ba2-9d6e-4c5a-bd69-d97241f67577",
-                    "path": "<Keyboard>/escape",
+                    "name": "WASD",
+                    "id": "832a8b20-95ed-4706-ab52-a66db7b0ea0a",
+                    "path": "Dpad",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
+                    "action": "Move",
+                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "up",
+                    "id": "aa62d2e9-c39e-4fd0-9e83-b37318a3a5c1",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "0962d302-4721-4ead-8a45-81347f9cd89b",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "591b79dc-1885-4ab0-9ba0-c6ac0cdd306b",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "bc44406b-d962-4849-bccb-8a6bf436f134",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
-                    "id": "398e8bcd-031f-41b6-b097-92c9ebcb2ad4",
+                    "id": "e1b8ef90-9123-49ee-b91d-7c803eeabe95",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -334,7 +241,7 @@
                 },
                 {
                     "name": "",
-                    "id": "93d3b461-0fcf-4cf9-b4ee-4c4538fc584e",
+                    "id": "5b5f72da-b406-4ef5-9913-5b75987a062a",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -345,7 +252,7 @@
                 },
                 {
                     "name": "",
-                    "id": "bd2ce342-b40b-40c2-8b19-aa31349bbda9",
+                    "id": "866ca319-f782-4020-b5a3-36aa299da2ac",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -356,12 +263,113 @@
                 },
                 {
                     "name": "",
-                    "id": "bc01086f-1861-4b87-beb7-b10bcc273d81",
+                    "id": "2542850a-e9cd-4e0d-913b-00d8184097a7",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse;Gamepad",
                     "action": "MoveForCheckIsButtonTriggered",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b01ab1fa-7c5b-4bc2-b407-a267813e9810",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9afd83e8-3bf0-48fb-8e96-6a6d7541266a",
+                    "path": "<Pointer>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse;Touch",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ebfee08d-beb9-4201-8bf8-e215a0e06bc3",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "2840c675-5012-40e6-a192-2f6b87e81ac1",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "b9640952-2000-4fda-bc2b-102131a56f61",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SetCursorMode",
+                    "type": "Button",
+                    "id": "51a07345-5c5a-4588-99a4-8be3d3f2897b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CheatMenu",
+                    "type": "Button",
+                    "id": "aac47f2e-7b18-4cbe-9c23-95db7d383034",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d6d67f73-9c94-49bc-b8cf-1a4a9338f2a7",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50de3482-55e7-4648-8aeb-979061f4036f",
+                    "path": "<Keyboard>/capsLock",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "SetCursorMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "07d0e396-9b33-472a-85ef-2d27361eaab8",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "CheatMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

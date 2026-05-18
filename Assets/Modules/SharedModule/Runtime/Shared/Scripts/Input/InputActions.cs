@@ -91,54 +91,9 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
     ""name"": ""InputActions"",
     ""maps"": [
         {
-            ""name"": ""General"",
+            ""name"": ""Player"",
             ""id"": ""c58ceeda-87cc-47ad-8004-0fbe203c9d01"",
             ""actions"": [
-                {
-                    ""name"": ""Move"",
-                    ""type"": ""Value"",
-                    ""id"": ""38fa7eac-2eb5-4d09-8aa6-b563fad37ad3"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""MoveForCheckIsButtonTriggered"",
-                    ""type"": ""Button"",
-                    ""id"": ""f9c63af9-61df-454f-87e3-e400706cde6d"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Look"",
-                    ""type"": ""Value"",
-                    ""id"": ""444a0593-8925-4685-899c-6dca01aebcdc"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Fire"",
-                    ""type"": ""Button"",
-                    ""id"": ""5b822fbb-0ff7-4007-96f6-12909a80b52d"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Use"",
-                    ""type"": ""Button"",
-                    ""id"": ""fe4df151-015a-47d1-a1a2-7ca65b7bfab9"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
                 {
                     ""name"": ""SelectItem0"",
                     ""type"": ""Button"",
@@ -194,122 +149,52 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""CheatMenu"",
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""cae937ba-e4ea-4a2d-8848-6e1a925f2391"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MoveForCheckIsButtonTriggered"",
                     ""type"": ""Button"",
-                    ""id"": ""24ebd634-6466-4cb3-a4b5-a38f4ea6016c"",
+                    ""id"": ""b4453bd4-d146-4736-80e2-4e2dec961652"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SetCursorMode"",
+                    ""name"": ""Use"",
                     ""type"": ""Button"",
-                    ""id"": ""04c7135e-317e-4b4d-b683-6656272e47d8"",
+                    ""id"": ""b4655003-1b9c-448d-b4df-7b87c2da25eb"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Pause"",
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""6abeab89-6bae-41be-b058-7cfb57c76e73"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Fire"",
                     ""type"": ""Button"",
-                    ""id"": ""daa062d1-1f83-455c-aab4-827cf7f72e12"",
+                    ""id"": ""8a93204a-91c2-4e50-adf7-140c96cc6cda"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": ""WASD"",
-                    ""id"": ""00ca640b-d935-4593-8157-c05846ea39b3"",
-                    ""path"": ""Dpad"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""e2062cb9-1b15-46a2-838c-2f8d72a0bdd9"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""320bffee-a40b-4347-ac70-c210eb8bc73a"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""d2581a9b-1d11-4566-b27d-b92aff5fabbc"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""fcfe95b8-67b9-4526-84b5-5d0bc98d6400"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8c8e490b-c610-4785-884f-f04217b23ca4"",
-                    ""path"": ""<Pointer>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse;Touch"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""472134fa-66a8-4941-87a1-d9b51c098d61"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9d81f992-903b-4e59-93d9-55737ebcecc2"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Use"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""e9053707-1158-45d6-b9e5-cf7d4e492d75"",
@@ -377,41 +262,63 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""25e782fc-0df0-4f8b-9049-509212d48b39"",
-                    ""path"": ""<Keyboard>/j"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""CheatMenu"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7dbade4f-3681-4ad5-bb4a-1c1bc93c2ea5"",
-                    ""path"": ""<Keyboard>/capsLock"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""SetCursorMode"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e67b4ba2-9d6e-4c5a-bd69-d97241f67577"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""name"": ""WASD"",
+                    ""id"": ""832a8b20-95ed-4706-ab52-a66db7b0ea0a"",
+                    ""path"": ""Dpad"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": ""up"",
+                    ""id"": ""aa62d2e9-c39e-4fd0-9e83-b37318a3a5c1"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""0962d302-4721-4ead-8a45-81347f9cd89b"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""591b79dc-1885-4ab0-9ba0-c6ac0cdd306b"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""bc44406b-d962-4849-bccb-8a6bf436f134"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
-                    ""id"": ""398e8bcd-031f-41b6-b097-92c9ebcb2ad4"",
+                    ""id"": ""e1b8ef90-9123-49ee-b91d-7c803eeabe95"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -422,7 +329,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""93d3b461-0fcf-4cf9-b4ee-4c4538fc584e"",
+                    ""id"": ""5b5f72da-b406-4ef5-9913-5b75987a062a"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -433,7 +340,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bd2ce342-b40b-40c2-8b19-aa31349bbda9"",
+                    ""id"": ""866ca319-f782-4020-b5a3-36aa299da2ac"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -444,12 +351,113 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bc01086f-1861-4b87-beb7-b10bcc273d81"",
+                    ""id"": ""2542850a-e9cd-4e0d-913b-00d8184097a7"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse;Gamepad"",
                     ""action"": ""MoveForCheckIsButtonTriggered"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b01ab1fa-7c5b-4bc2-b407-a267813e9810"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9afd83e8-3bf0-48fb-8e96-6a6d7541266a"",
+                    ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse;Touch"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ebfee08d-beb9-4201-8bf8-e215a0e06bc3"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""2840c675-5012-40e6-a192-2f6b87e81ac1"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""b9640952-2000-4fda-bc2b-102131a56f61"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SetCursorMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""51a07345-5c5a-4588-99a4-8be3d3f2897b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CheatMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""aac47f2e-7b18-4cbe-9c23-95db7d383034"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d6d67f73-9c94-49bc-b8cf-1a4a9338f2a7"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50de3482-55e7-4648-8aeb-979061f4036f"",
+                    ""path"": ""<Keyboard>/capsLock"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""SetCursorMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""07d0e396-9b33-472a-85ef-2d27361eaab8"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""CheatMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -519,27 +527,30 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
         }
     ]
 }");
-            // General
-            m_General = asset.FindActionMap("General", throwIfNotFound: true);
-            m_General_Move = m_General.FindAction("Move", throwIfNotFound: true);
-            m_General_MoveForCheckIsButtonTriggered = m_General.FindAction("MoveForCheckIsButtonTriggered", throwIfNotFound: true);
-            m_General_Look = m_General.FindAction("Look", throwIfNotFound: true);
-            m_General_Fire = m_General.FindAction("Fire", throwIfNotFound: true);
-            m_General_Use = m_General.FindAction("Use", throwIfNotFound: true);
-            m_General_SelectItem0 = m_General.FindAction("SelectItem0", throwIfNotFound: true);
-            m_General_SelectItem1 = m_General.FindAction("SelectItem1", throwIfNotFound: true);
-            m_General_SelectItem2 = m_General.FindAction("SelectItem2", throwIfNotFound: true);
-            m_General_SelectItem3 = m_General.FindAction("SelectItem3", throwIfNotFound: true);
-            m_General_SelectItem4 = m_General.FindAction("SelectItem4", throwIfNotFound: true);
-            m_General_SelectItem5 = m_General.FindAction("SelectItem5", throwIfNotFound: true);
-            m_General_CheatMenu = m_General.FindAction("CheatMenu", throwIfNotFound: true);
-            m_General_SetCursorMode = m_General.FindAction("SetCursorMode", throwIfNotFound: true);
-            m_General_Pause = m_General.FindAction("Pause", throwIfNotFound: true);
+            // Player
+            m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+            m_Player_SelectItem0 = m_Player.FindAction("SelectItem0", throwIfNotFound: true);
+            m_Player_SelectItem1 = m_Player.FindAction("SelectItem1", throwIfNotFound: true);
+            m_Player_SelectItem2 = m_Player.FindAction("SelectItem2", throwIfNotFound: true);
+            m_Player_SelectItem3 = m_Player.FindAction("SelectItem3", throwIfNotFound: true);
+            m_Player_SelectItem4 = m_Player.FindAction("SelectItem4", throwIfNotFound: true);
+            m_Player_SelectItem5 = m_Player.FindAction("SelectItem5", throwIfNotFound: true);
+            m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+            m_Player_MoveForCheckIsButtonTriggered = m_Player.FindAction("MoveForCheckIsButtonTriggered", throwIfNotFound: true);
+            m_Player_Use = m_Player.FindAction("Use", throwIfNotFound: true);
+            m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+            m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+            // UI
+            m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+            m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
+            m_UI_SetCursorMode = m_UI.FindAction("SetCursorMode", throwIfNotFound: true);
+            m_UI_CheatMenu = m_UI.FindAction("CheatMenu", throwIfNotFound: true);
         }
 
         ~@InputActions()
         {
-            UnityEngine.Debug.Assert(!m_General.enabled, "This will cause a leak and performance issues, InputActions.General.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, InputActions.Player.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputActions.UI.Disable() has not been called.");
         }
 
         /// <summary>
@@ -612,94 +623,79 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
             return asset.FindBinding(bindingMask, out action);
         }
 
-        // General
-        private readonly InputActionMap m_General;
-        private List<IGeneralActions> m_GeneralActionsCallbackInterfaces = new List<IGeneralActions>();
-        private readonly InputAction m_General_Move;
-        private readonly InputAction m_General_MoveForCheckIsButtonTriggered;
-        private readonly InputAction m_General_Look;
-        private readonly InputAction m_General_Fire;
-        private readonly InputAction m_General_Use;
-        private readonly InputAction m_General_SelectItem0;
-        private readonly InputAction m_General_SelectItem1;
-        private readonly InputAction m_General_SelectItem2;
-        private readonly InputAction m_General_SelectItem3;
-        private readonly InputAction m_General_SelectItem4;
-        private readonly InputAction m_General_SelectItem5;
-        private readonly InputAction m_General_CheatMenu;
-        private readonly InputAction m_General_SetCursorMode;
-        private readonly InputAction m_General_Pause;
+        // Player
+        private readonly InputActionMap m_Player;
+        private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
+        private readonly InputAction m_Player_SelectItem0;
+        private readonly InputAction m_Player_SelectItem1;
+        private readonly InputAction m_Player_SelectItem2;
+        private readonly InputAction m_Player_SelectItem3;
+        private readonly InputAction m_Player_SelectItem4;
+        private readonly InputAction m_Player_SelectItem5;
+        private readonly InputAction m_Player_Move;
+        private readonly InputAction m_Player_MoveForCheckIsButtonTriggered;
+        private readonly InputAction m_Player_Use;
+        private readonly InputAction m_Player_Look;
+        private readonly InputAction m_Player_Fire;
         /// <summary>
-        /// Provides access to input actions defined in input action map "General".
+        /// Provides access to input actions defined in input action map "Player".
         /// </summary>
-        public struct GeneralActions
+        public struct PlayerActions
         {
             private @InputActions m_Wrapper;
 
             /// <summary>
             /// Construct a new instance of the input action map wrapper class.
             /// </summary>
-            public GeneralActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+            public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
             /// <summary>
-            /// Provides access to the underlying input action "General/Move".
+            /// Provides access to the underlying input action "Player/SelectItem0".
             /// </summary>
-            public InputAction @Move => m_Wrapper.m_General_Move;
+            public InputAction @SelectItem0 => m_Wrapper.m_Player_SelectItem0;
             /// <summary>
-            /// Provides access to the underlying input action "General/MoveForCheckIsButtonTriggered".
+            /// Provides access to the underlying input action "Player/SelectItem1".
             /// </summary>
-            public InputAction @MoveForCheckIsButtonTriggered => m_Wrapper.m_General_MoveForCheckIsButtonTriggered;
+            public InputAction @SelectItem1 => m_Wrapper.m_Player_SelectItem1;
             /// <summary>
-            /// Provides access to the underlying input action "General/Look".
+            /// Provides access to the underlying input action "Player/SelectItem2".
             /// </summary>
-            public InputAction @Look => m_Wrapper.m_General_Look;
+            public InputAction @SelectItem2 => m_Wrapper.m_Player_SelectItem2;
             /// <summary>
-            /// Provides access to the underlying input action "General/Fire".
+            /// Provides access to the underlying input action "Player/SelectItem3".
             /// </summary>
-            public InputAction @Fire => m_Wrapper.m_General_Fire;
+            public InputAction @SelectItem3 => m_Wrapper.m_Player_SelectItem3;
             /// <summary>
-            /// Provides access to the underlying input action "General/Use".
+            /// Provides access to the underlying input action "Player/SelectItem4".
             /// </summary>
-            public InputAction @Use => m_Wrapper.m_General_Use;
+            public InputAction @SelectItem4 => m_Wrapper.m_Player_SelectItem4;
             /// <summary>
-            /// Provides access to the underlying input action "General/SelectItem0".
+            /// Provides access to the underlying input action "Player/SelectItem5".
             /// </summary>
-            public InputAction @SelectItem0 => m_Wrapper.m_General_SelectItem0;
+            public InputAction @SelectItem5 => m_Wrapper.m_Player_SelectItem5;
             /// <summary>
-            /// Provides access to the underlying input action "General/SelectItem1".
+            /// Provides access to the underlying input action "Player/Move".
             /// </summary>
-            public InputAction @SelectItem1 => m_Wrapper.m_General_SelectItem1;
+            public InputAction @Move => m_Wrapper.m_Player_Move;
             /// <summary>
-            /// Provides access to the underlying input action "General/SelectItem2".
+            /// Provides access to the underlying input action "Player/MoveForCheckIsButtonTriggered".
             /// </summary>
-            public InputAction @SelectItem2 => m_Wrapper.m_General_SelectItem2;
+            public InputAction @MoveForCheckIsButtonTriggered => m_Wrapper.m_Player_MoveForCheckIsButtonTriggered;
             /// <summary>
-            /// Provides access to the underlying input action "General/SelectItem3".
+            /// Provides access to the underlying input action "Player/Use".
             /// </summary>
-            public InputAction @SelectItem3 => m_Wrapper.m_General_SelectItem3;
+            public InputAction @Use => m_Wrapper.m_Player_Use;
             /// <summary>
-            /// Provides access to the underlying input action "General/SelectItem4".
+            /// Provides access to the underlying input action "Player/Look".
             /// </summary>
-            public InputAction @SelectItem4 => m_Wrapper.m_General_SelectItem4;
+            public InputAction @Look => m_Wrapper.m_Player_Look;
             /// <summary>
-            /// Provides access to the underlying input action "General/SelectItem5".
+            /// Provides access to the underlying input action "Player/Fire".
             /// </summary>
-            public InputAction @SelectItem5 => m_Wrapper.m_General_SelectItem5;
-            /// <summary>
-            /// Provides access to the underlying input action "General/CheatMenu".
-            /// </summary>
-            public InputAction @CheatMenu => m_Wrapper.m_General_CheatMenu;
-            /// <summary>
-            /// Provides access to the underlying input action "General/SetCursorMode".
-            /// </summary>
-            public InputAction @SetCursorMode => m_Wrapper.m_General_SetCursorMode;
-            /// <summary>
-            /// Provides access to the underlying input action "General/Pause".
-            /// </summary>
-            public InputAction @Pause => m_Wrapper.m_General_Pause;
+            public InputAction @Fire => m_Wrapper.m_Player_Fire;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
-            public InputActionMap Get() { return m_Wrapper.m_General; }
+            public InputActionMap Get() { return m_Wrapper.m_Player; }
             /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
             public void Enable() { Get().Enable(); }
             /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -707,9 +703,9 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
             /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
             public bool enabled => Get().enabled;
             /// <summary>
-            /// Implicitly converts an <see ref="GeneralActions" /> to an <see ref="InputActionMap" /> instance.
+            /// Implicitly converts an <see ref="PlayerActions" /> to an <see ref="InputActionMap" /> instance.
             /// </summary>
-            public static implicit operator InputActionMap(GeneralActions set) { return set.Get(); }
+            public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
             /// <summary>
             /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
             /// </summary>
@@ -717,26 +713,11 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
             /// <remarks>
             /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
             /// </remarks>
-            /// <seealso cref="GeneralActions" />
-            public void AddCallbacks(IGeneralActions instance)
+            /// <seealso cref="PlayerActions" />
+            public void AddCallbacks(IPlayerActions instance)
             {
-                if (instance == null || m_Wrapper.m_GeneralActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_GeneralActionsCallbackInterfaces.Add(instance);
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
-                @MoveForCheckIsButtonTriggered.started += instance.OnMoveForCheckIsButtonTriggered;
-                @MoveForCheckIsButtonTriggered.performed += instance.OnMoveForCheckIsButtonTriggered;
-                @MoveForCheckIsButtonTriggered.canceled += instance.OnMoveForCheckIsButtonTriggered;
-                @Look.started += instance.OnLook;
-                @Look.performed += instance.OnLook;
-                @Look.canceled += instance.OnLook;
-                @Fire.started += instance.OnFire;
-                @Fire.performed += instance.OnFire;
-                @Fire.canceled += instance.OnFire;
-                @Use.started += instance.OnUse;
-                @Use.performed += instance.OnUse;
-                @Use.canceled += instance.OnUse;
+                if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
                 @SelectItem0.started += instance.OnSelectItem0;
                 @SelectItem0.performed += instance.OnSelectItem0;
                 @SelectItem0.canceled += instance.OnSelectItem0;
@@ -755,15 +736,21 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
                 @SelectItem5.started += instance.OnSelectItem5;
                 @SelectItem5.performed += instance.OnSelectItem5;
                 @SelectItem5.canceled += instance.OnSelectItem5;
-                @CheatMenu.started += instance.OnCheatMenu;
-                @CheatMenu.performed += instance.OnCheatMenu;
-                @CheatMenu.canceled += instance.OnCheatMenu;
-                @SetCursorMode.started += instance.OnSetCursorMode;
-                @SetCursorMode.performed += instance.OnSetCursorMode;
-                @SetCursorMode.canceled += instance.OnSetCursorMode;
-                @Pause.started += instance.OnPause;
-                @Pause.performed += instance.OnPause;
-                @Pause.canceled += instance.OnPause;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @MoveForCheckIsButtonTriggered.started += instance.OnMoveForCheckIsButtonTriggered;
+                @MoveForCheckIsButtonTriggered.performed += instance.OnMoveForCheckIsButtonTriggered;
+                @MoveForCheckIsButtonTriggered.canceled += instance.OnMoveForCheckIsButtonTriggered;
+                @Use.started += instance.OnUse;
+                @Use.performed += instance.OnUse;
+                @Use.canceled += instance.OnUse;
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
+                @Fire.started += instance.OnFire;
+                @Fire.performed += instance.OnFire;
+                @Fire.canceled += instance.OnFire;
             }
 
             /// <summary>
@@ -772,24 +759,9 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
             /// <remarks>
             /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
             /// </remarks>
-            /// <seealso cref="GeneralActions" />
-            private void UnregisterCallbacks(IGeneralActions instance)
+            /// <seealso cref="PlayerActions" />
+            private void UnregisterCallbacks(IPlayerActions instance)
             {
-                @Move.started -= instance.OnMove;
-                @Move.performed -= instance.OnMove;
-                @Move.canceled -= instance.OnMove;
-                @MoveForCheckIsButtonTriggered.started -= instance.OnMoveForCheckIsButtonTriggered;
-                @MoveForCheckIsButtonTriggered.performed -= instance.OnMoveForCheckIsButtonTriggered;
-                @MoveForCheckIsButtonTriggered.canceled -= instance.OnMoveForCheckIsButtonTriggered;
-                @Look.started -= instance.OnLook;
-                @Look.performed -= instance.OnLook;
-                @Look.canceled -= instance.OnLook;
-                @Fire.started -= instance.OnFire;
-                @Fire.performed -= instance.OnFire;
-                @Fire.canceled -= instance.OnFire;
-                @Use.started -= instance.OnUse;
-                @Use.performed -= instance.OnUse;
-                @Use.canceled -= instance.OnUse;
                 @SelectItem0.started -= instance.OnSelectItem0;
                 @SelectItem0.performed -= instance.OnSelectItem0;
                 @SelectItem0.canceled -= instance.OnSelectItem0;
@@ -808,24 +780,30 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
                 @SelectItem5.started -= instance.OnSelectItem5;
                 @SelectItem5.performed -= instance.OnSelectItem5;
                 @SelectItem5.canceled -= instance.OnSelectItem5;
-                @CheatMenu.started -= instance.OnCheatMenu;
-                @CheatMenu.performed -= instance.OnCheatMenu;
-                @CheatMenu.canceled -= instance.OnCheatMenu;
-                @SetCursorMode.started -= instance.OnSetCursorMode;
-                @SetCursorMode.performed -= instance.OnSetCursorMode;
-                @SetCursorMode.canceled -= instance.OnSetCursorMode;
-                @Pause.started -= instance.OnPause;
-                @Pause.performed -= instance.OnPause;
-                @Pause.canceled -= instance.OnPause;
+                @Move.started -= instance.OnMove;
+                @Move.performed -= instance.OnMove;
+                @Move.canceled -= instance.OnMove;
+                @MoveForCheckIsButtonTriggered.started -= instance.OnMoveForCheckIsButtonTriggered;
+                @MoveForCheckIsButtonTriggered.performed -= instance.OnMoveForCheckIsButtonTriggered;
+                @MoveForCheckIsButtonTriggered.canceled -= instance.OnMoveForCheckIsButtonTriggered;
+                @Use.started -= instance.OnUse;
+                @Use.performed -= instance.OnUse;
+                @Use.canceled -= instance.OnUse;
+                @Look.started -= instance.OnLook;
+                @Look.performed -= instance.OnLook;
+                @Look.canceled -= instance.OnLook;
+                @Fire.started -= instance.OnFire;
+                @Fire.performed -= instance.OnFire;
+                @Fire.canceled -= instance.OnFire;
             }
 
             /// <summary>
-            /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="GeneralActions.UnregisterCallbacks(IGeneralActions)" />.
+            /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />.
             /// </summary>
-            /// <seealso cref="GeneralActions.UnregisterCallbacks(IGeneralActions)" />
-            public void RemoveCallbacks(IGeneralActions instance)
+            /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
+            public void RemoveCallbacks(IPlayerActions instance)
             {
-                if (m_Wrapper.m_GeneralActionsCallbackInterfaces.Remove(instance))
+                if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
                     UnregisterCallbacks(instance);
             }
 
@@ -835,21 +813,139 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
             /// <remarks>
             /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
             /// </remarks>
-            /// <seealso cref="GeneralActions.AddCallbacks(IGeneralActions)" />
-            /// <seealso cref="GeneralActions.RemoveCallbacks(IGeneralActions)" />
-            /// <seealso cref="GeneralActions.UnregisterCallbacks(IGeneralActions)" />
-            public void SetCallbacks(IGeneralActions instance)
+            /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
+            /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
+            /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
+            public void SetCallbacks(IPlayerActions instance)
             {
-                foreach (var item in m_Wrapper.m_GeneralActionsCallbackInterfaces)
+                foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
                     UnregisterCallbacks(item);
-                m_Wrapper.m_GeneralActionsCallbackInterfaces.Clear();
+                m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
                 AddCallbacks(instance);
             }
         }
         /// <summary>
-        /// Provides a new <see cref="GeneralActions" /> instance referencing this action map.
+        /// Provides a new <see cref="PlayerActions" /> instance referencing this action map.
         /// </summary>
-        public GeneralActions @General => new GeneralActions(this);
+        public PlayerActions @Player => new PlayerActions(this);
+
+        // UI
+        private readonly InputActionMap m_UI;
+        private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+        private readonly InputAction m_UI_Pause;
+        private readonly InputAction m_UI_SetCursorMode;
+        private readonly InputAction m_UI_CheatMenu;
+        /// <summary>
+        /// Provides access to input actions defined in input action map "UI".
+        /// </summary>
+        public struct UIActions
+        {
+            private @InputActions m_Wrapper;
+
+            /// <summary>
+            /// Construct a new instance of the input action map wrapper class.
+            /// </summary>
+            public UIActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+            /// <summary>
+            /// Provides access to the underlying input action "UI/Pause".
+            /// </summary>
+            public InputAction @Pause => m_Wrapper.m_UI_Pause;
+            /// <summary>
+            /// Provides access to the underlying input action "UI/SetCursorMode".
+            /// </summary>
+            public InputAction @SetCursorMode => m_Wrapper.m_UI_SetCursorMode;
+            /// <summary>
+            /// Provides access to the underlying input action "UI/CheatMenu".
+            /// </summary>
+            public InputAction @CheatMenu => m_Wrapper.m_UI_CheatMenu;
+            /// <summary>
+            /// Provides access to the underlying input action map instance.
+            /// </summary>
+            public InputActionMap Get() { return m_Wrapper.m_UI; }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+            public void Enable() { Get().Enable(); }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+            public void Disable() { Get().Disable(); }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+            public bool enabled => Get().enabled;
+            /// <summary>
+            /// Implicitly converts an <see ref="UIActions" /> to an <see ref="InputActionMap" /> instance.
+            /// </summary>
+            public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+            /// <summary>
+            /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+            /// </summary>
+            /// <param name="instance">Callback instance.</param>
+            /// <remarks>
+            /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+            /// </remarks>
+            /// <seealso cref="UIActions" />
+            public void AddCallbacks(IUIActions instance)
+            {
+                if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+                @SetCursorMode.started += instance.OnSetCursorMode;
+                @SetCursorMode.performed += instance.OnSetCursorMode;
+                @SetCursorMode.canceled += instance.OnSetCursorMode;
+                @CheatMenu.started += instance.OnCheatMenu;
+                @CheatMenu.performed += instance.OnCheatMenu;
+                @CheatMenu.canceled += instance.OnCheatMenu;
+            }
+
+            /// <summary>
+            /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+            /// </summary>
+            /// <remarks>
+            /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+            /// </remarks>
+            /// <seealso cref="UIActions" />
+            private void UnregisterCallbacks(IUIActions instance)
+            {
+                @Pause.started -= instance.OnPause;
+                @Pause.performed -= instance.OnPause;
+                @Pause.canceled -= instance.OnPause;
+                @SetCursorMode.started -= instance.OnSetCursorMode;
+                @SetCursorMode.performed -= instance.OnSetCursorMode;
+                @SetCursorMode.canceled -= instance.OnSetCursorMode;
+                @CheatMenu.started -= instance.OnCheatMenu;
+                @CheatMenu.performed -= instance.OnCheatMenu;
+                @CheatMenu.canceled -= instance.OnCheatMenu;
+            }
+
+            /// <summary>
+            /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="UIActions.UnregisterCallbacks(IUIActions)" />.
+            /// </summary>
+            /// <seealso cref="UIActions.UnregisterCallbacks(IUIActions)" />
+            public void RemoveCallbacks(IUIActions instance)
+            {
+                if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            /// <summary>
+            /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+            /// </summary>
+            /// <remarks>
+            /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+            /// </remarks>
+            /// <seealso cref="UIActions.AddCallbacks(IUIActions)" />
+            /// <seealso cref="UIActions.RemoveCallbacks(IUIActions)" />
+            /// <seealso cref="UIActions.UnregisterCallbacks(IUIActions)" />
+            public void SetCallbacks(IUIActions instance)
+            {
+                foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        /// <summary>
+        /// Provides a new <see cref="UIActions" /> instance referencing this action map.
+        /// </summary>
+        public UIActions @UI => new UIActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         /// <summary>
         /// Provides access to the input control scheme.
@@ -916,47 +1012,12 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
             }
         }
         /// <summary>
-        /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "General" which allows adding and removing callbacks.
+        /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
         /// </summary>
-        /// <seealso cref="GeneralActions.AddCallbacks(IGeneralActions)" />
-        /// <seealso cref="GeneralActions.RemoveCallbacks(IGeneralActions)" />
-        public interface IGeneralActions
+        /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
+        /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
+        public interface IPlayerActions
         {
-            /// <summary>
-            /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-            /// </summary>
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnMove(InputAction.CallbackContext context);
-            /// <summary>
-            /// Method invoked when associated input action "MoveForCheckIsButtonTriggered" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-            /// </summary>
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnMoveForCheckIsButtonTriggered(InputAction.CallbackContext context);
-            /// <summary>
-            /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-            /// </summary>
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnLook(InputAction.CallbackContext context);
-            /// <summary>
-            /// Method invoked when associated input action "Fire" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-            /// </summary>
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnFire(InputAction.CallbackContext context);
-            /// <summary>
-            /// Method invoked when associated input action "Use" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-            /// </summary>
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnUse(InputAction.CallbackContext context);
             /// <summary>
             /// Method invoked when associated input action "SelectItem0" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
@@ -1000,12 +1061,55 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnSelectItem5(InputAction.CallbackContext context);
             /// <summary>
-            /// Method invoked when associated input action "CheatMenu" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
             /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnCheatMenu(InputAction.CallbackContext context);
+            void OnMove(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "MoveForCheckIsButtonTriggered" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnMoveForCheckIsButtonTriggered(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Use" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnUse(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnLook(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Fire" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnFire(InputAction.CallbackContext context);
+        }
+        /// <summary>
+        /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
+        /// </summary>
+        /// <seealso cref="UIActions.AddCallbacks(IUIActions)" />
+        /// <seealso cref="UIActions.RemoveCallbacks(IUIActions)" />
+        public interface IUIActions
+        {
+            /// <summary>
+            /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnPause(InputAction.CallbackContext context);
             /// <summary>
             /// Method invoked when associated input action "SetCursorMode" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
@@ -1014,12 +1118,12 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnSetCursorMode(InputAction.CallbackContext context);
             /// <summary>
-            /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// Method invoked when associated input action "CheatMenu" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
             /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnPause(InputAction.CallbackContext context);
+            void OnCheatMenu(InputAction.CallbackContext context);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Modules.DebugModule.Shared.Scripts
 
         private void Update()
         {
-            var moveAction = _projectInputActions.General.Move.ReadValue<Vector2>();
+            var moveAction = _projectInputActions.Player.Move.ReadValue<Vector2>();
         
             Debug.Log(Keyboard.current.wKey.isPressed);
         

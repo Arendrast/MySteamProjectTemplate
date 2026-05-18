@@ -12,13 +12,9 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
     public sealed class NewInputSystemService : IInputService, IDisposable
     {
         public Vector2 MoveAction =>
-            _timeScaleRepository.IsTimeScaleZero()
-                ? Vector2.zero
-                : _inputActions.General.Move.ReadValue<Vector2>();
+             _inputActions.Player.Move.ReadValue<Vector2>();
 
-        public Vector2 LookAction => _timeScaleRepository.IsTimeScaleZero()
-            ? Vector2.zero
-            : _inputActions.General.Look.ReadValue<Vector2>();
+        public Vector2 LookAction => _inputActions.Player.Look.ReadValue<Vector2>();
 
         private readonly Dictionary<InputActionGroupType, IReadOnlyList<InputAction>> _inputActionsGroupsByType =
             new Dictionary<InputActionGroupType, IReadOnlyList<InputAction>>();
@@ -30,12 +26,10 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
             new Dictionary<InputActionType, InputAction>();
 
         private readonly InputActions _inputActions;
-        private readonly TimeScaleRepository _timeScaleRepository;
 
-        public NewInputSystemService(TimeScaleRepository timeScaleRepository,
+        public NewInputSystemService(
             InputActions inputActions)
         {
-            _timeScaleRepository = timeScaleRepository;
             _inputActions = inputActions;
             _inputActions.Enable();
         }
@@ -45,11 +39,39 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
             _inputActions?.Dispose();
         }
 
+        public void SetActiveInputActionsPart(InputActionsPart part, bool isActive)
+        {
+            var map = GetInputActionsMap(part);
+
+            if (map != null)
+            {
+                if (isActive)
+                {
+                    map.Enable();
+                }
+                else
+                {
+                    map.Disable();
+                }
+            }
+        }
+
+        private InputActionMap GetInputActionsMap(InputActionsPart part)
+        {
+            switch (part)
+            {
+                case InputActionsPart.Player:
+                    return _inputActions.Player;
+                case InputActionsPart.UI:
+                    return _inputActions.UI;
+            }
+
+            return null;
+        }
+        
         public void SetSubscribeStateToInputAction(InputActionType actionType, InputActionPhase phase, Action<InputAction.CallbackContext> action,
             SubscribeState subscribeState)
         {
-            Debug.Log(actionType + ": " + subscribeState);
-            
             if (subscribeState is SubscribeState.Subscribe)
             {
                 SubscribeToInputAction(actionType, phase, action);
@@ -69,7 +91,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
             }
             else
             {
-                UnsubscribeFromInputActionGroup(groupType, phase, action, actionsCount);
+                UnsubscribeFromInputActionGroup(groupType, phase, actionsCount);
             }
         }
 
@@ -102,7 +124,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Input
         }
 
         private void UnsubscribeFromInputActionGroup(InputActionGroupType groupType, InputActionPhase phase,
-            Action<InputAction.CallbackContext, int> action, int actionsCount)
+            int actionsCount)
         {
             var inputActions = GetGroupInputActions(actionsCount, groupType);
 

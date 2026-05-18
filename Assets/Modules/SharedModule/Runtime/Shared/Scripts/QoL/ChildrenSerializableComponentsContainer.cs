@@ -21,7 +21,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
         {
             var allComponentsInHierarchy = GetComponentsInChildren<Component>(true)
                 .Where(c => c is MonoBehaviour and not ChildrenSerializableComponentsContainer) // Фильтруем мусор
-                .ToList(); 
+                .ToList();
 
             ClearAndAddComponents(allComponentsInHierarchy);
 
@@ -41,11 +41,11 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
             {
                 return;
             }
-            
+
             if (!_containedComponents.Contains(comp))
             {
                 _containedComponents.Add(comp);
-                AddToCache(comp); 
+                AddToCache(comp);
             }
         }
 
@@ -55,10 +55,10 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
             {
                 return;
             }
-            
+
             if (_containedComponents.Remove(comp))
             {
-                RemoveFromCache(comp); 
+                RemoveFromCache(comp);
             }
         }
 
@@ -70,7 +70,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
         public void OnBeforeSerialize()
         {
         }
-        
+
         public IReadOnlyList<T> GetContainedChildren<T>() where T : Component
         {
             Type targetType = typeof(T);
@@ -79,7 +79,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
                 return list.Cast<T>().ToList();
             }
 
-            return Array.Empty<T>(); 
+            return Array.Empty<T>();
         }
 
         public void RebuildCache()
@@ -91,7 +91,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
                 AddToCache(comp); // my way is slower than GetComponentsInChildren. I will optimize it later
             }
         }
-        
+
         private void AddToCache(Component comp)
         {
             if (comp == null)
@@ -100,9 +100,9 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
             }
 
             Type concreteType = comp.GetType();
-            
+
             AddEntryToPolymorphicCache(concreteType, comp);
-            
+
             Type currentBaseType = concreteType.BaseType;
             while (currentBaseType != null && currentBaseType != typeof(UnityEngine.Object) &&
                    currentBaseType != typeof(Component))
@@ -110,13 +110,13 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
                 AddEntryToPolymorphicCache(currentBaseType, comp);
                 currentBaseType = currentBaseType.BaseType;
             }
-            
+
             foreach (Type ifaceType in concreteType.GetInterfaces())
             {
                 AddEntryToPolymorphicCache(ifaceType, comp);
             }
         }
-        
+
         private void RemoveFromCache(Component comp)
         {
             if (comp == null)
@@ -125,9 +125,9 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
             }
 
             Type concreteType = comp.GetType();
-            
+
             RemoveEntryFromPolymorphicCache(concreteType, comp);
-            
+
             Type currentBaseType = concreteType.BaseType;
             while (currentBaseType != null && currentBaseType != typeof(UnityEngine.Object) &&
                    currentBaseType != typeof(Component))
@@ -135,7 +135,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
                 RemoveEntryFromPolymorphicCache(currentBaseType, comp);
                 currentBaseType = currentBaseType.BaseType;
             }
-            
+
             foreach (Type ifaceType in concreteType.GetInterfaces())
             {
                 RemoveEntryFromPolymorphicCache(ifaceType, comp);
@@ -151,7 +151,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
                 _polymorphicCache[type] = list;
             }
 
-            if (!list.Contains(comp)) 
+            if (!list.Contains(comp))
             {
                 list.Add(comp);
             }
@@ -169,7 +169,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
                 }
             }
         }
-        
+
         private void ClearAndAddComponents(IEnumerable<Component> componentsToAdd)
         {
             _containedComponents.Clear();
@@ -181,7 +181,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
                 }
             }
 #if UNITY_EDITOR
-            UnityEditor.EditorUtility.SetDirty(this); 
+            UnityEditor.EditorUtility.SetDirty(this);
 #endif
         }
     }
