@@ -300,18 +300,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908acb20ac024a738938907d032b45b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _overrideMaxOverlaps: 0
-  _maxOverlaps: 1000
-  _localPoint0: {x: 0, y: 0.4, z: 0}
-  _localPoint1: {x: 0, y: 1.4, z: 0}
-  _radius: 0.6
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 51
-  _queryTriggerInteraction: 2
-  _selectedColor: {r: 1, g: 0.015686274, b: 0.31749433, a: 1}
-  _defaultColor: {r: 0, g: 1, b: 0, a: 1}
-  _updateInterval: 0.05
+  <OverlapConfig>k__BackingField:
+    <OverrideMaxOverlaps>k__BackingField: 0
+    <MaxOverlaps>k__BackingField: 1000
+    <LayerMask>k__BackingField:
+      serializedVersion: 2
+      m_Bits: 123
+    <QueryTriggerInteraction>k__BackingField: 0
+    <UpdateInterval>k__BackingField: 0.001
+  _debugConfig:
+    <SelectedColor>k__BackingField: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    <DefaultColor>k__BackingField: {r: 0, g: 1, b: 0, a: 1}
+  _config:
+    <LocalPoint0>k__BackingField: {x: 0, y: 0, z: 0}
+    <LocalPoint1>k__BackingField: {x: 0, y: 1.4, z: 0}
+    <Radius>k__BackingField: 0.5
 --- !u!114 &-3165366819361338435
 MonoBehaviour:
   m_ObjectHideFlags: 0

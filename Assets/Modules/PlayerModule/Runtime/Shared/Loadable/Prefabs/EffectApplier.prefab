@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4143507834255953227}
   - component: {fileID: 3323942747413419885}
   - component: {fileID: -1174325127474364283}
-  - component: {fileID: 4183817597911752829}
+  - component: {fileID: 4925448835008519925}
   m_Layer: 0
   m_Name: EffectApplier
   m_TagString: Untagged
@@ -51,7 +51,7 @@ MonoBehaviour:
   <LifeTime>k__BackingField: 0
   <TimeBeforeCancelEffect>k__BackingField: 0
   <EffectType>k__BackingField: 0
-  <OverlapObserver>k__BackingField: {fileID: 4183817597911752829}
+  <OverlapObserver>k__BackingField: {fileID: 0}
 --- !u!114 &4143507834255953227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 4143507834255953227}
   _allowSpawning: 1
   _allowDespawning: 1
---- !u!114 &4183817597911752829
+--- !u!114 &4925448835008519925
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,9 +152,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8563694866053201098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1181aa1050c04150907c3c5f2b4fdd60, type: 3}
+  m_Script: {fileID: 11500000, guid: e8de6f41d8454c10b917dda9f3e6e32f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: SharedSharedModule::Modules.SharedModule.Runtime.Shared.Scripts.Observers.Overlap.CylinderOverlapObserver
   <OverlapConfig>k__BackingField:
     <OverrideMaxOverlaps>k__BackingField: 0
     <MaxOverlaps>k__BackingField: 1000
@@ -164,9 +164,10 @@ MonoBehaviour:
     <QueryTriggerInteraction>k__BackingField: 0
     <UpdateInterval>k__BackingField: 0.1
   _debugConfig:
-    <SelectedColor>k__BackingField: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    <SelectedColor>k__BackingField: {r: 1, g: 0.10299614, b: 0.015686274, a: 1}
     <DefaultColor>k__BackingField: {r: 0, g: 1, b: 0, a: 1}
   _config:
     <LocalCenter>k__BackingField: {x: 0, y: 0, z: 0}
-    <LocalHalfExtents>k__BackingField: {x: 0.5, y: 0.5, z: 0.5}
     <LocalRotation>k__BackingField: {x: 0, y: 0, z: 0, w: 1}
+    <Radius>k__BackingField: 0.34
+    <Height>k__BackingField: 0.67
