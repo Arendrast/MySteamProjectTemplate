@@ -9,6 +9,12 @@ using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 using UnityEngine;
 
 #if TWO_D
+using ActualCapsuleOverlapObserver = Modules.OverlapModule.Runtime.Scripts._2D.CapsuleOverlapObserver2D;
+#else
+using ActualCapsuleOverlapObserver = Modules.OverlapModule.Runtime.Scripts._3D.CapsuleOverlapObserver;
+#endif
+
+#if TWO_D
 using ActualRigidbody = UnityEngine.Rigidbody2D;
 
 #else
@@ -57,7 +63,8 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Push
             var handler = new PushHandlerController(
                 explodableSerializableComponents.LocalMass,
                 config.TimeMultiplier, config.MinimumThrowTime, config.SpeedCurve,
-                explodableSerializableComponents.GetOrAddComponent<OverlapObserver>(), explosionModelContainer.Data,
+                explodableSerializableComponents.GetComponent<OverlapObserver>() ?? explodableSerializableComponents
+                    .gameObject.AddComponent<ActualCapsuleOverlapObserver>(), explosionModelContainer.Data,
                 shouldDisableCapsuleOverlapObserverWhenIsInactive, moveAction, movableTransform);
 
             _explodables.Add(explodableSerializableComponents, handler);

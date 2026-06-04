@@ -20,6 +20,12 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
+#if TWO_D
+using ActualCollider = UnityEngine.Collider2D;
+#else
+using ActualCollider = UnityEngine.Collider;
+#endif
+
 namespace Modules.PlayerModule.Runtime.Shared.Scripts.DependencyInjection
 {
     public class OwnerPlayerLifetimeScope : LifetimeScope
@@ -92,7 +98,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.DependencyInjection
                 GetDamageReceiversFinder());
 
             builder.RegisterInstance(_dependencies.ClientPlayerComponents.SerializableComponents
-                .CapsuleCollider).As<Collider>();
+                .CapsuleCollider).As<ActualCollider>();
 
             builder.RegisterInstance(_dependencies.ClientPlayerComponents.SerializableComponents.CapsuleOverlapObserver)
                 .As<IOverlapObserver>();

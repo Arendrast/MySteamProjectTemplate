@@ -43,7 +43,7 @@ namespace Modules.OverlapModule.Runtime.Scripts
             _logicConfig = logicConfig;
             _getOverlapResultsNumber = getOverlapResultsNumber;
             _tryMakeNewOverlapsAdded = tryMakeNewOverlapsAdded;
-
+            
             _overlapResultsBuffer = new ActualCollider[MaxOverlaps];
         }
 
