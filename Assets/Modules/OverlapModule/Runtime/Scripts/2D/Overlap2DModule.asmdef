@@ -1,0 +1,21 @@
+{
+    "name": "Overlap2DModule",
+    "rootNamespace": "",
+    "references": [
+        "OverlapModule",
+        "MathModule",
+        "Popcron.Gizmos",
+        "DebugSharedModule.Popcron"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "TWO_D"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

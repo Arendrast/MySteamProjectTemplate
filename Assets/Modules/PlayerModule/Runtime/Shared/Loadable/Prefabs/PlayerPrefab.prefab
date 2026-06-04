@@ -76,9 +76,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <NetworkObject>k__BackingField: {fileID: 2637946605412552243}
-  <CharacterControllerCollider>k__BackingField: {fileID: 6443201436270288939}
-  <CharacterController>k__BackingField: {fileID: 5409534653940248262}
-  <ManyInvokableOneFrameCharacterController>k__BackingField: {fileID: 1113384559330274163}
+  <CapsuleCollider>k__BackingField: {fileID: 6443201436270288939}
+  <MovementComponent>k__BackingField: {fileID: 5409534653940248262}
   <CapsuleOverlapObserver>k__BackingField: {fileID: 4262093982461368738}
   <EntityComponents>k__BackingField: {fileID: 6956027033340291321}
   <ItemParentTransform>k__BackingField: {fileID: 6622565966464387580}
@@ -287,7 +286,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e230bf9a1847f3b99c87d76c51b482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <MovementType>k__BackingField: 0
   <LocalMass>k__BackingField: 1
+  <ShouldDisableCapsuleOverlapObserverWhenIsInactive>k__BackingField: 0
 --- !u!114 &4262093982461368738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,14 +301,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908acb20ac024a738938907d032b45b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <OverlapConfig>k__BackingField:
+  _overlapConfig:
     <OverrideMaxOverlaps>k__BackingField: 0
     <MaxOverlaps>k__BackingField: 1000
     <LayerMask>k__BackingField:
       serializedVersion: 2
-      m_Bits: 123
+      m_Bits: 4294967291
     <QueryTriggerInteraction>k__BackingField: 0
-    <UpdateInterval>k__BackingField: 0.001
+    <UpdateInterval>k__BackingField: 0.1
   _debugConfig:
     <SelectedColor>k__BackingField: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     <DefaultColor>k__BackingField: {r: 0, g: 1, b: 0, a: 1}

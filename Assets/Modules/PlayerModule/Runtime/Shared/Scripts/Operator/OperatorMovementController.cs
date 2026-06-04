@@ -1,5 +1,6 @@
 using Modules.SharedModule.Runtime.Shared.Scripts.Input;
 using Modules.SharedModule.Runtime.Shared.Scripts.Observers;
+using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 using UnityEngine;
 
 namespace Modules.PlayerModule.Runtime.Shared.Scripts.Operator
@@ -17,18 +18,11 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.Operator
 
             void Move(float deltaTime)
             {
-                var wishDirection = (cameraTransform.transform.forward * inputService.MoveAction.y) + 
-                                        (cameraTransform.transform.right * inputService.MoveAction.x);
-                
-                var targetVelocity = wishDirection * config.MaxSpeed;
-                
-                _currentVelocity = Vector3.MoveTowards(
-                    _currentVelocity, 
-                    targetVelocity, 
-                    config.AccelerationPerSecond * deltaTime
-                );
-                
-                cameraTransform.transform.position += _currentVelocity * deltaTime;
+                var wishDirection = (cameraTransform.transform.forward * inputService.MoveAction.y) +
+                                    (cameraTransform.transform.right * inputService.MoveAction.x);
+
+                MovementTools.MoveTowards(wishDirection, config.MaxSpeed, config.AccelerationPerSecond, deltaTime,
+                    cameraTransform, ref _currentVelocity);
             }
         }
     }

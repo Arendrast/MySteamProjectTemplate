@@ -21,20 +21,20 @@ namespace Modules.InteractableModule.Runtime.Shared.Scripts.Interactables
         private readonly ExplodersFactory _explodersFactory;
 
         private readonly Dictionary<Type, IConcreteInteractablesFactory> _concreteInteractableFactories;
-        private readonly RigidbodyPushablesFactory _rigidbodyPushablesFactory;
+        private readonly PushablesFactory _pushablesFactory;
 
         public InteractablesFactory(
             IEnumerable<IConcreteInteractablesFactory> concreteInteractableFactories,
             InteractablesRepository interactablesesRepository,
             ServerManager serverManager,
             ConfigsProviderService configsProviderService,
-            RigidbodyPushablesFactory rigidbodyPushablesFactory,
-            ExplodersFactory explodersFactory)
+            ExplodersFactory explodersFactory,
+            PushablesFactory actualPushablesFactory)
         {
             _interactablesesRepository = interactablesesRepository;
             _serverManager = serverManager;
             _configsProviderService = configsProviderService;
-            _rigidbodyPushablesFactory = rigidbodyPushablesFactory;
+            _pushablesFactory = actualPushablesFactory;
             _explodersFactory = explodersFactory;
             _concreteInteractableFactories =
                 concreteInteractableFactories.ToDictionary(factory => factory.GetSerializableComponentsType(),
@@ -62,7 +62,7 @@ namespace Modules.InteractableModule.Runtime.Shared.Scripts.Interactables
             interactable =
                 await concreteFactory.GetCreatedInteractableAsync(interactableSerializableComponents,
                     interactableInitializationData);
-            
+
             if (interactable == null) return null;
 
             if (canInteract.HasValue)
@@ -71,7 +71,8 @@ namespace Modules.InteractableModule.Runtime.Shared.Scripts.Interactables
             if (interactableSerializableComponents.TryGetComponent<ExplodableSerializableComponents>(
                     out var explodableSerializableComponents))
             {
-                _rigidbodyPushablesFactory.TryCreateRigidbodyPushHandler(explodableSerializableComponents);
+                await _pushablesFactory.TryCreatePushHandlerAsync(explodableSerializableComponents, true,
+                    PushableMovementType.Rigidbody);
             }
 
             if (interactableSerializableComponents.TryGetComponent<ExploderSerializableComponents>(
@@ -82,7 +83,8 @@ namespace Modules.InteractableModule.Runtime.Shared.Scripts.Interactables
 
             _interactablesesRepository.Add(interactableSerializableComponents, interactable);
 
-            interactableSerializableComponents.gameObject.GetOrAddComponent<EnableDisableObserver>().DisabledGameObject +=
+            interactableSerializableComponents.gameObject.GetOrAddComponent<EnableDisableObserver>()
+                    .DisabledGameObject +=
                 TryRemoveInteractable;
 
             _serverManager.TryCustomSpawn(interactableSerializableComponents.gameObject);

@@ -54,6 +54,14 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Tools
 
             return null;
         }
+        
+        public static bool TryGetComponentInParentsByPredicate<T>(this GameObject instance, out T component,
+            Predicate<T> predicate = null, bool includeInactive = true)
+            where T : Component
+        {
+            component = instance.transform.GetComponentInParentsByPredicate(predicate, includeInactive);
+            return component != null;
+        }
 
         public static bool TryGetComponentInParentsByPredicate<T>(this Component instance, out T component,
             Predicate<T> predicate = null, bool includeInactive = true)

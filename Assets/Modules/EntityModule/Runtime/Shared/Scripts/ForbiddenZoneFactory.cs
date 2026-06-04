@@ -4,6 +4,12 @@ using Modules.EntityModule.Runtime.Shared.Scripts.Repositories;
 using Modules.SharedModule.Runtime.Shared.Scripts.QoL;
 using UnityEngine;
 
+#if TWO_D
+using ActualCollider = UnityEngine.Collider2D;
+#else
+using ActualCollider = UnityEngine.Collider;
+#endif
+
 namespace Modules.EntityModule.Runtime.Shared.Scripts
 {
     public class ForbiddenZoneFactory : IMatchSharedFactory
@@ -21,7 +27,7 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts
             forbiddenZoneSerializableComponents.OverlapObserver.EventsProvider.Stayed += OnEnterAndStay;
         }
 
-        private void OnEnterAndStay(Collider collider)
+        private void OnEnterAndStay(ActualCollider collider)
         {
             var entitySerializableComponents =
                 collider.transform.root?.GetComponentInChildren<EntitySerializableComponents>();

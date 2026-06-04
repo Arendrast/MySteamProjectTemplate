@@ -1,3 +1,4 @@
+#if !TWO_D
 using System;
 using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 using UnityEngine;
@@ -32,3 +33,4 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Push
         }
     }
 }
+#endif

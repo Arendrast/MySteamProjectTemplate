@@ -1,86 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &773715896866385686
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 949240738428057162}
-  - component: {fileID: 8093328727498192155}
-  - component: {fileID: 2756549010109414228}
-  m_Layer: 18
-  m_Name: Sphere
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &949240738428057162
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773715896866385686}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8070304267600303046}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &8093328727498192155
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773715896866385686}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.125
-  m_Center: {x: 0, y: -0.65, z: 0}
---- !u!54 &2756549010109414228
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773715896866385686}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &5050740819798713676
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,9 +43,6 @@ GameObject:
   - component: {fileID: 5432233202128346500}
   - component: {fileID: 6732445122938956172}
   - component: {fileID: 359709237901234627}
-  - component: {fileID: 7368656413069056370}
-  - component: {fileID: 138711095104250911}
-  - component: {fileID: 9036113296396097277}
   m_Layer: 18
   m_Name: Camera
   m_TagString: MainCamera
@@ -183,7 +99,7 @@ Camera:
   near clip plane: 0.01
   far clip plane: 1000
   field of view: 51.9
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -244,69 +160,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!114 &7368656413069056370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5444698074484351720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b1697c407744f21bb5e0145a076ba06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <CameraRigidbody>k__BackingField: {fileID: 138711095104250911}
-  <CameraCollider>k__BackingField: {fileID: 9036113296396097277}
-  <SphereUnderCamera>k__BackingField: {fileID: 773715896866385686}
---- !u!54 &138711095104250911
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5444698074484351720}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0.1
-  m_AngularDamping: 0.5
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &9036113296396097277
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5444698074484351720}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.75, y: 0.75, z: 0.75}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6289748069374133137
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +189,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 949240738428057162}
   - {fileID: 5432233202128346500}
   m_Father: {fileID: 2295450159794111125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -386,8 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068a11d33877450a91852e7263dab926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <PushedCameraSerializableComponents>k__BackingField: {fileID: 7368656413069056370}
-  <FPSCameraSerializableComponents>k__BackingField: {fileID: 4348719854369356359}
+  <TwoDCameraSerializableComponents>k__BackingField: {fileID: 4348719854369356359}
   <Camera>k__BackingField: {fileID: 6732445122938956172}
   _cameraParentsTransformsByType:
   - <CameraParentType>k__BackingField: 0
@@ -408,3 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc0ea5306f84ec4b22973aa7c2e3e98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <MovementConfig>k__BackingField:
+    <AccelerationPerSecond>k__BackingField: 2
+    <MaxSpeed>k__BackingField: 5
+    <MaxDeltaOffset>k__BackingField: 5

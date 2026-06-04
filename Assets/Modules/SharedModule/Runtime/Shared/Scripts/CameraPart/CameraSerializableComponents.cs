@@ -25,8 +25,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.CameraPart
         
         public Transform this[CameraParentType type] => CameraParentsTransformsByType[type];
         
-        [field: SerializeField] public PushedCameraSerializableComponents PushedCameraSerializableComponents { get; private set; }
-        [field: SerializeField] public FPSCameraSerializableComponents FPSCameraSerializableComponents { get; private set; }
+        [field: SerializeField] public TwoDCameraSerializableComponents TwoDCameraSerializableComponents { get; private set; }
         [field: SerializeField] public UnityEngine.Camera Camera { get; private set; }
         [SerializeField] private List<Pair> _cameraParentsTransformsByType;
     }

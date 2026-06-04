@@ -106,20 +106,30 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Push
                 await UniTask.WaitForSeconds(exploderSerializableComponents.DelayBeforeExplosion);
 
                 if (!healthModel.IsDied)
-                    damageDealerModel.DoDamage(damageReceiverModel, new DoDamageData(healthModel.HealthPoints, DamageOrigin.Explosion));
+                    damageDealerModel.DoDamage(damageReceiverModel,
+                        new DoDamageData(healthModel.HealthPoints, DamageOrigin.Explosion));
 
                 healthModel.DiedWithoutArgs -= TryExplodeAndDisposeAsyncWithoutArgs;
 
                 if (pushable != null)
                     pushable.Pushed -= TryExplodeAndDisposeAsync;
 
+                GameObject[] excludedGameObjects = null;
+
+#if TWO_D
+                excludedGameObjects = exploderSerializableComponents.GetComponentsInChildren<Collider2D>()
+                    .Select(collider => collider.gameObject).ToArray();
+#else
+                excludedGameObjects = exploderSerializableComponents.GetComponentsInChildren<Collider>()
+                    .Select(collider => collider.gameObject).ToArray();
+#endif
+
                 explosionApplier.Explode(new ExplosionData(exploderSerializableComponents.transform.position,
                     exploderSerializableComponents.ExplosionForceConfig.ToData(),
                     exploderSerializableComponents.Damage,
                     (await _configsProviderService.GetConfigAsync<PhysicsLayersConfig>()).LayerMaskByLayerGroup[
                         PhysicsLayerGroup.Explodable],
-                    exploderSerializableComponents.GetComponentsInChildren<Collider>()
-                        .Select(transform => transform.gameObject).ToArray(), true));
+                    excludedGameObjects, true));
 
                 _healthModelsesRepository.RemoveByKey(networkObject.ObjectId);
                 _damageDealersesRepository.RemoveByKey(networkObject.ObjectId);

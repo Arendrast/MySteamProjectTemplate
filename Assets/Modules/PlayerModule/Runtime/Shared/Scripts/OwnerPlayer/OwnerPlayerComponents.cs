@@ -22,8 +22,8 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer
         public readonly PlayerInteractionController InteractionController;
         public readonly PlayerMovementController MovementController;
         public readonly PlayerIsGroundedProvider IsGroundedProvider;
-        public readonly CharacterControllerPushHandlerController PushHandlerController;
-        public readonly CharacterControllerPushHandlerModel PushHandlerModel;
+        public readonly PushHandlerController PushHandlerController;
+        public readonly PushHandlerModel PushHandlerModel;
         public readonly DamageReceiversFinder DamageReceiversFinder;
 
 
@@ -34,8 +34,8 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer
             FiniteStateMachineModel<IFeetOwnerPlayerState> feetStateMachineModel,
             PlayerInteractionController interactionController,
             PlayerMovementController movementController,
-            CharacterControllerPushHandlerController pushHandlerController,
-            CharacterControllerPushHandlerModel pushHandlerModel,
+            PushHandlerController pushHandlerController,
+            PushHandlerModel pushHandlerModel,
             DamageReceiversFinder damageReceiversFinder,
             PlayerIsGroundedProvider isGroundedProvider, 
             ActiveInputHandlersTypesRepository activeInputHandlersTypesRepository)

@@ -12,7 +12,10 @@
         "Popcron.Gizmos",
         "Unity.Addressables",
         "Kybernetik.Animancer",
-        "VContainer"
+        "VContainer",
+        "OverlapModule",
+        "Overlap3DModule",
+        "Overlap2DModule"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

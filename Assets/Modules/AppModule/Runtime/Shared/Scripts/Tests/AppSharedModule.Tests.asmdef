@@ -14,7 +14,10 @@
         "UnityEditor.TestRunner",
         "FishNet.Runtime",
         "ParrelSync",
-        "AppSharedModule"
+        "AppSharedModule",
+        "Overlap3DModule",
+        "OverlapModule",
+        "Overlap2DModule"
     ],
     "includePlatforms": [
         "Editor"

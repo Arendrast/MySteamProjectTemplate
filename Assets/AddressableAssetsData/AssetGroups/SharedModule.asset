@@ -77,7 +77,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7ae5a99e0f4c4644781f139dd8bf4655
-    m_Address: CharacterControllerExplodablesConfig
+    m_Address: ExplodablesConfig
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

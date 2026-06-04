@@ -5,6 +5,7 @@ using FishNet.Object;
 using Modules.EntityModule.Runtime.Shared.Scripts.Damage;
 using Modules.EntityModule.Runtime.Shared.Scripts.Push;
 using Modules.InventoryModule.Runtime.Shared.Scripts;
+using Modules.OverlapModule.Runtime.Scripts;
 using Modules.PlayerModule.Runtime.Shared.Scripts.ClientPlayer;
 using Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer;
 using Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer.OwnerStateMachine;
@@ -13,7 +14,6 @@ using Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer.OwnerStateMachine.
 using Modules.SharedModule.Runtime.Shared.Scripts.CameraPart;
 using Modules.SharedModule.Runtime.Shared.Scripts.Configs;
 using Modules.SharedModule.Runtime.Shared.Scripts.FiniteStateMachine;
-using Modules.SharedModule.Runtime.Shared.Scripts.Observers;
 using Modules.SharedModule.Runtime.Shared.Scripts.PhysicsPart;
 using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 using UnityEngine;
@@ -37,10 +37,9 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.DependencyInjection
             public OwnerPlayerSerializableComponents OwnerPlayerSerializableComponents { get; set; }
             public ClientPlayerComponents ClientPlayerComponents { get; set; }
             public DamageReceiversRepository DamageReceiversRepository { get; set; }
-            
-            public CharacterControllerPushHandlerController PushHandlerController { get; set; }
-            public CharacterControllerPushHandlerModel PushHandlerModel { get; set; }
-            
+
+            public PushHandlerController PushHandlerController { get; set; }
+            public PushHandlerModel PushHandlerModel { get; set; }
         }
 
         private Dependencies _dependencies;
@@ -59,7 +58,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.DependencyInjection
 
         protected override async UniTask ConfigureAsync(IContainerBuilder builder)
         {
-            var characterController = _dependencies.ClientPlayerComponents.SerializableComponents.CharacterController;
+            var capsuleCollider = _dependencies.ClientPlayerComponents.SerializableComponents.CapsuleCollider;
 
             builder.RegisterInstances(
                 _dependencies.InventoryItemsConfig,
@@ -72,7 +71,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.DependencyInjection
                 _dependencies.InventoryItemsModel,
                 _dependencies.ClientPlayerComponents.SerializableComponents.destroyCancellationToken,
                 _dependencies.CameraComponents.SerializableComponents.Camera,
-                _dependencies.CameraComponents.FPSCameraController,
+                _dependencies.CameraComponents.twoDCameraMovementController,
                 _dependencies.CameraComponents,
                 _dependencies.ClientPlayerComponents.EntityComponents.DamageReceiverModel,
                 _dependencies.ClientPlayerComponents.EntityComponents.DamageDealerModel,
@@ -81,8 +80,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.DependencyInjection
                 _dependencies.ClientPlayerComponents.SerializableComponents.gameObject,
                 _dependencies.OwnerPlayerSerializableComponents.GetComponent<NetworkObject>(),
                 _dependencies.ClientPlayerComponents.SerializableComponents.Animator,
-                _dependencies.ClientPlayerComponents.SerializableComponents.CharacterController,
-                _dependencies.ClientPlayerComponents.SerializableComponents.ManyInvokableOneFrameCharacterController,
+                _dependencies.OwnerPlayerSerializableComponents.ClientSerializableComponents.MovementComponent,
                 _dependencies.ClientPlayerComponents.StateMachine,
                 _dependencies.ClientPlayerComponents.EntityComponents.HealthModel,
                 _dependencies.ClientPlayerComponents.ViewComponents.SerializableComponents
@@ -94,7 +92,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.DependencyInjection
                 GetDamageReceiversFinder());
 
             builder.RegisterInstance(_dependencies.ClientPlayerComponents.SerializableComponents
-                .CharacterControllerCollider).As<Collider>();
+                .CapsuleCollider).As<Collider>();
 
             builder.RegisterInstance(_dependencies.ClientPlayerComponents.SerializableComponents.CapsuleOverlapObserver)
                 .As<IOverlapObserver>();
@@ -126,24 +124,29 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.DependencyInjection
                     _dependencies.ClientPlayerComponents.EntityComponents.DamageDealerModel,
                     () => _dependencies.ClientPlayerComponents.SerializableComponents.transform.position);
             }
-            
+
 
             IsGroundedProvider GetIsGroundedProvider()
             {
-                var radiusFunc =
-                    new Func<float>(() => characterController.radius - 0.05f); // must less than CharController radius 
+                Func<float> radiusFunc = null;
+
+#if TWO_D
+                radiusFunc = () => capsuleCollider.size.x - 0.05f;
+#else
+                radiusFunc = () => capsuleCollider.radius - 0.05f;
+#endif
 
                 return new IsGroundedProvider(
                     _dependencies.PhysicsLayersConfig,
-                    () => characterController.bounds.center.WithY(characterController.bounds.min.y) +
-                          characterController.transform.up * radiusFunc.Invoke(),
+                    () => capsuleCollider.bounds.center.WithY(capsuleCollider.bounds.min.y) +
+                          capsuleCollider.transform.up * radiusFunc.Invoke(),
                     radiusFunc,
                     GetFirstRaycastHitExceptOwner);
 
                 RaycastHit GetFirstRaycastHitExceptOwner(RaycastHit[] hits, int hitsCount)
                 {
                     return PlayerTools.GetNearestRaycastHitExceptOwner(hits, hitsCount,
-                        _dependencies.OwnerPlayerSerializableComponents.transform, characterController.bounds.center);
+                        _dependencies.OwnerPlayerSerializableComponents.transform, capsuleCollider.bounds.center);
                 }
             }
         }

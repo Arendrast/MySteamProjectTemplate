@@ -14,7 +14,8 @@
         "Unity.AI.Navigation",
         "Popcron.Gizmos",
         "Unity.RenderPipelines.Core.Runtime",
-        "VContainer"
+        "VContainer",
+        "DebugSharedModule.Popcron"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -6,19 +6,15 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.CameraPart
 {
     public class CameraComponents
     {
-        public readonly FPSCameraController FPSCameraController;
+        public readonly TwoDCameraMovementController twoDCameraMovementController;
         public readonly CameraSerializableComponents SerializableComponents;
-        public readonly FollowPositionController FollowPositionController;
-        public readonly FollowRotationController FollowRotationController;
 
-        public CameraComponents(FPSCameraController fpsCameraController,
+        public CameraComponents(TwoDCameraMovementController twoDCameraMovementController,
             CameraSerializableComponents serializableComponents, FollowPositionController followPositionController,
             FollowRotationController followRotationController)
         {
-            FPSCameraController = fpsCameraController;
+            this.twoDCameraMovementController = twoDCameraMovementController;
             SerializableComponents = serializableComponents;
-            FollowPositionController = followPositionController;
-            FollowRotationController = followRotationController;
         }
 
         public void Dispose()
@@ -26,13 +22,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.CameraPart
             SerializableComponents.CameraParentsTransformsByType.Values.ForEach(transform =>
                 transform.localPosition = Vector3.zero);
             SerializableComponents.Camera.transform.localPosition = Vector3.zero;
-            FPSCameraController.ReturnDefaultConstraints();
-            FPSCameraController.SetPosition(Vector3.zero);
-            FPSCameraController.SetRotation(Vector3.zero);
-            FPSCameraController.SetIsEnabledRotateCameraByLookInput(false);
-            FPSCameraController.SetShouldRotateByLookInputX(false);
-            FollowPositionController.EndFollow();
-            FollowRotationController.EndFollow();
+            twoDCameraMovementController.SetPosition(Vector3.zero);
         }
     }
 }

@@ -1,0 +1,20 @@
+{
+    "name": "Overlap3DModule",
+    "rootNamespace": "",
+    "references": [
+        "OverlapModule",
+        "MathModule",
+        "Popcron.Gizmos"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "!TWO_D"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

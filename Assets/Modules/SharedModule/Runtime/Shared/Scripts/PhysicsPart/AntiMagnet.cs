@@ -1,3 +1,4 @@
+#if !TWO_D
 using System.Collections.Generic;
 using System.Linq;
 using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
@@ -81,3 +82,4 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.PhysicsPart
         public void SetRepelForce(float newForce) => repelForce = Mathf.Max(0, newForce);
     }
 }
+#endif

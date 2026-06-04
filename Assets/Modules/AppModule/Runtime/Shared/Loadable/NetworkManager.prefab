@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _logging: {fileID: 0}
-  _spawnablePrefabs: {fileID: 11400000, guid: 0c4b0063d924e43479cdef45178d8449, type: 2}
+  _spawnablePrefabs: {fileID: 11400000, guid: 95e292b37e884c94882ed69ecca65698, type: 2}
   _refreshDefaultPrefabs: 0
   _runInBackground: 1
   _dontDestroyOnLoad: 0

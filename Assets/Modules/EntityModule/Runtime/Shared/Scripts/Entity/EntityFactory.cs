@@ -7,9 +7,15 @@ using Modules.EntityModule.Runtime.Shared.Scripts.Effects.Effectable.Logic.Effec
 using Modules.EntityModule.Runtime.Shared.Scripts.Heal;
 using Modules.EntityModule.Runtime.Shared.Scripts.Repositories;
 using Modules.SharedModule.Runtime.Shared.Scripts.Observers;
-using Modules.SharedModule.Runtime.Shared.Scripts.Observers.Overlap;
+using Modules.OverlapModule.Runtime.Scripts;
 using Modules.SharedModule.Runtime.Shared.Scripts.QoL;
 using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
+
+#if TWO_D
+using ActualCapsuleOverlapObserver = Modules.OverlapModule.Runtime.Scripts._2D.CapsuleOverlapObserver2D;
+#else
+using ActualCapsuleOverlapObserver = Modules.OverlapModule.Runtime.Scripts._3D.CapsuleOverlapObserver;
+#endif
 
 namespace Modules.EntityModule.Runtime.Shared.Scripts.Entity
 {
@@ -107,7 +113,7 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Entity
 
             void ConfigureCapsuleOverlapObserver()
             {
-                var capsuleOverlapObserver = serializableComponents.GetComponentInParent<CapsuleOverlapObserver>();
+                var capsuleOverlapObserver = serializableComponents.GetComponentInParent<ActualCapsuleOverlapObserver>();
 
                 if (shouldDisableOverlapObserver)
                 {

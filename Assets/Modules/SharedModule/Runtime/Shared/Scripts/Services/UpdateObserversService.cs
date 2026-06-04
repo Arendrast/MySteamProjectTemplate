@@ -9,8 +9,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Services
 {
     public class UpdateObserversService : IPersistentService
     {
-        private readonly Dictionary<UpdateType, List<UpdateObserver>> _updateObserversByUpdateType =
-            new Dictionary<UpdateType, List<UpdateObserver>>();
+        private readonly Dictionary<UpdateType, List<UpdateObserver>> _updateObserversByUpdateType;
 
         private readonly Dictionary<GameObject, List<UpdateObserver>> _updateObserverByGameObject =
             new Dictionary<GameObject, List<UpdateObserver>>();

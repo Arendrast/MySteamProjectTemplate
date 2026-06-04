@@ -12,7 +12,8 @@
         "DebugSharedModule",
         "ActionTriggerSharedModule",
         "PlayerSharedModule",
-        "VContainer"
+        "VContainer",
+        "OverlapModule"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

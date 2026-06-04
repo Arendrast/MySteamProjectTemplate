@@ -17,7 +17,7 @@ namespace Modules.HudModule.Runtime.Scripts.CheatMenu
         private readonly IInputService _inputService;
 
         public CheatMenuPopupController(CheatMenuPopupSerializableComponents serializableComponents,
-            DamageReceiverModel damageReceiverModel, CharacterControllerPushHandlerModel pushHandlerModel,
+            DamageReceiverModel damageReceiverModel, PushHandlerModel pushHandlerModel,
             IInputService inputService,
             TimeScaleRepository timeScaleRepository)
         {

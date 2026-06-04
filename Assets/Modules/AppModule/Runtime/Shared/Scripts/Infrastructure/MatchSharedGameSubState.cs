@@ -65,7 +65,7 @@ namespace Modules.AppModule.Runtime.Shared.Scripts.Infrastructure
                 mainVignette.active = false;
 
             var camera = await _cameraFactory.GetCreatedMainCameraAsync();
-
+            
             if (isOperator)
             {
                 await ConfigureOperatorAsync(camera);
@@ -87,6 +87,9 @@ namespace Modules.AppModule.Runtime.Shared.Scripts.Infrastructure
 
                 var hudPopupController = await _hudPopupFactory.GetCreatedHudPopupControllerAsync(
                     ownerPlayerComponents, _networkCountersSynchronizerBehaviourRepository.Behaviour);
+                
+                camera.twoDCameraMovementController.SetTarget(ownerPlayerComponents.SerializableComponents.transform);
+                camera.twoDCameraMovementController.StartMoveToTarget();
             }
 
             subscribingMediator.SubscribeAfterInitialize();
@@ -94,15 +97,11 @@ namespace Modules.AppModule.Runtime.Shared.Scripts.Infrastructure
             CursorSwitchTools.TryDisableCursor();
             _inputActions.Enable();
             _networkTimerService.Enable();
-
-            camera.FPSCameraController.SetIsEnabledRotateCameraByLookInput(true);
         }
 
         private async UniTask ConfigureOperatorAsync(CameraComponents camera)
         {
             await _operatorFactory.GetCreatedOperatorMovementControllerAsync();
-            camera.FPSCameraController.SetHorizontalAngleConstraints(0, 0);
-            camera.FPSCameraController.SetShouldRotateByLookInputX(true);
         }
 
         private void Exit()

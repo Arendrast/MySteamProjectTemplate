@@ -11,7 +11,6 @@ using Modules.EntityModule.Runtime.Shared.Scripts.Effects;
 using Modules.PlayerModule.Runtime.Shared.Scripts.ClientPlayer;
 using Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer;
 using Modules.SharedModule.Runtime.Client.Scripts.UI;
-using Modules.SharedModule.Runtime.Shared.Scripts.Observers.Overlap;
 using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,6 +18,12 @@ using UnityEngine.TestTools;
 using VContainer;
 using VContainer.Unity;
 using Object = UnityEngine.Object;
+
+#if TWO_D
+using ActualBoxOverlapObserver = Modules.OverlapModule.Runtime.Scripts._2D.SquareOverlapObserver;
+#else
+using ActualBoxOverlapObserver = Modules.OverlapModule.Runtime.Scripts._3D.BoxOverlapObserver;
+#endif
 
 namespace Modules.AppModule.Runtime.Shared.Scripts.Tests
 {
@@ -99,7 +104,7 @@ namespace Modules.AppModule.Runtime.Shared.Scripts.Tests
             return LifetimeScope.Find<MatchSharedServicesScope>().Container
                 .Resolve<EffectApplierFactory>().GetCreatedEffectApplierController(
                     new GameObject().AddComponent<EffectApplierSerializableComponents>(),
-                    EffectType.None, 0, 0, 0, new GameObject().AddComponent<BoxOverlapObserver>());
+                    EffectType.None, 0, 0, 0, new GameObject().AddComponent<ActualBoxOverlapObserver>());
         }
     }
 }

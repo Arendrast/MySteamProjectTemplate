@@ -1,7 +1,7 @@
 using FishNet.Managing.Server;
 using Modules.EntityModule.Runtime.Shared.Scripts.Effects.Effectable.Logic;
 using Modules.EntityModule.Runtime.Shared.Scripts.Effects.Network;
-using Modules.SharedModule.Runtime.Shared.Scripts.Observers.Overlap;
+using Modules.OverlapModule.Runtime.Scripts;
 using Modules.SharedModule.Runtime.Shared.Scripts.QoL;
 
 namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects

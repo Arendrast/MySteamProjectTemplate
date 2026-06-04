@@ -23,7 +23,10 @@
         "com.rlabrecque.steamworks.net",
         "Unity.Animation.Rigging",
         "ActionTriggerSharedModule",
-        "VContainer"
+        "VContainer",
+        "Overlap3DModule",
+        "OverlapModule",
+        "Overlap2DModule"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

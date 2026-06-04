@@ -22,6 +22,12 @@ using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 using UnityEngine;
 using VContainer;
 
+#if TWO_D
+using ActualCollider = UnityEngine.Collider2D;
+#else
+using ActualCollider = UnityEngine.Collider;
+#endif
+
 namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer
 {
     public class OwnerPlayerFactory : IMatchSharedFactory,
@@ -38,7 +44,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer
         private readonly ConfigsProviderService _configsProvider;
         private readonly CameraFactory _cameraFactory;
         private readonly HashedAssetProvider _hashedAssetProvider;
-        private readonly CharacterControllerPushablesFactory _characterControllerPushablesFactory;
+        private readonly PushablesFactory _puchablesFactory;
         private readonly ClientsPlayersFactory _clientsPlayersFactory;
         private readonly OwnerPlayerRepository _ownerPlayerRepository;
         private readonly DamageReceiversRepository _damageReceiversesRepository;
@@ -50,7 +56,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer
             HashedAssetProvider hashedAssetProvider,
             ConfigsProviderService configsProvider,
             CameraFactory cameraFactory,
-            CharacterControllerPushablesFactory characterControllerPushablesFactory,
+            PushablesFactory puchablesFactory,
             ClientsPlayersFactory clientsPlayersFactory, OwnerPlayerRepository ownerPlayerRepository,
             DamageReceiversRepository damageReceiversesRepository, IAssetLoader assetLoader,
             IsOperatorRepository isOperatorRepository, UpdateObserversService updateObserversService)
@@ -58,7 +64,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer
             _hashedAssetProvider = hashedAssetProvider;
             _configsProvider = configsProvider;
             _cameraFactory = cameraFactory;
-            _characterControllerPushablesFactory = characterControllerPushablesFactory;
+            _puchablesFactory = puchablesFactory;
             _clientsPlayersFactory = clientsPlayersFactory;
             _ownerPlayerRepository = ownerPlayerRepository;
             _damageReceiversesRepository = damageReceiversesRepository;
@@ -113,8 +119,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer
             OwnerPlayerSerializableComponents ownerSerializableComponents,
             CameraComponents cameraComponents, ClientPlayerComponents clientComponents)
         {
-            ConfigureCamera(ownerSerializableComponents.transform);
-            ConfigureCollider(clientComponents.SerializableComponents.CharacterControllerCollider);
+            ConfigureCollider(clientComponents.SerializableComponents.CapsuleCollider);
             ConfigureItemParent(clientComponents.SerializableComponents.ItemParentTransform,
                 -ownerSerializableComponents.CameraFollow.transform.localPosition);
 
@@ -141,28 +146,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer
 
             return;
 
-            void ConfigureCamera(Transform playerTransform)
-            {
-                _updateObserversService.TryAddOrGetUpdateObserver(playerTransform.gameObject, UpdateType.LateUpdate,
-                    out var updateObserver);
-                
-                cameraComponents.FollowPositionController.SetParameters(
-                    updateObserver,
-                    ownerSerializableComponents.CameraFollow,
-                    () => Vector3.zero, isLocalOffset: true);
-
-                cameraComponents.FollowRotationController.SetParameters(
-                    updateObserver,
-                    ownerSerializableComponents.CameraFollow,
-                    () => Vector3.zero, false,
-                    true,
-                    false);
-
-                cameraComponents.FollowPositionController.StartFollow();
-                cameraComponents.FollowRotationController.StartFollow();
-            }
-
-            void ConfigureCollider(Collider collider)
+            void ConfigureCollider(ActualCollider collider)
             {
                 collider.enabled = false;
             }
@@ -171,7 +155,7 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer
             {
                 _updateObserversService.TryAddOrGetUpdateObserver(itemParent.gameObject, UpdateType.LateUpdate,
                     out var updateObserver);
-                
+
                 new FollowPositionController(
                     updateObserver,
                     itemParent,
@@ -192,12 +176,18 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.OwnerPlayer
         {
             var lifetimeScope = ownerSerializableComponents.gameObject.GetComponent<OwnerPlayerLifetimeScope>();
 
-            var pushHandlerModelContainer = new DataContainer<CharacterControllerPushHandlerModel>();
+            var pushHandlerModelContainer = new DataContainer<PushHandlerModel>();
 
-            var pushHandler = await _characterControllerPushablesFactory.TryCreateCharacterControllerPushHandlerAsync(
-                ownerSerializableComponents.GetComponent<ExplodableSerializableComponents>(), pushHandlerModelContainer,
-                false);
-            
+            PushableMovementType pushableMovementType = PushableMovementType.CharacterController;
+
+#if TWO_D
+            pushableMovementType = PushableMovementType.Rigidbody;
+#endif
+
+            var pushHandler = await _puchablesFactory.TryCreatePushHandlerAsync(
+                ownerSerializableComponents.GetComponent<ExplodableSerializableComponents>(), false,
+                pushableMovementType, pushHandlerModelContainer);
+
             lifetimeScope.SetDependenciesAndPrepareToBuild(
                 new OwnerPlayerLifetimeScope.Dependencies
                 {

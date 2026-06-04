@@ -8,8 +8,8 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.Tools
     public static class EditorSceneTools
     {
         [MenuItem("Scenes/Load Initial #1")]
-        public static void LoadSceneLvl1Zone1() =>
-            OpenScene($"Assets/Modules/CoreModule/Runtime/Shared/Scenes/Initial.unity");
+        public static void LoadInitialScene() =>
+            OpenScene($"Assets/Modules/AppModule/Runtime/Shared/Scenes/Initial.unity");
 
         [MenuItem("Scenes/Load Metrics #2")]
         public static void OpenMetricsScene() =>

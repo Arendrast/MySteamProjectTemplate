@@ -1,3 +1,4 @@
+#if !TWO_D
 using Modules.SharedModule.Runtime.Shared.Scripts.QoL;
 using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 using UnityEngine;
@@ -38,3 +39,4 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.PhysicsPart
         }
     }
 }
+#endif

@@ -30,7 +30,7 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts
         private readonly InteractablesFactory _interactablesFactory;
         private readonly ServerManager _serverManager;
         private readonly DestroyablesFactory _destroyablesFactory;
-        private readonly RigidbodyPushablesFactory _rigidbodyPushablesFactory;
+        private readonly PushablesFactory _rigidbodyPushablesFactory;
         private readonly ExplodersFactory _explodersFactory;
         private readonly EffectApplierFactory _effectApplierFactory;
         private readonly LevelZoneRepository _levelZoneRepository;
@@ -40,7 +40,7 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts
         public LevelZoneFactory(IAssetLoader assetLoader,
             InteractablesFactory interactablesFactory,
             ServerManager serverManager,
-            RigidbodyPushablesFactory rigidbodyPushablesFactory,
+            PushablesFactory rigidbodyPushablesFactory,
             ExplodersFactory explodersFactory,
             DestroyablesFactory destroyablesFactory,
             EffectApplierFactory effectApplierFactory,
@@ -185,7 +185,7 @@ namespace Modules.LevelModule.Runtime.Shared.Scripts
                              .ChildrenSerializableComponentsContainer
                              .GetContainedChildren<ExplodableSerializableComponents>())
                 {
-                    _rigidbodyPushablesFactory.TryCreateRigidbodyPushHandler(explodable);
+                    _rigidbodyPushablesFactory.TryCreatePushHandlerAsync(explodable, explodable.ShouldDisableCapsuleOverlapObserverWhenIsInactive, explodable.MovementType );
                 }
             }
 

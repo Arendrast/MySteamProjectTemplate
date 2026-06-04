@@ -48,22 +48,19 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.CameraPart
 
         public async UniTask<CameraComponents> GetCreatedMainCameraAsync()
         {
-            var moveConfig = await _configsProvider.GetConfigAsync<MovementConfig>();
-
             return await _hashedAssetProvider.GetControllerAsync<CameraComponents, CameraSerializableComponents>(
                 MainCameraAssetId,
                 instance =>
                 {
                     _updateObserversService.TryAddOrGetUpdateObserver(
-                        instance.FPSCameraSerializableComponents.gameObject, UpdateType.LateUpdate, out var observer);
+                        instance.TwoDCameraSerializableComponents.gameObject, UpdateType.LateUpdate, out var observer);
                     
                     _hashedAssetProvider.RegisterAndGetSingleByType(
                         new CameraComponents(
-                            new FPSCameraController(
-                                instance.FPSCameraSerializableComponents,
+                            new TwoDCameraMovementController(
+                                instance.TwoDCameraSerializableComponents,
                                 _inputService,
-                                new CameraControllerData(() =>
-                                    moveConfig.RotationSpeed * _mouseSensitivityRepository.CurrentSensitivity),
+                                new CameraControllerData(),
                                 instance[CameraParentType.Move], observer),
                             instance, new FollowPositionController(instance.transform),
                             new FollowRotationController(instance.transform)));

@@ -1,4 +1,4 @@
-using Modules.SharedModule.Runtime.Shared.Scripts.Observers.Overlap;
+using Modules.OverlapModule.Runtime.Scripts;
 using UnityEngine;
 
 namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects

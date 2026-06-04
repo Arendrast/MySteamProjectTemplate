@@ -4,7 +4,7 @@ using FishNet.Managing.Server;
 using FishNet.Object;
 using Modules.EntityModule.Runtime.Shared.Scripts.Effects.Effectable.Logic;
 using Modules.EntityModule.Runtime.Shared.Scripts.Effects.Network;
-using Modules.SharedModule.Runtime.Shared.Scripts.Observers.Overlap;
+using Modules.OverlapModule.Runtime.Scripts;
 using Modules.SharedModule.Runtime.Shared.Scripts.QoL;
 using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
 using MoreLinq;
@@ -28,7 +28,7 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects
         public EffectApplierController(EffectApplierSerializableComponents serializableComponents,
             EffectablesRepository effectablesRepository, EffectType effectType,
             DoEffectActionForNetworkObjectSynchronizationService synchronizationService, ServerManager serverManager,
-            float? lifeTime, float? timeBeforeCancelEffect, int effectApplierId, OverlapObserver overlapObserver = null)
+            float? lifeTime, float? timeBeforeCancelEffect, int effectApplierId, OverlapObserver overlapObserver)
         {
             SerializableComponents = serializableComponents;
             _effectablesRepository = effectablesRepository;
@@ -70,7 +70,7 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects
             {
                 _synchronizationService.SendEffectActionData(new EffectActionData(_effectType, networkObject.ObjectId,
                     _effectApplierId, EffectActionType.Apply, EffectOrigin.EffectApplier, 0));
-                
+
                 Debug.Log(1);
             }
 
@@ -84,21 +84,21 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects
 
             return true;
         }
-        
-        private void TryApplyEffectOnEnter(Collider collider)
+
+        private void TryApplyEffectOnEnter(Component component)
         {
-            if (!collider.TryGetComponentInParentsByPredicate<EffectableSerializableComponents>(
+            if (!component.TryGetComponentInParentsByPredicate<EffectableSerializableComponents>(
                     out var effectableSerializableComponents))
             {
                 return;
             }
-            
+
             TryApplyEffect(effectableSerializableComponents);
         }
 
-        private void TryCancelEffectOnExit(Collider collider)
+        private void TryCancelEffectOnExit(Component component)
         {
-            if (!collider.TryGetComponentInParentsByPredicate<EffectableSerializableComponents>(
+            if (!component.TryGetComponentInParentsByPredicate<EffectableSerializableComponents>(
                     out var effectableSerializableComponents) ||
                 !_effectablesRepository.TryGetValue(effectableSerializableComponents, out var effectable)) return;
 

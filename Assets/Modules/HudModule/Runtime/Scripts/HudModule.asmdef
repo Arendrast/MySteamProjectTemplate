@@ -22,7 +22,8 @@
         "ActionTriggerSharedModule",
         "LocalizationModule",
         "VContainer",
-        "Unity.InputSystem"
+        "Unity.InputSystem",
+        "MathModule"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
