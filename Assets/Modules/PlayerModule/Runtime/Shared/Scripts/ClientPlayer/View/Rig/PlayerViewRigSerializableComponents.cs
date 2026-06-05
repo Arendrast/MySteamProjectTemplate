@@ -16,15 +16,6 @@ namespace Modules.PlayerModule.Runtime.Shared.Scripts.ClientPlayer.View.Rig
 
         [field: SerializeField] public Transform ItemsViewsPositionOrigin { get; private set; }
 
-        [field: SerializeField]
-        public NetworkVector3SynchronizerBehaviour LookVectorSynchronizerBehaviour { get; private set; }
-
-        [field: SerializeField]
-        public NetworkVector2SynchronizerBehaviour VelocitySynchronizerBehaviour { get; private set; }
-
-        [field: SerializeField]
-        public NetworkFloatSynchronizerBehaviour IKWeightSynchronizerBehaviour { get; private set; }
-
         [field: SerializeField] public AnimancerComponent AnimancerComponent { get; private set; }
         [field: SerializeField] public Transform PelvisTransform { get; private set; }
         [field: SerializeField] public AvatarMask LegsMask { get; private set; }

@@ -12,10 +12,7 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
     public class ChildrenSerializableComponentsContainer : MonoBehaviour, ISerializationCallbackReceiver
     {
         [SerializeField] private List<Component> _containedComponents = new List<Component>();
-
         
-        
-        private bool _cacheNeedsRebuild = true;
         private readonly Dictionary<Type, List<Component>> _polymorphicCache = new Dictionary<Type, List<Component>>();
 
         [ContextMenu("Editor: Bake Components In Children")]
@@ -78,7 +75,6 @@ namespace Modules.SharedModule.Runtime.Shared.Scripts.QoL
             Type targetType = typeof(T);
             if (_polymorphicCache.TryGetValue(targetType, out var list))
             {
-                
                 return list.Cast<T>().ToList();
             }
 
