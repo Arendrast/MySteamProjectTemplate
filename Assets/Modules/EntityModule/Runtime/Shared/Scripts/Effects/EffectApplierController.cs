@@ -58,20 +58,17 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects
 
         public bool TryApplyEffect(EffectableSerializableComponents effectableSerializableComponents)
         {
-            if (!_effectablesRepository.TryGetValue(effectableSerializableComponents, out var effectable))
+            if (!_effectablesRepository.TryGetValue(effectableSerializableComponents, out var effectable) ||
+                !effectable.TryApplyEffect(_effectType, _effectApplierId, EffectOrigin.EffectApplier))
             {
                 return false;
             }
-
-            effectable.TryApplyEffect(_effectType, _effectApplierId, EffectOrigin.EffectApplier);
 
             if (effectableSerializableComponents.TryGetComponentInParentsByPredicate<NetworkObject>(
                     out var networkObject))
             {
                 _synchronizationService.SendEffectActionData(new EffectActionData(_effectType, networkObject.ObjectId,
                     _effectApplierId, EffectActionType.Apply, EffectOrigin.EffectApplier, 0));
-
-                Debug.Log(1);
             }
 
             if (_startDespawnTimeInTicks == 0)
@@ -113,8 +110,10 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects
 
             if (effectableSerializableComponents.TryGetComponentInParentsByPredicate<NetworkObject>(
                     out var networkObject))
+            {
                 _synchronizationService.SendEffectActionData(new EffectActionData(_effectType, networkObject.ObjectId,
                     _effectApplierId, EffectActionType.Cancel, EffectOrigin.EffectApplier, delay));
+            }
         }
     }
 }

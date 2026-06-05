@@ -34,7 +34,7 @@ namespace Modules.OverlapModule.Runtime.Scripts._3D
         
         public Model LocalModel { get; private set; }
         
-        [SerializeField] private Config _config;
+        [SerializeField] private Config _config = new Config();
 
         protected override void Awake()
         {

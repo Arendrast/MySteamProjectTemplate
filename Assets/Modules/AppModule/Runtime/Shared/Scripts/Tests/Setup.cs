@@ -101,10 +101,13 @@ namespace Modules.AppModule.Runtime.Shared.Scripts.Tests
 
         public static EffectApplierController EffectApplierController()
         {
+            var overlapObserver = new GameObject().AddComponent<ActualBoxOverlapObserver>();
+            overlapObserver.enabled = false;
+            
             return LifetimeScope.Find<MatchSharedServicesScope>().Container
                 .Resolve<EffectApplierFactory>().GetCreatedEffectApplierController(
                     new GameObject().AddComponent<EffectApplierSerializableComponents>(),
-                    EffectType.None, 0, 0, 0, new GameObject().AddComponent<ActualBoxOverlapObserver>());
+                    EffectType.None, 0, 0, 0, overlapObserver);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects.Effectable.Logic
         event Action<EffectType, int> CancelledEffect;
         
         IReadOnlyCollection<EffectType> ActiveEffects { get; }
-        void TryApplyEffect(EffectType effectType, int effectApplierId, EffectOrigin effectOrigin);
+        bool TryApplyEffect(EffectType effectType, int effectApplierId, EffectOrigin effectOrigin);
         bool TryCancelEffect(EffectType effectType, int effectCancellerId, float delay);
     }
 }

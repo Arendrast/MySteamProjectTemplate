@@ -24,7 +24,6 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects.Network
                 ApplyOrCancelEffectBroadcast broadcast,
                 Channel channel)
             {
-                Debug.Log(2);
                 serverManager.BroadcastToAllWhoLoadedScene(clientManager, broadcast, loadedSceneConnections, false,
                     senderConnection);
             }

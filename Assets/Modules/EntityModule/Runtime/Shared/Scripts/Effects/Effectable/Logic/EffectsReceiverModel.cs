@@ -4,6 +4,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Modules.EntityModule.Runtime.Shared.Scripts.Effects.Effectable.Logic.EffectReactors;
 using Modules.SharedModule.Runtime.Shared.Scripts.Tools;
+using UnityEngine;
 
 namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects.Effectable.Logic
 {
@@ -26,22 +27,24 @@ namespace Modules.EntityModule.Runtime.Shared.Scripts.Effects.Effectable.Logic
             Id = id;
         }
 
-        public void TryApplyEffect(EffectType effectType, int effectApplierId, EffectOrigin effectOrigin)
+        public bool TryApplyEffect(EffectType effectType, int effectApplierId, EffectOrigin effectOrigin)
         {
+            if (_activeEffects.Contains(effectType))
+            {
+                return false;
+            }
+            
             if (_activeCancelDelayTokensSources.Remove(effectType, out var tokenSource))
             {
                 tokenSource.Cancel();
                 tokenSource.Dispose();
             }
             
-            if (_activeEffects.Contains(effectType))
-            {
-                return;
-            }
-            
             EffectReactors.GetValueOrDefault(effectType)?.OnApply(_activeEffects, effectApplierId);
             _activeEffects.Add(effectType);
             AppliedEffect?.Invoke(effectType, effectApplierId, effectOrigin);
+
+            return true;
         }
 
         public bool TryCancelEffect(EffectType effectType, int effectCancellerId, float delay = 0)

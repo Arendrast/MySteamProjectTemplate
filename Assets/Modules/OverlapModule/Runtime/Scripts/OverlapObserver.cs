@@ -17,8 +17,8 @@ namespace Modules.OverlapModule.Runtime.Scripts
         protected OverlapObserverHelper ObserverHelper { get; private set; }
         protected OverlapGizmosDrawer OverlapGizmosDrawer { get; private set; }
 
-        [SerializeField] private OverlapObserverLogicConfig _overlapConfig;
-        [SerializeField] private OverlapObserverDebugConfig _debugConfig;
+        [SerializeField] private OverlapObserverLogicConfig _overlapConfig = new OverlapObserverLogicConfig();
+        [SerializeField] private OverlapObserverDebugConfig _debugConfig = new OverlapObserverDebugConfig();
 
         protected virtual void Awake()
         {
