@@ -15,20 +15,6 @@ EditorBuildSettings:
     path: Assets/Modules/AppModule/Runtime/Shared/Scenes/Game.unity
     guid: cf6978eba353f3241b1c15ad4d8b05ad
   - enabled: 0
-    path: Assets/Modules/LevelModule/Runtime/Shared/Prefabs/Levels/Level1/Zone1/Lvl1_1.unity
-    guid: 7cc7ad4b45011a84cbba14a57446281c
-  - enabled: 0
-    path: Assets/CrazySWAT/LevelModule/Runtime/Shared/Prefabs/Levels/1/Zone2/Lvl1_2.unity
-    guid: b0a5e9ba66467854791aca0834ea0f7a
-  - enabled: 0
-    path: Assets/CrazySWAT/LevelModule/Runtime/Shared/Prefabs/Levels/1/Zone3/Lvl1_3.unity
-    guid: ff757526bd9a3af488c7d8a36c6a14b5
-  - enabled: 0
-    path: Assets/CrazySWAT/LevelModule/Runtime/Shared/Prefabs/Levels/1/Zone6/Lvl1_6.unity
-    guid: 633d190de7c42e44099132f1282852d0
-  - enabled: 0
-    path: Assets/Modules/LevelModule/Runtime/Shared/Prefabs/Levels/Metrics/Metrics.unity
-    guid: c0edfbfc0aab2fd4aaa9f0cde421707e
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: b63a34b219071804693d43c464ca1033, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 94f1566bd39c71b4bb6ad793a232f941, type: 2}
